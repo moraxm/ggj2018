@@ -5,22 +5,9 @@ using UnityEngine.UI;
 
 public class MainInterfaceController : MonoBehaviour {
 
-    public Sprite MoveUp = null;
-    public Sprite MoveDown = null;
-    public Sprite MoveLeft = null;
-    public Sprite MoveRight = null;
-    public Sprite Ladder = null;
-    public Sprite Door = null;
-    public Sprite Use = null;
-
 	// Use this for initialization
 	void Awake ()
     {
-        if (!MoveUp || !MoveDown || !MoveLeft || !MoveRight || !Ladder || !Door || !Use)
-        {
-            Debug.LogError("[MainInterfaceController.Start] Error. An action sprite has not been configured via editor");
-            return;
-        }
 
 	}
 	
@@ -50,12 +37,21 @@ public class MainInterfaceController : MonoBehaviour {
                 Debug.LogError("[MainInterfaceController.ConfigurePlayersInterface] Error. InfoPlayer" + i + " not found");
                 return;
             }
-            GameObject playerInfo = playerInfoTransform.gameObject;
-            playerInfo.SetActive(true);
+            playerInfoTransform.gameObject.SetActive(true);
 
-            for (uint j = 0; j < 4; ++j)
+            Transform actionsTransform = playerInfoTransform.Find("Actions");
+            if (!actionsTransform)
             {
-                Transform actionTransform = playerInfo.transform.Find("Action" + j);
+                Debug.LogError("[MainInterfaceController.ConfigurePlayersInterface] Error. Actions not found for InfoPlayer" + i);
+                return;
+            }
+
+            int lastActionChecked = -1;
+            // For each action of that player
+            for (uint j = 1; j <= 4; ++j)
+            {
+                // Locate UI sprite
+                Transform actionTransform = actionsTransform.Find("Action" + j);
                 if (!actionTransform)
                 {
                     Debug.LogError("[MainInterfaceController.ConfigurePlayersInterface] Error. Action" + j + " not found");
@@ -69,7 +65,44 @@ public class MainInterfaceController : MonoBehaviour {
                     return;
                 }
 
-
+                // Which action needs to be checkes now?
+                if (lastActionChecked < 0 && globalInputManager.players[i - 1].m_L2Action != null) // Action exists, assign its icon to this UI sprite
+                {
+                    actionTransform.gameObject.SetActive(true);
+                    actionImage.sprite = globalInputManager.players[i - 1].m_L2Action.spriteUI;
+                    lastActionChecked = 0;
+                }
+                else if (lastActionChecked < 1 && globalInputManager.players[i - 1].m_R2Action != null)
+                {
+                    actionTransform.gameObject.SetActive(true);
+                    actionImage.sprite = globalInputManager.players[i - 1].m_R2Action.spriteUI;
+                    lastActionChecked = 1;
+                }
+                else if (lastActionChecked < 2 && globalInputManager.players[i - 1].m_UPAction != null)
+                {
+                    actionTransform.gameObject.SetActive(true);
+                    actionImage.sprite = globalInputManager.players[i - 1].m_UPAction.spriteUI;
+                    lastActionChecked = 2;
+                }
+                else if (lastActionChecked < 3 && globalInputManager.players[i - 1].m_DOWNAction != null)
+                {
+                    actionTransform.gameObject.SetActive(true);
+                    actionImage.sprite = globalInputManager.players[i - 1].m_DOWNAction.spriteUI;
+                    lastActionChecked = 3;
+                }
+                else if (lastActionChecked < 4 && globalInputManager.players[i - 1].m_RIGHTAction != null)
+                {
+                    actionTransform.gameObject.SetActive(true);
+                    actionImage.sprite = globalInputManager.players[i - 1].m_RIGHTAction.spriteUI;
+                    lastActionChecked = 4;
+                }
+                else if (lastActionChecked < 5 && globalInputManager.players[i - 1].m_LEFTAction != null)
+                {
+                    actionTransform.gameObject.SetActive(true);
+                    actionImage.sprite = globalInputManager.players[i - 1].m_LEFTAction.spriteUI;
+                    lastActionChecked = 5;
+                    break; // Everything checked
+                }
             }
         }
     }

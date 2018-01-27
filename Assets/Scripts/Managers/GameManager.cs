@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    // Sprite configuration for each action
+    public Sprite MoveUpUI = null;
+    public Sprite MoveDownUI = null;
+    public Sprite MoveLeftUI = null;
+    public Sprite MoveRightUI = null;
+    public Sprite LadderUI = null;
+    public Sprite DoorUI = null;
+    public Sprite UseUI = null;
+
     public MainInterfaceController mainInterfaceController = null;
     public GlobalInputManager globalInputManager = null;
     public GameObject missionFailInterface = null;
@@ -22,11 +31,17 @@ public class GameManager : MonoBehaviour {
     private bool missionSuccess = false;
     private Coroutine successCoroutine = null;
 
-    public static uint numberOfPlayers = 2; // Static variable with current numberOfPlayers (set by MainMenu selection)
+    public static uint numberOfPlayers = 3; // Static variable with current numberOfPlayers (set by MainMenu selection)
 
 	// Use this for initialization
 	void Start ()
     {
+        if (!MoveUpUI || !MoveDownUI || !MoveLeftUI || !MoveRightUI || !LadderUI || !DoorUI || !UseUI)
+        {
+            Debug.LogError("[MainInterfaceController.Start] Error. An action sprite has not been configured via editor");
+            return;
+        }
+
         if (!mainInterfaceController)
         {
             Debug.LogError("[GameManager.Start] Error. MainInterfaceController component not found");
@@ -57,8 +72,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        ConfigureActions();
-
         currentTime = missionTime;
         timer.text = "Time: " + currentTime.ToString("000");
 
@@ -66,6 +79,8 @@ public class GameManager : MonoBehaviour {
         failCoroutine = null;
         missionSuccess = false;
         successCoroutine = null;
+
+        ConfigureActions();
 	}
 
     void ConfigureActions()
@@ -75,21 +90,20 @@ public class GameManager : MonoBehaviour {
         Stack<MoveAction> moveActions = new Stack<MoveAction>();
 
         // Create actions
-        IAction actionToInsert = new OpenDoorAction();
         actions.Push(new OpenDoorAction());
-        actions.Peek().spriteUI = mainInterfaceController.Door;
+        actions.Peek().spriteUI = DoorUI;
         actions.Push(new OpenDoorAction());
-        actions.Peek().spriteUI = mainInterfaceController.Ladder;
+        actions.Peek().spriteUI = LadderUI;
         actions.Push(new OpenDoorAction());
-        actions.Peek().spriteUI = mainInterfaceController.Use;
+        actions.Peek().spriteUI = UseUI;
         moveActions.Push(new MoveActionUp());
-        actions.Peek().spriteUI = mainInterfaceController.MoveUp;
+        moveActions.Peek().spriteUI = MoveUpUI;
         moveActions.Push(new MoveActionDown());
-        actions.Peek().spriteUI = mainInterfaceController.MoveDown;
+        moveActions.Peek().spriteUI = MoveDownUI;
         moveActions.Push(new MoveActionRight());
-        actions.Peek().spriteUI = mainInterfaceController.MoveRight;
+        moveActions.Peek().spriteUI = MoveRightUI;
         moveActions.Push(new MoveActionLeft());
-        actions.Peek().spriteUI = mainInterfaceController.MoveLeft;
+        moveActions.Peek().spriteUI = MoveLeftUI;
 
         // Non move actions
         while (actions.Count > 0)
