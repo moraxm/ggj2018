@@ -24,6 +24,9 @@ public class MapManager : MonoBehaviour
     public readonly Vector3 toIncrease = new Vector3(0, 0.6f, 0);
 
     public Vector2Int startIndex = new Vector2Int(0, 0);
+    public Transform []startPos;
+
+    private GameManager gameManager = null;
 
     Casilla[,] _structure;
 
@@ -31,6 +34,56 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         buildStructure();
+
+        GameObject gameManagerObj = GameObject.FindGameObjectWithTag("GameManager");
+        if (!gameManagerObj)
+        {
+            Debug.LogError("[MapManager.Start] Error. GameManager not found");
+            return;
+        }
+        gameManager = gameManagerObj.GetComponent<GameManager>();
+        if (!gameManager)
+        {
+            Debug.LogError("[MapManager.Start] Error. GameManager has not GameManager component");
+            return;
+        }
+
+        for (uint i = 0; i < startPos.Length; ++i)
+        {
+            switch (i)
+            {
+                case 0:
+                    {
+                        Transform character = gameManager.GetRedCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                case 1:
+                    {
+                        Transform character = gameManager.GetYellowCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                case 2:
+                    {
+                        Transform character = gameManager.GetBlueCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                case 3:
+                    {
+                        Transform character = gameManager.GetGreenCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
     }
 
     void buildStructure()
@@ -215,15 +268,16 @@ public class MapManager : MonoBehaviour
 
     public bool canMove(Vector2Int from, DIRECTION direction, out Vector3 destinyCoords)
     {
+        Debug.Log(from);
         Vector2 destiny = new Vector2(from.x, from.y);
         destinyCoords = Vector3.zero;
         bool canMove = false;
         switch (direction)
         {
-            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop == Casilla.PERSONAJE_ENUM.NONE; break;
-            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown == Casilla.PERSONAJE_ENUM.NONE; ; break;
-            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft == Casilla.PERSONAJE_ENUM.NONE; break;
-            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight == Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown != Casilla.PERSONAJE_ENUM.NONE; ; break;
+            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight != Casilla.PERSONAJE_ENUM.NONE; break;
         }
         if (!canMove)
         {
