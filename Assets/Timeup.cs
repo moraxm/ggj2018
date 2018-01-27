@@ -31,8 +31,11 @@ public class Timeup : MonoBehaviour {
 		
 	}
 
-    public void OnPickUp()
+    public void OnTriggerEnter(Collider other)
     {
-        gameManager.IncreaseTime(TimeToAdd);
+        if (other.gameObject.tag == "Player")
+        {
+            gameManager.IncreaseTime(TimeToAdd);
+        }
     }
 }
