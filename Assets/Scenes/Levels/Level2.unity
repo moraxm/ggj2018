@@ -1061,6 +1061,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 114527517519281124, guid: 420ad89b0eb2d614280922121c788b67,
+        type: 2}
+      propertyPath: _personaje
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 420ad89b0eb2d614280922121c788b67, type: 2}
   m_IsPrefabParent: 0
@@ -4451,12 +4456,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4980738892898100, guid: 9409260d7c783fe439b63bcd10f7edc3,
     type: 2}
   m_PrefabInternal: {fileID: 1265463638}
---- !u!114 &1265463640 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114168204986716430, guid: 9409260d7c783fe439b63bcd10f7edc3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1265463638}
-  m_Script: {fileID: 11500000, guid: f4c9c22b6da24ca4f90eb75808d345e9, type: 3}
 --- !u!1 &1270261600
 GameObject:
   m_ObjectHideFlags: 0
@@ -5788,6 +5787,11 @@ Prefab:
     - target: {fileID: 4461106031966826, guid: 420ad89b0eb2d614280922121c788b67, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 114527517519281124, guid: 420ad89b0eb2d614280922121c788b67,
+        type: 2}
+      propertyPath: _personaje
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 420ad89b0eb2d614280922121c788b67, type: 2}
@@ -7421,7 +7425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8fde31d7e5d734692d6996b22c2f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft: {fileID: 1265463640}
+  topLeft: {fileID: 0}
   ALTO: 8
   ANCHO: 8
   alturaEscalera: {x: 0, y: 2, z: 0}
