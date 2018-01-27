@@ -17,9 +17,9 @@ public abstract class MoveAction : IAction
         }
     }
 
-    public virtual void preAction(CharController currentPlayer)
+    public override void preAction(CharController currentPlayer)
     {
-        m_target = new Vector2Int(currentPlayer.x, currentPlayer.y);
+        //m_target = new Vector2Int(currentPlayer.x, currentPlayer.y);
         if (!currentPlayer.m_mapManager.canMove(m_target, dir, out m_targetPosition))
         {
             usePizarrita(m_target);// Se hace doble pizarrita para que parezca como que hay dos personas intentando
@@ -50,7 +50,7 @@ public abstract class MoveAction : IAction
         pizarrita.Clear();
     }
 
-    virtual protected void move(CharController currentPlayer)
+    virtual public void move(CharController currentPlayer)
     {
         currentPlayer.animator.SetTrigger("Forward");
     }
