@@ -6,6 +6,14 @@ using UnityEngine;
 // para poder moverlo y tal y se le enchufa una acción para que la ejecute
 public class CharController : MonoBehaviour
 {
+    public bool running
+    {
+        get
+        {
+            if (m_action != null) return m_action.running;
+            else return false;
+        }
+    }
     public int x;
     public int y;
     IAction m_action;
@@ -33,7 +41,7 @@ public class CharController : MonoBehaviour
 
     public void doAction()
     {
-        m_action.doAction(this);
+        m_action.startAction(this);
     }
 
     public void preAction(IAction action)

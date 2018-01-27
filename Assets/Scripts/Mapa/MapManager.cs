@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-
+    public enum DIRECTION  {TOP, BOTTOM, LEFT, RIGHT};
     public Casilla topLeft;
     public int ALTO;
     public int ANCHO;
@@ -133,5 +133,39 @@ public class MapManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public bool canMove(Vector2Int origin, DIRECTION direction, out Vector3 destinyCoords )
+    {
+        Vector2 destiny = new Vector2(origin.x, origin.y);
+        destinyCoords = Vector3.zero;
+        bool canMove = false;
+        switch(direction)
+        {
+            case DIRECTION.TOP:  canMove = _structure[origin.x, origin.y]._goTop != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.BOTTOM: canMove = _structure[origin.x, origin.y]._goDown != Casilla.PERSONAJE_ENUM.NONE; ; break;
+            case DIRECTION.LEFT: canMove = _structure[origin.x, origin.y]._goLeft != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.RIGHT: canMove = _structure[origin.x, origin.y]._goRight != Casilla.PERSONAJE_ENUM.NONE; break;
+        }
+        if(!canMove)
+        {
+            return false;
+        }
+        Vector2Int toAdd = Vector2Int.zero;
+        switch (direction)
+        {
+            case DIRECTION.TOP: toAdd = Vector2Int.down; break;
+            case DIRECTION.BOTTOM: toAdd = Vector2Int.up; break;
+            case DIRECTION.LEFT: toAdd = Vector2Int.left; break;
+            case DIRECTION.RIGHT: toAdd = Vector2Int.right; break;
+        }
+        Vector2Int finalCoord = origin + toAdd;
+        destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
+        return true;
+    }
+
+    public bool doAction(Vector2Int from, DIRECTION direction, Casilla.PERSONAJE_ENUM color)
+    {
+        return true;
     }
 }

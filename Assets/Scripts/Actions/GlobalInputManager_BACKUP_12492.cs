@@ -40,8 +40,26 @@ public class GlobalInputManager : MonoBehaviour {
         {
             var a = players[i].getCurrentActionData();
             someAction = someAction || a.currentAction != null;
-            switch (a.currentPLayer)
+            if (a.currentAction != null)
             {
+<<<<<<< HEAD
+                switch (a.currentPLayer)
+                {
+                    case CharController.COLORS.BLUE:
+                        BLUEPlayer.preAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.GREEN:
+                        GREENPlayer.preAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.YELLOW:
+                        YELLOWPlayer.preAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.RED:
+                        REDPlayer.preAction(a.currentAction);
+                        break;
+                }
+            }
+=======
                 case CharController.COLORS.BLUE:
                     if (!BLUEPlayer.running)
                         BLUEPlayer.preAction(a.currentAction);
@@ -59,6 +77,7 @@ public class GlobalInputManager : MonoBehaviour {
                         REDPlayer.preAction(a.currentAction);
                     break;
             }    
+>>>>>>> 1e14758323718da1b3dd40404f9badc1ac608466
         }
 
         if (!someAction)
