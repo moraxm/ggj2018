@@ -75,17 +75,11 @@ public class MapManager : MonoBehaviour
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
 
-            if(first.Key == 4 && first.Value == 3)
-            {
-                Debug.Log("estoy donde debo estar");
-            }
-
-
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
 
             List<KeyValuePair<Vector3, Vector3>> hits = new List<KeyValuePair<Vector3, Vector3>>();
-            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(0, 1, 0), new Vector3(-1, 0, 0)));//top
-            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(0, -1, 0), new Vector3(1, 0, 0)));//botom
+            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(0, 0, 1), new Vector3(-1, 0, 0)));//top
+            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(0, 0, -1), new Vector3(1, 0, 0)));//botom
             hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(-1, 0, 0), new Vector3(0, -1, 0)));//left
             hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(1, 0, 0), new Vector3(0, 1, 0)));//right
 
@@ -110,7 +104,7 @@ public class MapManager : MonoBehaviour
                     }
                     else
                     {
-                        Ray rayCheckPared = new Ray(new Vector3(miPos.x, miPos.y, miPos.z + 0.1f), rayComponents.Key);
+                        Ray rayCheckPared = new Ray(new Vector3(miPos.x, miPos.y + 0.1f, miPos.z), rayComponents.Key);
                         LayerMask layerPared = LayerMask.GetMask("Pared");
                         if (Physics.Raycast(rayCheckPared, out hitTop, 1, layerPared))
                         {
