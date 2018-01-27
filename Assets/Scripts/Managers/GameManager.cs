@@ -57,9 +57,7 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        // Set selected number of players
-        mainInterfaceController.ConfigurePlayersInterface(numberOfPlayers);
-        globalInputManager.numberOfPlayers = numberOfPlayers;
+        ConfigureActions();
 
         currentTime = missionTime;
         timer.text = "Time: " + currentTime.ToString("000");
@@ -69,6 +67,131 @@ public class GameManager : MonoBehaviour {
         missionSuccess = false;
         successCoroutine = null;
 	}
+
+    void ConfigureActions()
+    {
+
+        Stack<IAction> actions = new Stack<IAction>();
+        Stack<MoveAction> moveActions = new Stack<MoveAction>();
+
+        // Create actions
+        IAction actionToInsert = new OpenDoorAction();
+        actions.Push(new OpenDoorAction());
+        actions.Peek().spriteUI = mainInterfaceController.Door;
+        actions.Push(new OpenDoorAction());
+        actions.Peek().spriteUI = mainInterfaceController.Ladder;
+        actions.Push(new OpenDoorAction());
+        actions.Peek().spriteUI = mainInterfaceController.Use;
+        moveActions.Push(new MoveActionUp());
+        actions.Peek().spriteUI = mainInterfaceController.MoveUp;
+        moveActions.Push(new MoveActionDown());
+        actions.Peek().spriteUI = mainInterfaceController.MoveDown;
+        moveActions.Push(new MoveActionRight());
+        actions.Peek().spriteUI = mainInterfaceController.MoveRight;
+        moveActions.Push(new MoveActionLeft());
+        actions.Peek().spriteUI = mainInterfaceController.MoveLeft;
+
+        // Non move actions
+        while (actions.Count > 0)
+        {
+            // Select random player until we get one with a missing action
+            int randPlayer = 0;
+            do
+            {
+                randPlayer = Random.Range(0, (int)numberOfPlayers);
+            }
+            while (globalInputManager.players[randPlayer].m_L2Action != null && globalInputManager.players[randPlayer].m_R2Action != null);
+            // It does not have a left action
+            if (globalInputManager.players[randPlayer].m_L2Action == null && globalInputManager.players[randPlayer].m_R2Action != null)
+            {
+                globalInputManager.players[randPlayer].m_L2Action = actions.Pop();
+            }
+            // It does not have a right action
+            else if (globalInputManager.players[randPlayer].m_L2Action != null && globalInputManager.players[randPlayer].m_R2Action == null)
+            {
+                globalInputManager.players[randPlayer].m_R2Action = actions.Pop();
+            }
+            else // Has none. Select random action
+            {
+                int randButton = Random.Range(0, 2);
+                if (randButton == 0)
+                {
+                    globalInputManager.players[randPlayer].m_L2Action = actions.Pop();
+                }
+                else
+                {
+                    globalInputManager.players[randPlayer].m_R2Action = actions.Pop();
+                }
+            }
+        }
+
+        // Move actions
+        // Assign one MoveAction to each player
+        for (uint i = 0; i < numberOfPlayers; ++i)
+        {
+            MoveAction moveAction = moveActions.Pop();
+            if (moveAction is MoveActionUp)
+            {
+                globalInputManager.players[i].m_UPAction = moveAction;
+            }
+            else if (moveAction is MoveActionDown)
+            {
+                globalInputManager.players[i].m_DOWNAction = moveAction;
+            }
+            else if (moveAction is MoveActionRight)
+            {
+                globalInputManager.players[i].m_RIGHTAction = moveAction;
+            }
+            else if (moveAction is MoveActionLeft)
+            {
+                globalInputManager.players[i].m_LEFTAction = moveAction;
+            }
+        }
+
+        while (moveActions.Count > 0)
+        {
+            MoveAction moveAction = moveActions.Pop();
+
+            while (true)
+            {
+                int rand = Random.Range(0, (int)numberOfPlayers);
+                if (moveAction is MoveActionUp)
+                {
+                    if (globalInputManager.players[rand].m_UPAction == null)
+                    {
+                        globalInputManager.players[rand].m_UPAction = moveAction;
+                        break;
+                    }
+                }
+                else if (moveAction is MoveActionDown)
+                {
+                    if (globalInputManager.players[rand].m_DOWNAction == null)
+                    {
+                        globalInputManager.players[rand].m_DOWNAction = moveAction;
+                        break;
+                    }
+                }
+                else if (moveAction is MoveActionRight)
+                {
+                    if (globalInputManager.players[rand].m_RIGHTAction == null)
+                    {
+                        globalInputManager.players[rand].m_RIGHTAction = moveAction;
+                        break;
+                    }
+                }
+                else if (moveAction is MoveActionLeft)
+                {
+                    if (globalInputManager.players[rand].m_LEFTAction == null)
+                    {
+                        globalInputManager.players[rand].m_LEFTAction = moveAction;
+                        break;
+                    }
+                }
+            }
+        }
+
+        mainInterfaceController.ConfigurePlayersInterface(globalInputManager);
+    }
 	
 	// Update is called once per frame
 	void Update ()

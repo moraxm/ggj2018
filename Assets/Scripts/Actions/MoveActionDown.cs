@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveActionDown : MoveAction {
+public class MoveActionDown : MoveAction
+{
+    public MoveActionDown()
+    {
+        dir = MapManager.DIRECTION.BOTTOM;
+    }
     public override void preAction(CharController currentPlayer)
     {
         base.preAction(currentPlayer);
