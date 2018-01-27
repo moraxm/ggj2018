@@ -16,6 +16,25 @@ ModelImporter:
     100016: pCylinder25
     100018: pCylinder26
     100020: pCylinder27
+    100022: base
+    100024: base 1
+    100026: base_bulb
+    100028: base_bulb 1
+    100030: bulb
+    100032: bulb 1
+    100034: conection_1
+    100036: conection_1 1
+    100038: conection_2
+    100040: conection_2 1
+    100042: conection_3
+    100044: conection_3 1
+    100046: conection_4
+    100048: conection_4 1
+    100050: metal_box
+    100052: metal_box 1
+    100054: pared_4_doble
+    100056: zocalo
+    100058: zocalo 1
     400000: base2
     400002: //RootNode
     400004: pCube25
@@ -27,6 +46,25 @@ ModelImporter:
     400016: pCylinder25
     400018: pCylinder26
     400020: pCylinder27
+    400022: base
+    400024: base 1
+    400026: base_bulb
+    400028: base_bulb 1
+    400030: bulb
+    400032: bulb 1
+    400034: conection_1
+    400036: conection_1 1
+    400038: conection_2
+    400040: conection_2 1
+    400042: conection_3
+    400044: conection_3 1
+    400046: conection_4
+    400048: conection_4 1
+    400050: metal_box
+    400052: metal_box 1
+    400054: pared_4_doble
+    400056: zocalo
+    400058: zocalo 1
     2100000: lambert4
     2100002: lambert3
     2100004: lambert5
@@ -42,6 +80,24 @@ ModelImporter:
     2300014: pCylinder25
     2300016: pCylinder26
     2300018: pCylinder27
+    2300020: base
+    2300022: base 1
+    2300024: base_bulb
+    2300026: base_bulb 1
+    2300028: bulb
+    2300030: bulb 1
+    2300032: conection_1
+    2300034: conection_1 1
+    2300036: conection_2
+    2300038: conection_2 1
+    2300040: conection_3
+    2300042: conection_3 1
+    2300044: conection_4
+    2300046: conection_4 1
+    2300048: metal_box
+    2300050: metal_box 1
+    2300052: zocalo
+    2300054: zocalo 1
     3300000: base2
     3300002: pCube25
     3300004: pCube26
@@ -52,6 +108,24 @@ ModelImporter:
     3300014: pCylinder25
     3300016: pCylinder26
     3300018: pCylinder27
+    3300020: base
+    3300022: base 1
+    3300024: base_bulb
+    3300026: base_bulb 1
+    3300028: bulb
+    3300030: bulb 1
+    3300032: conection_1
+    3300034: conection_1 1
+    3300036: conection_2
+    3300038: conection_2 1
+    3300040: conection_3
+    3300042: conection_3 1
+    3300044: conection_4
+    3300046: conection_4 1
+    3300048: metal_box
+    3300050: metal_box 1
+    3300052: zocalo
+    3300054: zocalo 1
     4300000: base2
     4300002: pCube25
     4300004: pCube26
@@ -62,6 +136,24 @@ ModelImporter:
     4300014: pCylinder23
     4300016: pCylinder24
     4300018: pCylinder25
+    4300020: base
+    4300022: zocalo
+    4300024: metal_box
+    4300026: base_bulb
+    4300028: bulb
+    4300030: conection_1
+    4300032: conection_2
+    4300034: conection_3
+    4300036: conection_4
+    4300038: base
+    4300040: zocalo
+    4300042: metal_box
+    4300044: base_bulb
+    4300046: bulb
+    4300048: conection_1
+    4300050: conection_2
+    4300052: conection_3
+    4300054: conection_4
   externalObjects: {}
   materials:
     importMaterials: 1
