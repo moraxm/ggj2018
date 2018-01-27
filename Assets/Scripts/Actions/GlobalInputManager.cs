@@ -25,7 +25,7 @@ public class GlobalInputManager : MonoBehaviour {
     private float m_acumTime;
 	// Use this for initialization
 	void Start () {
-		
+        m_currentState = InputState.WAITING_INPUT;
 	}
 	
 	// Update is called once per frame
@@ -44,10 +44,32 @@ public class GlobalInputManager : MonoBehaviour {
     private void WaitingInputUpdate()
     {
         // Primero el pre
+        bool someAction = false;
         for (int i = 0; i< numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
-            a.currentAction.preAction();
+            someAction = someAction || a.currentAction != null;
+            switch (a.currentPLayer)
+            {
+                case CharController.COLORS.BLUE:
+                    BLUEPlayer.preAction(a.currentAction);
+                    break;
+                case CharController.COLORS.GREEN:
+                    GREENPlayer.preAction(a.currentAction);
+                    break;
+                case CharController.COLORS.YELLOW:
+                    YELLOWPlayer.preAction(a.currentAction);
+                    break;
+                case CharController.COLORS.RED:
+                    REDPlayer.preAction(a.currentAction);
+                    break;
+            }    
+        }
+
+        if (!someAction)
+        {
+            m_currentState = InputState.WAITING_INPUT;
+            return;
         }
         
         // Un bucle más, ascazo
@@ -75,8 +97,45 @@ public class GlobalInputManager : MonoBehaviour {
         for (int i = 0; i < numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
-            a.currentAction.doAction();
+            switch (a.currentPLayer)
+            {
+                case CharController.COLORS.BLUE:
+                    BLUEPlayer.doAction();
+                    break;
+                case CharController.COLORS.GREEN:
+                    GREENPlayer.doAction();
+                    break;
+                case CharController.COLORS.YELLOW:
+                    YELLOWPlayer.doAction();
+                    break;
+                case CharController.COLORS.RED:
+                    REDPlayer.doAction();
+                    break;
+            }
         }
+
+        // El cuarto bucle, quiero morir
+        for (int i = 0; i < numberOfPlayers; ++i)
+        {
+            var a = players[i].getCurrentActionData();
+            switch (a.currentPLayer)
+            {
+                case CharController.COLORS.BLUE:
+                    BLUEPlayer.postAction();
+                    break;
+                case CharController.COLORS.GREEN:
+                    GREENPlayer.postAction();
+                    break;
+                case CharController.COLORS.YELLOW:
+                    YELLOWPlayer.postAction();
+                    break;
+                case CharController.COLORS.RED:
+                    REDPlayer.postAction();
+                    break;
+            }
+        }
+
+        m_currentState = InputState.RUNNING_ACTION;
     }
 
     private void RunningActionUpdate()

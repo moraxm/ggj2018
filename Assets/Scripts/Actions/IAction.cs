@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IAction 
 {
-    void preAction();
-    void doAction();
-    void postAction();
+    void preAction(CharController currentPlayer);
+    void doAction(CharController currentPlayer);
+    void postAction(CharController currentPlayer);
 }
