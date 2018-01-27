@@ -10,11 +10,11 @@ public class CreditsController : MonoBehaviour {
     public float fSpeed = 0.5f;
     public float fTimeToReturnToMainMenu = 5.0f;
 
-    private bool bAlreadyQuitting = false;
+    private Coroutine closeCoroutine = null;
 
 	void Awake ()
     {
-        bAlreadyQuitting = false;
+        closeCoroutine = null;
 	}
 	
 	// Update is called once per frame
@@ -26,17 +26,25 @@ public class CreditsController : MonoBehaviour {
             {
                 scrollRect.verticalNormalizedPosition = Mathf.Max(scrollRect.verticalNormalizedPosition - fSpeed * Time.deltaTime, 0.0f);
             }
-            else if (!bAlreadyQuitting)
+            else if (closeCoroutine == null)
             {
-                StartCoroutine("ReturnToMainMenu");
-                bAlreadyQuitting = true;
+                closeCoroutine = StartCoroutine("DelayedReturnToMainMenu");
             }
         }
 	}
 
-    IEnumerator ReturnToMainMenu()
+    IEnumerator DelayedReturnToMainMenu()
     {
         yield return new WaitForSeconds(fTimeToReturnToMainMenu);
+        ReturnToMainMenu();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        if (closeCoroutine != null)
+        {
+            StopCoroutine(closeCoroutine);
+        }
         SceneManager.LoadScene("MainMenu");
     }
 }
