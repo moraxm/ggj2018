@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class IAction 
+public abstract class IAction
 {
     private float m_acumTime;
     public float actionDuration;
