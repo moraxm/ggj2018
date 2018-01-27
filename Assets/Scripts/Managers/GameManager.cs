@@ -201,6 +201,10 @@ public class GameManager : MonoBehaviour {
             {
                 globalInputManager.players[rand].m_LEFTAction = moveAction;
             }
+            else
+            {
+                Debug.LogError("[GameManager.Start] Error. Por algun motivo el MoveAction no es de ningun tipo hijo");
+            }
             playersHaveOneMoveAction[rand] = true;
         }
 
