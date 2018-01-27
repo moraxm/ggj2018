@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour {
     private bool missionSuccess = false;
     private Coroutine successCoroutine = null;
 
-    public static uint numberOfPlayers = 3; // Static variable with current numberOfPlayers (set by MainMenu selection)
+    public static uint numberOfPlayers = 2; // Static variable with current numberOfPlayers (set by MainMenu selection)
 
 	// Use this for initialization
 	void Start ()
@@ -105,11 +105,37 @@ public class GameManager : MonoBehaviour {
         moveActions.Push(new MoveActionLeft());
         moveActions.Peek().spriteUI = MoveLeftUI;
 
-        // Non move actions
+        // Assign one MoveAction to each player
+        List<bool> playersHaveOneAction = new List<bool>();
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        for (uint i = 0; i < numberOfPlayers; ++i)
+        {
+            IAction action = actions.Pop();
+            int rand = 0;
+            do
+            {
+                rand = Random.Range(0, (int)numberOfPlayers);
+            }
+            while (playersHaveOneAction[rand] == true);
+
+            int randButton = Random.Range(0, 2);
+            if (randButton == 0)
+            {
+                globalInputManager.players[rand].m_L2Action = action;
+            }
+            else
+            {
+                globalInputManager.players[rand].m_R2Action = action;
+            }
+            playersHaveOneAction[rand] = true;
+        }
+        // Now set remaining Actions randomly to users with free actions
         while (actions.Count > 0)
         {
             IAction action = actions.Pop();
-
             while (true)
             {
                 int rand = Random.Range(0, (int)numberOfPlayers);
@@ -144,27 +170,41 @@ public class GameManager : MonoBehaviour {
 
         // Move actions
         // Assign one MoveAction to each player
+        List<bool> playersHaveOneMoveAction = new List<bool>();
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
         for (uint i = 0; i < numberOfPlayers; ++i)
         {
             MoveAction moveAction = moveActions.Pop();
+            int rand = 0;
+            do
+            {
+                rand = Random.Range(0, (int)numberOfPlayers);
+            }
+            while (playersHaveOneMoveAction[rand] == true);
+
             if (moveAction is MoveActionUp)
             {
-                globalInputManager.players[i].m_UPAction = moveAction;
+                globalInputManager.players[rand].m_UPAction = moveAction;
             }
             else if (moveAction is MoveActionDown)
             {
-                globalInputManager.players[i].m_DOWNAction = moveAction;
+                globalInputManager.players[rand].m_DOWNAction = moveAction;
             }
             else if (moveAction is MoveActionRight)
             {
-                globalInputManager.players[i].m_RIGHTAction = moveAction;
+                globalInputManager.players[rand].m_RIGHTAction = moveAction;
             }
             else if (moveAction is MoveActionLeft)
             {
-                globalInputManager.players[i].m_LEFTAction = moveAction;
+                globalInputManager.players[rand].m_LEFTAction = moveAction;
             }
+            playersHaveOneMoveAction[rand] = true;
         }
 
+        // Now set remaining MoveActions randomly to users with free move actions
         while (moveActions.Count > 0)
         {
             MoveAction moveAction = moveActions.Pop();
