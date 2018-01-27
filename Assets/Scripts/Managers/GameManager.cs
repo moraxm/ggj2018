@@ -5,29 +5,44 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    public const uint MAX_PLAYERS = 3;
+    public GameObject mainInterface = null;
+    public GameObject players = null;
 
-    private MainInterfaceController mainInterfaceController = null;
+    public static uint numberOfPlayers = 2;
 
 	// Use this for initialization
 	void Start ()
     {
-        GameObject mainInterface = GameObject.FindGameObjectWithTag("MainInterface");
         if (!mainInterface)
         {
-            Debug.LogError("[GameManager.Start] Error. MainInterface not found");
+            Debug.LogError("[GameManager.Start] Error. MainInterface object not found");
             return;
         }
 
-        mainInterfaceController = mainInterface.GetComponent<MainInterfaceController>();
+        if (!players)
+        {
+            Debug.LogError("[GameManager.Start] Error. Players object not found");
+            return;
+        }
+
+        // Configurate number of players
+        MainInterfaceController mainInterfaceController = mainInterface.GetComponent<MainInterfaceController>();
         if (!mainInterfaceController)
         {
-            Debug.LogError("[GameManager.Start] Error. MainInterface has not MainInterfaceController");
+            Debug.LogError("[GameManager.Start] Error. MainInterface object does not have MainInterfaceController");
             return;
         }
 
-        // Configurate interface for the current number of players
-        mainInterfaceController.ConfigurePlayersInterface(3);
+        GlobalInputManager globalInputManager = players.gameObject.GetComponent<GlobalInputManager>();
+        if (!globalInputManager)
+        {
+            Debug.LogError("[GameManager.Start] Error. Players object does not have GlobalInputManager");
+            return;
+        }
+
+        // Set selected number of players
+        mainInterfaceController.ConfigurePlayersInterface(numberOfPlayers);
+        globalInputManager.numberOfPlayers = numberOfPlayers;
 	}
 	
 	// Update is called once per frame

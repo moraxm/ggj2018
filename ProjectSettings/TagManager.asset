@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameManager
   - MainInterface
+  - PlayersCharacters
   layers:
   - Default
   - TransparentFX

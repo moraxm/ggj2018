@@ -13,7 +13,7 @@ public class GlobalInputManager : MonoBehaviour {
     public CharController YELLOWPlayer;
 
     public PlayerInputManager[] players;
-    public int numberOfPlayers;
+    public uint numberOfPlayers;
 
     public enum InputState
     {
