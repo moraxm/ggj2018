@@ -8,8 +8,7 @@ public class MainMenuController : MonoBehaviour {
 
     public Button exitButton = null;
 
-    // Use this for initialization
-    void Start()
+    void Awake()
     {
         #if !UNITY_STANDALONE_WIN && !UNITY_STANDALONE_OSX || UNITY_EDITOR
         if (exitButton)

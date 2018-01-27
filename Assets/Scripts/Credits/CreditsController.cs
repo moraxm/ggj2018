@@ -12,10 +12,9 @@ public class CreditsController : MonoBehaviour {
 
     private bool bAlreadyQuitting = false;
 
-	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
-
+        bAlreadyQuitting = false;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +22,7 @@ public class CreditsController : MonoBehaviour {
     {
         if (scrollRect)
         {
-            if (scrollRect.verticalNormalizedPosition > 0.0f)
+            if (scrollRect.verticalNormalizedPosition > 0.01f)
             {
                 scrollRect.verticalNormalizedPosition = Mathf.Max(scrollRect.verticalNormalizedPosition - fSpeed * Time.deltaTime, 0.0f);
             }
