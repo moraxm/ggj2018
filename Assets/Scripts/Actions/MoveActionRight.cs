@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveActionRight : MoveAction
 {
-    MoveActionRight()
+    public MoveActionRight()
     {
         dir = MapManager.DIRECTION.RIGHT;
     }

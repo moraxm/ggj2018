@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class IAction
 {
+    public Sprite spriteUI;
     private float m_acumTime;
     public float actionDuration;
     public abstract void preAction(CharController currentPlayer);

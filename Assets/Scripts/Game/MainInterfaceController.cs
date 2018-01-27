@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainInterfaceController : MonoBehaviour {
 
@@ -29,7 +30,7 @@ public class MainInterfaceController : MonoBehaviour {
 		
 	}
 
-    public void ConfigurePlayersInterface(uint numPlayers)
+    public void ConfigurePlayersInterface(GlobalInputManager globalInputManager)
     {
         // Find PlayersInfo structure on Canvas
         Transform playersInfoTransform = transform.Find("PlayersInfo");
@@ -41,7 +42,7 @@ public class MainInterfaceController : MonoBehaviour {
         GameObject playersInfo = playersInfoTransform.gameObject;
 
         // For each player, find that player info on Canvas and enable it
-        for (uint i = 1; i <= numPlayers; ++i)
+        for (uint i = 1; i <= GameManager.numberOfPlayers; ++i)
         {
             Transform playerInfoTransform = playersInfo.transform.Find("InfoPlayer" + i);
             if (!playerInfoTransform)
@@ -51,6 +52,25 @@ public class MainInterfaceController : MonoBehaviour {
             }
             GameObject playerInfo = playerInfoTransform.gameObject;
             playerInfo.SetActive(true);
+
+            for (uint j = 0; j < 4; ++j)
+            {
+                Transform actionTransform = playerInfo.transform.Find("Action" + j);
+                if (!actionTransform)
+                {
+                    Debug.LogError("[MainInterfaceController.ConfigurePlayersInterface] Error. Action" + j + " not found");
+                    return;
+                }
+
+                Image actionImage = actionTransform.gameObject.GetComponent<Image>();
+                if (!actionImage)
+                {
+                    Debug.LogError("[MainInterfaceController.ConfigurePlayersInterface] Error. Action" + j + " does not have Image component");
+                    return;
+                }
+
+
+            }
         }
     }
 }
