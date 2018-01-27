@@ -2,13 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MapManager : MonoBehaviour
 {
-    public enum DIRECTION  {TOP, BOTTOM, LEFT, RIGHT};
+    public enum DIRECTION { TOP, BOTTOM, LEFT, RIGHT };
     public Casilla topLeft;
     public int ALTO;
     public int ANCHO;
 
+    private readonly Vector3Int CASILLA_LEFT = new Vector3Int(-1, 0, 0);
+    private readonly Vector3Int CASILLA_RIGHT = new Vector3Int(1, 0, 0);
+    private readonly Vector3Int CASILLA_TOP = new Vector3Int(0, -1, 0);
+    private readonly Vector3Int CASILLA_BOTTOM = new Vector3Int(0, 1, 0);
+
+    private readonly Vector3Int CASILLA_LEFT_RAY = new Vector3Int(-1, 0, 0);
+    private readonly Vector3Int CASILLA_RIGHT_RAY = new Vector3Int(1, 0, 0);
+    private readonly Vector3Int CASILLA_TOP_RAY = new Vector3Int(0, 0, 1);
+    private readonly Vector3Int CASILLA_BOTTOM_RAY = new Vector3Int(0, 0, -1);
+
+    public readonly Vector3 toIncrease = new Vector3(0, 0.1f, 0);
 
     Casilla[,] _structure;
 
@@ -16,6 +28,50 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         buildStructure();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Vector3 destiny;
+            if (canMove(new Vector2Int(1, 1), DIRECTION.RIGHT, out destiny))
+            {
+                Debug.Log("este mensaje no deberia salir");
+            }
+            else
+            {
+                Debug.Log("Check 1");
+            }
+
+            if (doAction(new Vector2Int(2, 0), DIRECTION.BOTTOM, Casilla.PERSONAJE_ENUM.BLUE))
+            {
+                Debug.Log("este mensaje no deberia salir");
+            }
+            else
+            {
+                Debug.Log("Check 2");
+            }
+
+            //ejecutamos la accion
+            if (doAction(new Vector2Int(3,1), DIRECTION.LEFT, Casilla.PERSONAJE_ENUM.RED))
+            {
+                Debug.Log("check 3");
+            }
+            else
+            {
+                Debug.Log("este mensaje no deberia salir");
+            }
+
+            if (canMove(new Vector2Int(2,2), DIRECTION.TOP, out destiny))
+            {
+                Debug.Log("este mensaje no deberia salir");
+            }
+            else
+            {
+                Debug.Log("Check 4");
+            }
+        }
     }
 
     void buildStructure()
@@ -29,9 +85,9 @@ public class MapManager : MonoBehaviour
                 _structure[i, j] = null;
             }
         }
-        _structure[0,0] = topLeft;
+        _structure[0, 0] = topLeft;
 
-        List<KeyValuePair<int, int>> toAnalyze = new List<KeyValuePair<int, int>>(); toAnalyze.Add(new KeyValuePair<int, int>(0,0));
+        List<KeyValuePair<int, int>> toAnalyze = new List<KeyValuePair<int, int>>(); toAnalyze.Add(new KeyValuePair<int, int>(0, 0));
         List<KeyValuePair<int, int>> allReadyAnalized = new List<KeyValuePair<int, int>>();
 
         while (toAnalyze.Count > 0)
@@ -45,10 +101,10 @@ public class MapManager : MonoBehaviour
             //añadimos todos sus posibles destinos
 
             List<KeyValuePair<int, int>> futures = new List<KeyValuePair<int, int>>();
-            KeyValuePair<int, int> t = new KeyValuePair<int, int>(first.Key - 1, first.Value);
-            KeyValuePair<int, int> b = new KeyValuePair<int, int>(first.Key + 1, first.Value);
-            KeyValuePair<int, int> l = new KeyValuePair<int, int>(first.Key, first.Value - 1);
-            KeyValuePair<int, int> r = new KeyValuePair<int, int>(first.Key, first.Value + 1);
+            KeyValuePair<int, int> t = new KeyValuePair<int, int>(first.Key + CASILLA_TOP.x, first.Value + CASILLA_TOP.y);
+            KeyValuePair<int, int> b = new KeyValuePair<int, int>(first.Key + CASILLA_BOTTOM.x, first.Value + CASILLA_BOTTOM.y);
+            KeyValuePair<int, int> l = new KeyValuePair<int, int>(first.Key + CASILLA_LEFT.x, first.Value + CASILLA_LEFT.y);
+            KeyValuePair<int, int> r = new KeyValuePair<int, int>(first.Key + CASILLA_RIGHT.x, first.Value + CASILLA_RIGHT.y);
 
             futures.Add(t); futures.Add(b); futures.Add(l); futures.Add(r);
 
@@ -56,7 +112,7 @@ public class MapManager : MonoBehaviour
             {
                 KeyValuePair<int, int> fut = futures[futIndex];
 
-                if (fut.Key < 0 || fut.Value < 0 || fut.Key >= ALTO || fut.Value >= ANCHO)
+                if (fut.Key < 0 || fut.Value < 0 || fut.Key >= ANCHO || fut.Value >= ALTO)
                 {
                     continue;
                 }
@@ -74,29 +130,28 @@ public class MapManager : MonoBehaviour
 
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
-
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
 
-            List<KeyValuePair<Vector3, Vector3>> hits = new List<KeyValuePair<Vector3, Vector3>>();
-            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(0, 0, 1), new Vector3(-1, 0, 0)));//top
-            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(0, 0, -1), new Vector3(1, 0, 0)));//botom
-            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(-1, 0, 0), new Vector3(0, -1, 0)));//left
-            hits.Add(new KeyValuePair<Vector3, Vector3>(new Vector3(1, 0, 0), new Vector3(0, 1, 0)));//right
+            List<KeyValuePair<Vector3Int, Vector3Int>> hits = new List<KeyValuePair<Vector3Int, Vector3Int>>();
+            hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_TOP, CASILLA_TOP_RAY));//top
+            hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_BOTTOM, CASILLA_BOTTOM_RAY));//botom
+            hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_LEFT, CASILLA_LEFT_RAY));//left
+            hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_RIGHT, CASILLA_RIGHT_RAY));//right
 
             for (int indexRay = 0; indexRay < hits.Count; ++indexRay)
             {
-                KeyValuePair<Vector3, Vector3> rayComponents = hits[indexRay];
-                Ray ray = new Ray(miPos, rayComponents.Key);
+                KeyValuePair<Vector3Int, Vector3Int> rayComponents = hits[indexRay];
+                Ray ray = new Ray(miPos, rayComponents.Value);
                 Casilla.PERSONAJE_ENUM valueToSet = Casilla.PERSONAJE_ENUM.NONE;
                 LayerMask layerCasilla = LayerMask.GetMask("Casilla");
                 if (Physics.Raycast(ray, out hitTop, 1, layerCasilla))
                 {
                     Casilla casillaColision = hitTop.collider.gameObject.GetComponent<Casilla>();
-                    if (_structure[first.Key + (int)rayComponents.Value.x, first.Value + (int)rayComponents.Value.y] == null)
+                    if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
                     {
                         casillaColision.gameObject.name = (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
                         //lo añadimos porque en algun momento se usara
-                        _structure[first.Key + (int)rayComponents.Value.x, first.Value + (int)rayComponents.Value.y] = casillaColision;
+                        _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = casillaColision;
                     }
                     if (!casillaColision._accesible)
                     {
@@ -104,7 +159,7 @@ public class MapManager : MonoBehaviour
                     }
                     else
                     {
-                        Ray rayCheckPared = new Ray(new Vector3(miPos.x, miPos.y + 0.1f, miPos.z), rayComponents.Key);
+                        Ray rayCheckPared = new Ray(miPos + toIncrease, rayComponents.Value);
                         LayerMask layerPared = LayerMask.GetMask("Pared");
                         if (Physics.Raycast(rayCheckPared, out hitTop, 1, layerPared))
                         {
@@ -135,37 +190,133 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public bool canMove(Vector2Int origin, DIRECTION direction, out Vector3 destinyCoords )
+    public bool canMove(Vector2Int from, DIRECTION direction, out Vector3 destinyCoords)
     {
-        Vector2 destiny = new Vector2(origin.x, origin.y);
+        Vector2 destiny = new Vector2(from.x, from.y);
         destinyCoords = Vector3.zero;
         bool canMove = false;
-        switch(direction)
+        switch (direction)
         {
-            case DIRECTION.TOP:  canMove = _structure[origin.x, origin.y]._goTop != Casilla.PERSONAJE_ENUM.NONE; break;
-            case DIRECTION.BOTTOM: canMove = _structure[origin.x, origin.y]._goDown != Casilla.PERSONAJE_ENUM.NONE; ; break;
-            case DIRECTION.LEFT: canMove = _structure[origin.x, origin.y]._goLeft != Casilla.PERSONAJE_ENUM.NONE; break;
-            case DIRECTION.RIGHT: canMove = _structure[origin.x, origin.y]._goRight != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop == Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown == Casilla.PERSONAJE_ENUM.NONE; ; break;
+            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft == Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight == Casilla.PERSONAJE_ENUM.NONE; break;
         }
-        if(!canMove)
+        if (!canMove)
         {
             return false;
         }
-        Vector2Int toAdd = Vector2Int.zero;
+        Vector3Int toAdd = Vector3Int.zero;
         switch (direction)
         {
-            case DIRECTION.TOP: toAdd = Vector2Int.down; break;
-            case DIRECTION.BOTTOM: toAdd = Vector2Int.up; break;
-            case DIRECTION.LEFT: toAdd = Vector2Int.left; break;
-            case DIRECTION.RIGHT: toAdd = Vector2Int.right; break;
+            case DIRECTION.TOP: toAdd = CASILLA_TOP; break;
+            case DIRECTION.BOTTOM: toAdd = CASILLA_BOTTOM; break;
+            case DIRECTION.LEFT: toAdd = CASILLA_LEFT; break;
+            case DIRECTION.RIGHT: toAdd = CASILLA_RIGHT; break;
         }
-        Vector2Int finalCoord = origin + toAdd;
+        Vector2Int finalCoord = from + new Vector2Int(toAdd.x, toAdd.y);
         destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
         return true;
     }
 
     public bool doAction(Vector2Int from, DIRECTION direction, Casilla.PERSONAJE_ENUM color)
     {
+        Vector2Int destiny = new Vector2Int(from.x, from.y);
+        Casilla.PERSONAJE_ENUM posibility = Casilla.PERSONAJE_ENUM.NONE;
+
+        switch (direction)
+        {
+            case DIRECTION.TOP: posibility = _structure[from.x, from.y]._goTop; break;
+            case DIRECTION.BOTTOM: posibility = _structure[from.x, from.y]._goDown; break;
+            case DIRECTION.LEFT: posibility = _structure[from.x, from.y]._goLeft; break;
+            case DIRECTION.RIGHT: posibility = _structure[from.x, from.y]._goRight; break;
+        }
+
+        if (posibility == Casilla.PERSONAJE_ENUM.ANY)
+        {
+            return true;
+        }
+
+        if (posibility == Casilla.PERSONAJE_ENUM.NONE || posibility == Casilla.PERSONAJE_ENUM.UNKNOW)
+        {
+            return false;
+        }
+
+        //se trata de una accion con color
+        if (posibility != color)
+        {
+            return false;
+        }
+
+        //quitar y actualizar las casilas
+
+        Vector3Int toAdd = Vector3Int.zero;
+        switch (direction)
+        {
+            case DIRECTION.TOP: toAdd = CASILLA_TOP; break;
+            case DIRECTION.BOTTOM: toAdd = CASILLA_BOTTOM; break;
+            case DIRECTION.LEFT: toAdd = CASILLA_LEFT; break;
+            case DIRECTION.RIGHT: toAdd = CASILLA_RIGHT; break;
+        }
+        destiny = from + new Vector2Int(toAdd.x, toAdd.y);
+
+        // si es una casilla de solo un personaje, se actualizan todos los vecinos
+        if (_structure[destiny.x, destiny.y]._personaje == posibility)
+        {
+            //el que esta arriba
+            Vector2Int localPostion = destiny + new Vector2Int(CASILLA_TOP.x, CASILLA_TOP.y);
+            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            {
+                _structure[localPostion.x, localPostion.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
+            }
+
+            //abajo
+            localPostion = destiny + new Vector2Int(CASILLA_BOTTOM.x, CASILLA_BOTTOM.y);
+            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            {
+                _structure[localPostion.x, localPostion.y]._goTop = Casilla.PERSONAJE_ENUM.ANY;
+            }
+
+            //derecha
+            localPostion = destiny + new Vector2Int(CASILLA_RIGHT.x, CASILLA_RIGHT.y);
+            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            {
+                _structure[localPostion.x, localPostion.y]._goLeft = Casilla.PERSONAJE_ENUM.ANY;
+            }
+
+            //izquierda
+            localPostion = destiny + new Vector2Int(CASILLA_LEFT.x, CASILLA_LEFT.y);
+            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            {
+                _structure[localPostion.x, localPostion.y]._goRight = Casilla.PERSONAJE_ENUM.ANY;
+            }
+        }
+        else
+        {
+            //son puertas, solo actualizamos destino y actual
+            switch (direction)
+            {
+                case DIRECTION.TOP:
+                    _structure[from.x, from.y]._goTop = Casilla.PERSONAJE_ENUM.ANY;
+                    _structure[destiny.x, destiny.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
+                    break;
+                case DIRECTION.BOTTOM:
+                    _structure[from.x, from.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
+                    _structure[destiny.x, destiny.y]._goTop = Casilla.PERSONAJE_ENUM.ANY;
+                    break;
+
+                case DIRECTION.LEFT:
+                    _structure[from.x, from.y]._goLeft = Casilla.PERSONAJE_ENUM.ANY;
+                    _structure[destiny.x, destiny.y]._goRight = Casilla.PERSONAJE_ENUM.ANY;
+                    break;
+
+                case DIRECTION.RIGHT:
+                    _structure[from.x, from.y]._goRight = Casilla.PERSONAJE_ENUM.ANY;
+                    _structure[destiny.x, destiny.y]._goLeft = Casilla.PERSONAJE_ENUM.ANY;
+                    break;
+            }
+        }
+
         return true;
     }
 }
