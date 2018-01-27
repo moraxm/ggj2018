@@ -82,7 +82,6 @@ public class PlayerInputManager : MonoBehaviour
         }
         else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "YELLOW"))
         {
-            Debug.Log("Yellowsito");
             m_currentActionStruct.currentPLayer = CharController.COLORS.YELLOW;
         }
         else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "RED"))
@@ -91,33 +90,36 @@ public class PlayerInputManager : MonoBehaviour
         }
         if (m_currentActionStruct.currentPLayer == CharController.COLORS.NONE)  return; // No player selected
 
-        Debug.Log("X: " + Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Horizontal"));
-        Debug.Log("Y: " + Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Vertical"));
-
         // Ahora como hay un personaje selecionado se comprueba la tecla de acción que el jugador quiere hacer
         if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "ActionR"))
         {
+            Debug.Log("Realizo accion R");
             m_currentActionStruct.currentAction = m_R2Action;
         }
         else if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "ActionL"))
         {
+            Debug.Log("Realizo accion L");
             m_currentActionStruct.currentAction = m_L2Action;
         }
         // Y ahora las de movimiento, que estaría bonito
         else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Horizontal") > 0.25f)
         {
+            Debug.Log("Me muevo a derecha");
             m_currentActionStruct.currentAction = m_RIGHTAction;
         }
         else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Horizontal") < -0.25f)
         {
+            Debug.Log("Me muevo a izquierda");
             m_currentActionStruct.currentAction = m_LEFTAction;
         }
         else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Vertical") > 0.25f)
         {
+            Debug.Log("Me muevo a arriba");
             m_currentActionStruct.currentAction = m_UPAction;
         }
         else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Vertical") < -0.25f)
         {
+            Debug.Log("Me muevo a abajo");
             m_currentActionStruct.currentAction = m_DOWNAction;
         }
 

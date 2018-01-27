@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class MoveAction : IAction
  {
     public MapManager.DIRECTION dir;
-    protected static Dictionary<Vector2Int, int> pizarrita;
+    protected static Dictionary<Vector2Int, int> pizarrita = new Dictionary<Vector2Int, int>();
     protected Vector3 m_currentPosition;
     protected Vector3 m_targetPosition;
     protected Vector2Int m_target;

@@ -324,4 +324,80 @@ public class GameManager : MonoBehaviour {
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public Transform GetRedCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetRedCharacter] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetRedCharacter] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("RedCharacter");
+    }
+
+    public Transform GetYellowCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetYellowPlayer] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetYellowPlayer] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("YellowCharacter");
+    }
+
+    public Transform GetBlueCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetBluePlayer] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetBluePlayer] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("BlueCharacter");
+    }
+
+    public Transform GetGreenCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetGreenPlayer] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetGreenPlayer] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("GreenCharacter");
+    }
 }

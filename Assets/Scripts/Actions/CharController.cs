@@ -24,6 +24,7 @@ public class CharController : MonoBehaviour
         set;
     }
 
+    [HideInInspector]
     public MapManager m_mapManager;
     public bool running
     {
