@@ -87,8 +87,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4390746357733738}
-  - component: {fileID: 65551911251525502}
   - component: {fileID: 114153869091779670}
+  - component: {fileID: 65899604361622252}
   m_Layer: 9
   m_Name: baldosaVacia
   m_TagString: Untagged
@@ -175,8 +175,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1684869713276118}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4428919232841842}
@@ -474,7 +474,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188435962510248}
   m_Mesh: {fileID: 4300004, guid: bac1669bbe4a2ba4f81b73f8f890eec8, type: 3}
---- !u!65 &65551911251525502
+--- !u!65 &65899604361622252
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -484,7 +484,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114153869091779670
 MonoBehaviour:

@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
     public Casilla topLeft;
     public int ALTO;
     public int ANCHO;
+    public Vector3 alturaEscalera = new Vector3(0, 2f, 0);
 
     private readonly Vector3Int CASILLA_LEFT = new Vector3Int(-1, 0, 0);
     private readonly Vector3Int CASILLA_RIGHT = new Vector3Int(1, 0, 0);
@@ -20,7 +21,7 @@ public class MapManager : MonoBehaviour
     private readonly Vector3Int CASILLA_TOP_RAY = new Vector3Int(0, 0, 1);
     private readonly Vector3Int CASILLA_BOTTOM_RAY = new Vector3Int(0, 0, -1);
 
-    public readonly Vector3 toIncrease = new Vector3(0, 0.1f, 0);
+    public readonly Vector3 toIncrease = new Vector3(0, 0.6f, 0);
 
     Casilla[,] _structure;
 
@@ -83,10 +84,10 @@ public class MapManager : MonoBehaviour
                 {
                     continue;
                 }
-                
+
                 toAnalyze.Add(fut);
             }
-           
+
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
@@ -97,12 +98,14 @@ public class MapManager : MonoBehaviour
             hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_LEFT, CASILLA_LEFT_RAY));//left
             hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_RIGHT, CASILLA_RIGHT_RAY));//right
 
+            LayerMask layerCasilla = LayerMask.GetMask("Casilla");
+            LayerMask layerPared = LayerMask.GetMask("Pared");
+
             for (int indexRay = 0; indexRay < hits.Count; ++indexRay)
             {
                 KeyValuePair<Vector3Int, Vector3Int> rayComponents = hits[indexRay];
                 Ray ray = new Ray(miPos, rayComponents.Value);
                 Casilla.PERSONAJE_ENUM valueToSet = Casilla.PERSONAJE_ENUM.NONE;
-                LayerMask layerCasilla = LayerMask.GetMask("Casilla");
                 if (Physics.Raycast(ray, out hitTop, 1, layerCasilla))
                 {
                     Casilla casillaColision = hitTop.collider.gameObject.GetComponent<Casilla>();
@@ -119,7 +122,6 @@ public class MapManager : MonoBehaviour
                     else
                     {
                         Ray rayCheckPared = new Ray(miPos + toIncrease, rayComponents.Value);
-                        LayerMask layerPared = LayerMask.GetMask("Pared");
                         if (Physics.Raycast(rayCheckPared, out hitTop, 1, layerPared))
                         {
                             Casilla pared = hitTop.collider.gameObject.GetComponent<Casilla>();
@@ -138,6 +140,61 @@ public class MapManager : MonoBehaviour
                         }
                     }
                 }
+
+                else
+                {
+                    //comprobamos si es una escalera con lo que colisiona
+                    Ray rayCheckAltura = new Ray(miPos + alturaEscalera, rayComponents.Value);
+                    if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerCasilla))
+                    {
+                        //como hay colision, se fija el valueToSet a escalera
+                        valueToSet = Casilla.PERSONAJE_ENUM.NONE;
+                        Casilla caux = hitTop.transform.GetComponent<Casilla>();
+
+                        if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
+                        {
+                            caux.gameObject.name = "Escalera " + (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
+                            //lo añadimos porque en algun momento se usara
+                            _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = caux;
+                        }
+
+                        //comprobamos si hay una escalera, si la hay significa que somos escalera
+                        Ray rayCheckEscalera = new Ray(miPos + toIncrease, rayComponents.Value);
+                        if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerPared))
+                        {
+                            if (hitTop.transform.GetComponent<Escalera>() != null)
+                            {
+                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA;
+                            }
+                        }
+                    }
+
+                    rayCheckAltura = new Ray(miPos - alturaEscalera, rayComponents.Value);
+                    if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerCasilla))
+                    {
+                        //como hay colision, se fija el valueToSet a escalera
+                        valueToSet = Casilla.PERSONAJE_ENUM.NONE;
+                        Casilla caux = hitTop.transform.GetComponent<Casilla>();
+
+                        if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
+                        {
+                            caux.gameObject.name = "Escalera " + (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
+                            //lo añadimos porque en algun momento se usara
+                            _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = caux;
+                        }
+
+                        //comprobamos si hay una escalera, si la hay significa que somos escalera
+                        Ray rayCheckEscalera = new Ray(miPos - alturaEscalera + toIncrease, rayComponents.Value);
+                        if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerPared))
+                        {
+                            if (hitTop.transform.GetComponent<Escalera>() != null)
+                            {
+                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA;
+                            }
+                        }
+                    }
+                }
+
                 switch (indexRay)
                 {
                     case 0: _casilla._goTop = valueToSet; break;
