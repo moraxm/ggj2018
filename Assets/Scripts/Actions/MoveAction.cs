@@ -14,7 +14,7 @@ public abstract class MoveAction : IAction
         }
     }
 
-    public override void doAction(CharController currentPlayer)
+    public override void startAction(CharController currentPlayer)
     {
         if (!pizarrita.ContainsKey(m_target))
         {

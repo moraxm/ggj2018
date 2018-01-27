@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OpenDoorAction : MonoBehaviour {
+public class OpenDoorAction : IAction {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void preAction(CharController currentPlayer)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void startAction(CharController currentPlayer)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void postAction(CharController currentPlayer)
+    {
+        throw new System.NotImplementedException();
+    }
 }

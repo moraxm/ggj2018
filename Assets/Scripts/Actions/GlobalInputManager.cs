@@ -21,8 +21,7 @@ public class GlobalInputManager : MonoBehaviour {
         WAITING_INPUT,
     }
     public InputState m_currentState;
-    public float m_ActionsTime;
-    private float m_acumTime;
+    
 	// Use this for initialization
 	void Start () {
         m_currentState = InputState.WAITING_INPUT;
@@ -30,15 +29,7 @@ public class GlobalInputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		switch (m_currentState)
-        {
-            case InputState.RUNNING_ACTION:
-                RunningActionUpdate();
-                break;
-            case InputState.WAITING_INPUT:
-                WaitingInputUpdate();
-                break;
-        }
+        WaitingInputUpdate();
 	}
 
     private void WaitingInputUpdate()
@@ -52,16 +43,20 @@ public class GlobalInputManager : MonoBehaviour {
             switch (a.currentPLayer)
             {
                 case CharController.COLORS.BLUE:
-                    BLUEPlayer.preAction(a.currentAction);
+                    if (!BLUEPlayer.running)
+                        BLUEPlayer.preAction(a.currentAction);
                     break;
                 case CharController.COLORS.GREEN:
-                    GREENPlayer.preAction(a.currentAction);
+                    if (!GREENPlayer.running)
+                        GREENPlayer.preAction(a.currentAction);
                     break;
                 case CharController.COLORS.YELLOW:
-                    YELLOWPlayer.preAction(a.currentAction);
+                    if (!YELLOWPlayer.running)
+                        YELLOWPlayer.preAction(a.currentAction);
                     break;
                 case CharController.COLORS.RED:
-                    REDPlayer.preAction(a.currentAction);
+                    if (!REDPlayer.running)
+                        REDPlayer.preAction(a.currentAction);
                     break;
             }    
         }
@@ -79,16 +74,20 @@ public class GlobalInputManager : MonoBehaviour {
             switch (a.currentPLayer) 
             { 
                 case CharController.COLORS.BLUE:
-                    BLUEPlayer.setAction(a.currentAction);
+                    if (!BLUEPlayer.running)
+                        BLUEPlayer.setAction(a.currentAction);
                     break;
                 case CharController.COLORS.GREEN:
-                    GREENPlayer.setAction(a.currentAction);
+                    if (!GREENPlayer.running)
+                        GREENPlayer.setAction(a.currentAction);
                     break;
                 case CharController.COLORS.YELLOW:
-                    YELLOWPlayer.setAction(a.currentAction);
+                    if (!YELLOWPlayer.running)
+                        YELLOWPlayer.setAction(a.currentAction);
                     break;
                 case CharController.COLORS.RED:
-                    REDPlayer.setAction(a.currentAction);
+                    if (!REDPlayer.running)
+                        REDPlayer.setAction(a.currentAction);
                     break;
             }     
         }
@@ -100,16 +99,20 @@ public class GlobalInputManager : MonoBehaviour {
             switch (a.currentPLayer)
             {
                 case CharController.COLORS.BLUE:
-                    BLUEPlayer.doAction();
+                    if (!BLUEPlayer.running) 
+                        BLUEPlayer.doAction();
                     break;
                 case CharController.COLORS.GREEN:
-                    GREENPlayer.doAction();
+                    if (!GREENPlayer.running) 
+                        GREENPlayer.doAction();
                     break;
                 case CharController.COLORS.YELLOW:
-                    YELLOWPlayer.doAction();
+                    if (!YELLOWPlayer.running) 
+                        YELLOWPlayer.doAction();
                     break;
                 case CharController.COLORS.RED:
-                    REDPlayer.doAction();
+                    if (!REDPlayer.running)
+                        REDPlayer.doAction();
                     break;
             }
         }
@@ -121,31 +124,23 @@ public class GlobalInputManager : MonoBehaviour {
             switch (a.currentPLayer)
             {
                 case CharController.COLORS.BLUE:
-                    BLUEPlayer.postAction();
+                    if (!BLUEPlayer.running) 
+                        BLUEPlayer.postAction();
                     break;
                 case CharController.COLORS.GREEN:
-                    GREENPlayer.postAction();
+                    if (!GREENPlayer.running) 
+                        GREENPlayer.postAction();
                     break;
                 case CharController.COLORS.YELLOW:
-                    YELLOWPlayer.postAction();
+                    if (!YELLOWPlayer.running) 
+                        YELLOWPlayer.postAction();
                     break;
                 case CharController.COLORS.RED:
-                    REDPlayer.postAction();
+                    if (!REDPlayer.running)
+                        REDPlayer.postAction();
                     break;
             }
         }
-
         m_currentState = InputState.RUNNING_ACTION;
-    }
-
-    private void RunningActionUpdate()
-    {
-        // Espera hasta que termina la jodida acción
-        m_acumTime += Time.deltaTime;
-        if (m_acumTime > m_ActionsTime)
-        {
-            m_acumTime = 0;
-            m_currentState = InputState.WAITING_INPUT;
-        }
     }
 }
