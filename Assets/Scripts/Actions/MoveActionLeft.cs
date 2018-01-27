@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class MoveActionLeft : MoveAction
 {
+    MoveActionLeft()
+    {
+        dir = MapManager.DIRECTION.LEFT;
+    }
     public override void preAction(CharController currentPlayer)
     {
-        m_target = new Vector2(currentPlayer.x, currentPlayer.y);
+        base.preAction(currentPlayer);
         --m_target.x;
         usePizarrita(m_target);
+    }
+
+    public override void move(CharController currentPlayer)
+    {
+        base.move(currentPlayer);
+        currentPlayer.animator.rootPosition = new Vector3(-1, 0, 0);
     }
 }
