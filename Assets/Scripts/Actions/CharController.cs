@@ -6,6 +6,8 @@ using UnityEngine;
 // para poder moverlo y tal y se le enchufa una acción para que la ejecute
 public class CharController : MonoBehaviour
 {
+    public int x;
+    public int y;
     IAction m_action;
     public enum COLORS
     {
@@ -31,6 +33,17 @@ public class CharController : MonoBehaviour
 
     public void doAction()
     {
-        m_action.doAction();
+        m_action.doAction(this);
     }
+
+    public void preAction(IAction action)
+    {
+        action.preAction(this);
+    }
+
+    public void postAction()
+    {
+        m_action.postAction(this);
+    }
+
 }
