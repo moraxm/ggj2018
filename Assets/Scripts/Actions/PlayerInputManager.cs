@@ -21,6 +21,9 @@ public class PlayerInputManager : MonoBehaviour
     public MoveAction m_UPAction;
     public MoveAction m_DOWNAction;
 
+    private uint leftPlayer = 0;
+    private uint rightPlayer = 0;
+
     public actionstruct getCurrentActionData()
     {
         return m_currentActionStruct;
@@ -28,13 +31,45 @@ public class PlayerInputManager : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        leftPlayer = m_inputplayerNumber - 1;
+        if (leftPlayer < 1)
+        {
+            leftPlayer = GameManager.numberOfPlayers;
+        }
+        --leftPlayer;
+
+        rightPlayer = m_inputplayerNumber + 1;
+        if (rightPlayer > GameManager.numberOfPlayers)
+        {
+            rightPlayer = 1;
+        }
+        --rightPlayer;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
+        // Se comprueban los bumpers
+        if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "VibrateR"))
+        {
+            GamePad.SetVibration((PlayerIndex)rightPlayer, 1.0f, 0.0f);
+        }
+        else
+        {
+            GamePad.SetVibration((PlayerIndex)rightPlayer, 0.0f, 0.0f);
+        }
+
+        if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "VibrateL"))
+        {
+            GamePad.SetVibration((PlayerIndex)leftPlayer, 0.0f, 1.0f);
+        }
+        else
+        {
+            GamePad.SetVibration((PlayerIndex)leftPlayer, 0.0f, 0.0f);
+        }
+
         // Primero las jodidas teclas de colores para saber qué puto personaje se maneja
         m_currentActionStruct.currentPLayer = CharController.COLORS.NONE;
         if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "GREEN"))
@@ -65,18 +100,6 @@ public class PlayerInputManager : MonoBehaviour
         else if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "ActionL"))
         {
             m_currentActionStruct.currentAction = m_L2Action;
-        }
-
-        // Ahora como hay un personaje selecionado se comprueban los bumpers
-        if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "VibrateR"))
-        {
-            Debug.Log("VIBRA COÑOL");
-            GamePad.SetVibration((PlayerIndex)m_inputplayerNumber, 1.0f, 1.0f);
-        }
-        if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "VibrateL"))
-        {
-            Debug.Log("VIBRA COÑOR");
-            GamePad.SetVibration((PlayerIndex)m_inputplayerNumber, 1.0f, 1.0f);
         }
 
 	}
