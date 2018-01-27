@@ -6,6 +6,25 @@ using UnityEngine;
 // para poder moverlo y tal y se le enchufa una acción para que la ejecute
 public class CharController : MonoBehaviour
 {
+    public Animator animator
+    {
+        get;
+        private set;
+    }
+    public void Start()
+    {
+        if (!m_mapManager)
+            m_mapManager = FindObjectOfType<MapManager>();
+        animator = GetComponent<Animator>();
+    }
+
+    MapManager.DIRECTION orientation
+    {
+        get;
+        set;
+    }
+
+    public MapManager m_mapManager;
     public bool running
     {
         get
@@ -14,8 +33,6 @@ public class CharController : MonoBehaviour
             else return false;
         }
     }
-    public int x;
-    public int y;
     IAction m_action;
     public enum COLORS
     {
@@ -27,7 +44,7 @@ public class CharController : MonoBehaviour
     }
     public void setAction(IAction action)
     {
-        if(m_action != null)
+        if (m_action != null)
         {
             int a = Random.Range(0, 1);
             if (a > 0)
@@ -53,5 +70,4 @@ public class CharController : MonoBehaviour
     {
         m_action.postAction(this);
     }
-
 }
