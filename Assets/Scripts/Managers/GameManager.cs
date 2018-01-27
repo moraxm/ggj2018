@@ -5,44 +5,31 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-    private GameObject mainInterface = null;
-    private GameObject playersCharacters = null;
+    public GameObject mainInterface = null;
+    public GameObject players = null;
 
     public static uint numberOfPlayers = 2;
 
 	// Use this for initialization
 	void Start ()
     {
-        // Locate MainInterface object
-        Transform mainInterfaceTransform = transform.Find("MainInterface");
-        if (!mainInterfaceTransform)
+        if (!mainInterface)
         {
-            Debug.LogError("[GameManager.Start] Error. MainInterface not found");
+            Debug.LogError("[GameManager.Start] Error. MainInterface object not found");
             return;
         }
-        mainInterface = mainInterfaceTransform.gameObject;
 
-        // Locate PlayersCharacters object
-        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
-        if (!playersCharactersTransform)
+        if (!players)
         {
-            Debug.LogError("[GameManager.Start] Error. PlayersCharacters not found");
+            Debug.LogError("[GameManager.Start] Error. Players object not found");
             return;
         }
-        playersCharacters = playersCharactersTransform.gameObject;
 
         // Configurate number of players
         MainInterfaceController mainInterfaceController = mainInterface.GetComponent<MainInterfaceController>();
         if (!mainInterfaceController)
         {
             Debug.LogError("[GameManager.Start] Error. MainInterface object does not have MainInterfaceController");
-            return;
-        }
-
-        Transform players = playersCharacters.transform.Find("Players");
-        if (!players)
-        {
-            Debug.LogError("[GameManager.Start] Error. Players not found");
             return;
         }
 
