@@ -1044,8 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
+  m_mapManager: {fileID: 0}
 --- !u!114 &114019623270773002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1057,8 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
+  m_mapManager: {fileID: 0}
 --- !u!114 &114028281679529678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1149,6 +1147,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97cd64970e4680f41b18fe938c69b583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveUpUI: {fileID: 21300000, guid: 119465343046abe4ba39a432f5a0397b, type: 3}
+  MoveDownUI: {fileID: 21300000, guid: ec230ba215bfb0340b9a45626f60f6f4, type: 3}
+  MoveLeftUI: {fileID: 21300000, guid: 576553248bbb8f64f8f0391be0779f42, type: 3}
+  MoveRightUI: {fileID: 21300000, guid: 8bfed71e3c5ff1541b23e591173b98da, type: 3}
+  LadderUI: {fileID: 21300000, guid: 3a875459ab78d7f45a04ae7ff44cf35d, type: 3}
+  DoorUI: {fileID: 21300000, guid: c0b805109af8e014bbe206ce5b8b754d, type: 3}
+  UseUI: {fileID: 21300000, guid: ad7d7adc3b0990443ad763ff8af334af, type: 3}
   mainInterfaceController: {fileID: 114633212844361832}
   globalInputManager: {fileID: 114563425001148670}
   missionFailInterface: {fileID: 1157575603744468}
@@ -1328,8 +1333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
+  m_mapManager: {fileID: 0}
 --- !u!114 &114153593465428434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1665,8 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  y: 0
+  m_mapManager: {fileID: 0}
 --- !u!114 &114476170119659922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1767,7 +1770,6 @@ MonoBehaviour:
   - {fileID: 114623891965006196}
   - {fileID: 114242102835904572}
   - {fileID: 114171681130657654}
-  numberOfPlayers: 0
   m_currentState: 0
 --- !u!114 &114579022172265192
 MonoBehaviour:
@@ -1941,13 +1943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f566a53d5ab864f9a383012c6a1a86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveUp: {fileID: 21300000, guid: 119465343046abe4ba39a432f5a0397b, type: 3}
-  MoveDown: {fileID: 21300000, guid: ec230ba215bfb0340b9a45626f60f6f4, type: 3}
-  MoveLeft: {fileID: 21300000, guid: 576553248bbb8f64f8f0391be0779f42, type: 3}
-  MoveRight: {fileID: 21300000, guid: 8bfed71e3c5ff1541b23e591173b98da, type: 3}
-  Ladder: {fileID: 21300000, guid: 3a875459ab78d7f45a04ae7ff44cf35d, type: 3}
-  Door: {fileID: 21300000, guid: c0b805109af8e014bbe206ce5b8b754d, type: 3}
-  Use: {fileID: 21300000, guid: ad7d7adc3b0990443ad763ff8af334af, type: 3}
 --- !u!114 &114728209801275334
 MonoBehaviour:
   m_ObjectHideFlags: 1
