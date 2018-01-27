@@ -360,7 +360,8 @@ public class MapManager : MonoBehaviour
             Vector2Int localPostion = destiny + new Vector2Int(CASILLA_TOP.x, CASILLA_TOP.y);
             if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
-                if(_structure[localPostion.x, localPostion.y]._goDown == posibility)
+                _structure[localPostion.x, localPostion.y].GetComponent<MapAction>().enabled = false;
+                if (_structure[localPostion.x, localPostion.y]._goDown == posibility)
                     _structure[localPostion.x, localPostion.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
             }
 
