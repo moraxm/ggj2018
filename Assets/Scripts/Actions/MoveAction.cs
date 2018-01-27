@@ -14,7 +14,7 @@ public abstract class MoveAction : IAction
         }
     }
 
-    public void doAction(CharController currentPlayer)
+    public override void doAction(CharController currentPlayer)
     {
         if (!pizarrita.ContainsKey(m_target))
         {
@@ -30,11 +30,9 @@ public abstract class MoveAction : IAction
             // Moverse a m_target
         }
     }
-    public void postAction(CharController currentPlayer)
+    public  override void postAction(CharController currentPlayer)
     {
         pizarrita.Clear();
     }
 
-
-    public abstract void preAction(CharController currentPlayer);
  }

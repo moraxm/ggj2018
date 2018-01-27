@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IAction 
+public abstract class IAction 
 {
-    void preAction(CharController currentPlayer);
-    void doAction(CharController currentPlayer);
-    void postAction(CharController currentPlayer);
+    public abstract void preAction(CharController currentPlayer);
+    public abstract void doAction(CharController currentPlayer);
+    public abstract void postAction(CharController currentPlayer);
 }
