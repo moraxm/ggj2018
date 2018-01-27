@@ -30,57 +30,13 @@ public class MapManager : MonoBehaviour
         buildStructure();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Vector3 destiny;
-            if (canMove(new Vector2Int(1, 1), DIRECTION.RIGHT, out destiny))
-            {
-                Debug.Log("este mensaje no deberia salir");
-            }
-            else
-            {
-                Debug.Log("Check 1");
-            }
-
-            if (doAction(new Vector2Int(2, 0), DIRECTION.BOTTOM, Casilla.PERSONAJE_ENUM.BLUE))
-            {
-                Debug.Log("este mensaje no deberia salir");
-            }
-            else
-            {
-                Debug.Log("Check 2");
-            }
-
-            //ejecutamos la accion
-            if (doAction(new Vector2Int(3,1), DIRECTION.LEFT, Casilla.PERSONAJE_ENUM.RED))
-            {
-                Debug.Log("check 3");
-            }
-            else
-            {
-                Debug.Log("este mensaje no deberia salir");
-            }
-
-            if (canMove(new Vector2Int(2,2), DIRECTION.TOP, out destiny))
-            {
-                Debug.Log("este mensaje no deberia salir");
-            }
-            else
-            {
-                Debug.Log("Check 4");
-            }
-        }
-    }
-
     void buildStructure()
     {
         //inicializamos la structura
-        _structure = new Casilla[ALTO, ANCHO];
-        for (int i = 0; i < ALTO; ++i)
+        _structure = new Casilla[ANCHO, ALTO];
+        for (int i = 0; i < ANCHO; ++i)
         {
-            for (int j = 0; j < ANCHO; ++j)
+            for (int j = 0; j < ALTO; ++j)
             {
                 _structure[i, j] = null;
             }
@@ -96,6 +52,8 @@ public class MapManager : MonoBehaviour
             KeyValuePair<int, int> first = toAnalyze[0];
             toAnalyze.RemoveAt(0);
             allReadyAnalized.Add(first);
+
+            //Debug.Log(first.Key + "," + first.Value);
 
             Casilla _casilla = _structure[first.Key, first.Value];
             //añadimos todos sus posibles destinos
@@ -125,9 +83,10 @@ public class MapManager : MonoBehaviour
                 {
                     continue;
                 }
+                
                 toAnalyze.Add(fut);
             }
-
+           
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
