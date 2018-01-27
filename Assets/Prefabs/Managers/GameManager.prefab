@@ -1974,10 +1974,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c435732973561946b96b8c778b2cee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  REDPlayer: {fileID: 0}
-  BLUEPlayer: {fileID: 0}
-  GREENPlayer: {fileID: 0}
-  YELLOWPlayer: {fileID: 0}
+  REDPlayer: {fileID: 114532100718854430}
+  BLUEPlayer: {fileID: 114803876182303024}
+  GREENPlayer: {fileID: 114899934051704626}
+  YELLOWPlayer: {fileID: 114947892774745978}
   players:
   - {fileID: 114623891965006196}
   - {fileID: 114242102835904572}
