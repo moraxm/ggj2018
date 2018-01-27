@@ -26,6 +26,7 @@ ModelImporter:
     100036: tornillo_7
     100038: tornillo_7 1
     100040: zocalo4
+    100042: puerta_zocalo
     400000: base
     400002: engranajes
     400004: engranajes1
@@ -47,6 +48,7 @@ ModelImporter:
     400036: tornillo_7
     400038: tornillo_7 1
     400040: zocalo4
+    400042: puerta_zocalo
     2100000: ocre_8
     2100002: gris_7
     2100004: ocre_2
@@ -69,6 +71,7 @@ ModelImporter:
     2300026: tornillo_6 1
     2300028: tornillo_7
     2300030: tornillo_7 1
+    2300032: puerta_zocalo
     3300000: base
     3300002: pCylinder1
     3300004: pCylinder1 1
@@ -85,6 +88,7 @@ ModelImporter:
     3300026: tornillo_6 1
     3300028: tornillo_7
     3300030: tornillo_7 1
+    3300032: puerta_zocalo
     4300000: base
     4300002: suelo
     4300004: puerta_2
@@ -101,6 +105,7 @@ ModelImporter:
     4300026: pCylinder1
     4300028: pCylinder2
     4300030: pCylinder3
+    4300032: puerta_zocalo
     7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
