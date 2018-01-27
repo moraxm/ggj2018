@@ -160,7 +160,7 @@ public class MapManager : MonoBehaviour
             case DIRECTION.RIGHT: toAdd = Vector2Int.right; break;
         }
         Vector2Int finalCoord = origin + toAdd;
-        destinyCoords = _structure[finalCoord.x, _structure.y].gameObject.transform.position;
+        destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
         return true;
     }
 
