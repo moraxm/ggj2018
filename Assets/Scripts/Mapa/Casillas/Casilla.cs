@@ -6,7 +6,7 @@ public class Casilla : MonoBehaviour
 {
     public enum PERSONAJE_ENUM
     {
-        ANY, RED, BLUE, GREEN, YELLOW, NONE, UNKNOW
+        ANY, RED, BLUE, GREEN, YELLOW, NONE, UNKNOW, ESCALERA
     }
     /// <summary>
     /// Nos indica si esta casilla es accesible en general, una casilla no accesible tiene por ejemplo un barril encima
