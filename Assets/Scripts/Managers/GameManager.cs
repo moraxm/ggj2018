@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    // Sprite configuration for each action
+    public Sprite MoveUpUI = null;
+    public Sprite MoveDownUI = null;
+    public Sprite MoveLeftUI = null;
+    public Sprite MoveRightUI = null;
+    public Sprite LadderUI = null;
+    public Sprite DoorUI = null;
+    public Sprite UseUI = null;
+
     public MainInterfaceController mainInterfaceController = null;
     public GlobalInputManager globalInputManager = null;
     public GameObject missionFailInterface = null;
@@ -27,6 +36,12 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        if (!MoveUpUI || !MoveDownUI || !MoveLeftUI || !MoveRightUI || !LadderUI || !DoorUI || !UseUI)
+        {
+            Debug.LogError("[MainInterfaceController.Start] Error. An action sprite has not been configured via editor");
+            return;
+        }
+
         if (!mainInterfaceController)
         {
             Debug.LogError("[GameManager.Start] Error. MainInterfaceController component not found");
@@ -57,8 +72,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        ConfigureActions();
-
         currentTime = missionTime;
         timer.text = "Time: " + currentTime.ToString("000");
 
@@ -66,6 +79,8 @@ public class GameManager : MonoBehaviour {
         failCoroutine = null;
         missionSuccess = false;
         successCoroutine = null;
+
+        ConfigureActions();
 	}
 
     void ConfigureActions()
@@ -75,79 +90,121 @@ public class GameManager : MonoBehaviour {
         Stack<MoveAction> moveActions = new Stack<MoveAction>();
 
         // Create actions
-        IAction actionToInsert = new OpenDoorAction();
         actions.Push(new OpenDoorAction());
-        actions.Peek().spriteUI = mainInterfaceController.Door;
+        actions.Peek().spriteUI = DoorUI;
         actions.Push(new OpenDoorAction());
-        actions.Peek().spriteUI = mainInterfaceController.Ladder;
+        actions.Peek().spriteUI = LadderUI;
         actions.Push(new OpenDoorAction());
-        actions.Peek().spriteUI = mainInterfaceController.Use;
+        actions.Peek().spriteUI = UseUI;
         moveActions.Push(new MoveActionUp());
-        actions.Peek().spriteUI = mainInterfaceController.MoveUp;
+        moveActions.Peek().spriteUI = MoveUpUI;
         moveActions.Push(new MoveActionDown());
-        actions.Peek().spriteUI = mainInterfaceController.MoveDown;
+        moveActions.Peek().spriteUI = MoveDownUI;
         moveActions.Push(new MoveActionRight());
-        actions.Peek().spriteUI = mainInterfaceController.MoveRight;
+        moveActions.Peek().spriteUI = MoveRightUI;
         moveActions.Push(new MoveActionLeft());
-        actions.Peek().spriteUI = mainInterfaceController.MoveLeft;
+        moveActions.Peek().spriteUI = MoveLeftUI;
 
-        // Non move actions
-        while (actions.Count > 0)
+        // Assign one MoveAction to each player
+        List<bool> playersHaveOneAction = new List<bool>();
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        for (uint i = 0; i < numberOfPlayers; ++i)
         {
-            // Select random player until we get one with a missing action
-            int randPlayer = 0;
+            IAction action = actions.Pop();
+            int rand = 0;
             do
             {
-                randPlayer = Random.Range(0, (int)numberOfPlayers);
+                rand = Random.Range(0, (int)numberOfPlayers);
             }
-            while (globalInputManager.players[randPlayer].m_L2Action != null && globalInputManager.players[randPlayer].m_R2Action != null);
-            // It does not have a left action
-            if (globalInputManager.players[randPlayer].m_L2Action == null && globalInputManager.players[randPlayer].m_R2Action != null)
+            while (playersHaveOneAction[rand] == true);
+
+            int randButton = Random.Range(0, 2);
+            if (randButton == 0)
             {
-                globalInputManager.players[randPlayer].m_L2Action = actions.Pop();
+                globalInputManager.players[rand].m_L2Action = action;
             }
-            // It does not have a right action
-            else if (globalInputManager.players[randPlayer].m_L2Action != null && globalInputManager.players[randPlayer].m_R2Action == null)
+            else
             {
-                globalInputManager.players[randPlayer].m_R2Action = actions.Pop();
+                globalInputManager.players[rand].m_R2Action = action;
             }
-            else // Has none. Select random action
+            playersHaveOneAction[rand] = true;
+        }
+        // Now set remaining Actions randomly to users with free actions
+        while (actions.Count > 0)
+        {
+            IAction action = actions.Pop();
+            while (true)
             {
-                int randButton = Random.Range(0, 2);
-                if (randButton == 0)
+                int rand = Random.Range(0, (int)numberOfPlayers);
+                // It does not have a left action
+                if (globalInputManager.players[rand].m_L2Action == null && globalInputManager.players[rand].m_R2Action != null)
                 {
-                    globalInputManager.players[randPlayer].m_L2Action = actions.Pop();
+                    globalInputManager.players[rand].m_L2Action = action;
+                    break;
                 }
-                else
+                // It does not have a right action
+                else if (globalInputManager.players[rand].m_L2Action != null && globalInputManager.players[rand].m_R2Action == null)
                 {
-                    globalInputManager.players[randPlayer].m_R2Action = actions.Pop();
+                    globalInputManager.players[rand].m_R2Action = action;
+                    break;
+                }
+                // Has none. Select random action
+                else if (globalInputManager.players[rand].m_L2Action == null && globalInputManager.players[rand].m_R2Action == null)
+                {
+                    int randButton = Random.Range(0, 2);
+                    if (randButton == 0)
+                    {
+                        globalInputManager.players[rand].m_L2Action = action;
+                    }
+                    else
+                    {
+                        globalInputManager.players[rand].m_R2Action = action;
+                    }
+                    break;
                 }
             }
         }
 
         // Move actions
         // Assign one MoveAction to each player
+        List<bool> playersHaveOneMoveAction = new List<bool>();
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
         for (uint i = 0; i < numberOfPlayers; ++i)
         {
             MoveAction moveAction = moveActions.Pop();
+            int rand = 0;
+            do
+            {
+                rand = Random.Range(0, (int)numberOfPlayers);
+            }
+            while (playersHaveOneMoveAction[rand] == true);
+
             if (moveAction is MoveActionUp)
             {
-                globalInputManager.players[i].m_UPAction = moveAction;
+                globalInputManager.players[rand].m_UPAction = moveAction;
             }
             else if (moveAction is MoveActionDown)
             {
-                globalInputManager.players[i].m_DOWNAction = moveAction;
+                globalInputManager.players[rand].m_DOWNAction = moveAction;
             }
             else if (moveAction is MoveActionRight)
             {
-                globalInputManager.players[i].m_RIGHTAction = moveAction;
+                globalInputManager.players[rand].m_RIGHTAction = moveAction;
             }
             else if (moveAction is MoveActionLeft)
             {
-                globalInputManager.players[i].m_LEFTAction = moveAction;
+                globalInputManager.players[rand].m_LEFTAction = moveAction;
             }
+            playersHaveOneMoveAction[rand] = true;
         }
 
+        // Now set remaining MoveActions randomly to users with free move actions
         while (moveActions.Count > 0)
         {
             MoveAction moveAction = moveActions.Pop();
