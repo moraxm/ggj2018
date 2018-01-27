@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IAction : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public interface IAction 
+{
+    void preAction(CharController currentPlayer);
+    void doAction(CharController currentPlayer);
+    void postAction(CharController currentPlayer);
 }
