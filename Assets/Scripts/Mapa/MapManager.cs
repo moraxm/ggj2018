@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour
     public Casilla topLeft;
     public int ALTO;
     public int ANCHO;
+    public Vector3 alturaEscalera = new Vector3(0, 2f, 0);
 
     private readonly Vector3Int CASILLA_LEFT = new Vector3Int(-1, 0, 0);
     private readonly Vector3Int CASILLA_RIGHT = new Vector3Int(1, 0, 0);
@@ -20,7 +21,12 @@ public class MapManager : MonoBehaviour
     private readonly Vector3Int CASILLA_TOP_RAY = new Vector3Int(0, 0, 1);
     private readonly Vector3Int CASILLA_BOTTOM_RAY = new Vector3Int(0, 0, -1);
 
-    public readonly Vector3 toIncrease = new Vector3(0, 0.1f, 0);
+    public readonly Vector3 toIncrease = new Vector3(0, 0.6f, 0);
+
+    public Vector2Int startIndex = new Vector2Int(0, 0);
+    public Transform []startPos;
+
+    private GameManager gameManager = null;
 
     Casilla[,] _structure;
 
@@ -28,6 +34,56 @@ public class MapManager : MonoBehaviour
     void Start()
     {
         buildStructure();
+
+        GameObject gameManagerObj = GameObject.FindGameObjectWithTag("GameManager");
+        if (!gameManagerObj)
+        {
+            Debug.LogError("[MapManager.Start] Error. GameManager not found");
+            return;
+        }
+        gameManager = gameManagerObj.GetComponent<GameManager>();
+        if (!gameManager)
+        {
+            Debug.LogError("[MapManager.Start] Error. GameManager has not GameManager component");
+            return;
+        }
+
+        for (uint i = 0; i < startPos.Length; ++i)
+        {
+            switch (i)
+            {
+                case 0:
+                    {
+                        Transform character = gameManager.GetRedCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                case 1:
+                    {
+                        Transform character = gameManager.GetYellowCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                case 2:
+                    {
+                        Transform character = gameManager.GetBlueCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                case 3:
+                    {
+                        Transform character = gameManager.GetGreenCharacter();
+                        character.gameObject.SetActive(true);
+                        character.position = startPos[i].position;
+                        break;
+                    }
+                default:
+                    break;
+            }
+        }
     }
 
     void buildStructure()
@@ -41,9 +97,9 @@ public class MapManager : MonoBehaviour
                 _structure[i, j] = null;
             }
         }
-        _structure[0, 0] = topLeft;
+        _structure[startIndex.x, startIndex.y] = topLeft;
 
-        List<KeyValuePair<int, int>> toAnalyze = new List<KeyValuePair<int, int>>(); toAnalyze.Add(new KeyValuePair<int, int>(0, 0));
+        List<KeyValuePair<int, int>> toAnalyze = new List<KeyValuePair<int, int>>(); toAnalyze.Add(new KeyValuePair<int, int>(startIndex.x, startIndex.y));
         List<KeyValuePair<int, int>> allReadyAnalized = new List<KeyValuePair<int, int>>();
 
         while (toAnalyze.Count > 0)
@@ -83,10 +139,15 @@ public class MapManager : MonoBehaviour
                 {
                     continue;
                 }
-                
+
                 toAnalyze.Add(fut);
             }
-           
+
+            if(_casilla == null)
+            {
+                continue;
+            }
+
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
@@ -97,12 +158,14 @@ public class MapManager : MonoBehaviour
             hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_LEFT, CASILLA_LEFT_RAY));//left
             hits.Add(new KeyValuePair<Vector3Int, Vector3Int>(CASILLA_RIGHT, CASILLA_RIGHT_RAY));//right
 
+            LayerMask layerCasilla = LayerMask.GetMask("Casilla");
+            LayerMask layerPared = LayerMask.GetMask("Pared");
+
             for (int indexRay = 0; indexRay < hits.Count; ++indexRay)
             {
                 KeyValuePair<Vector3Int, Vector3Int> rayComponents = hits[indexRay];
                 Ray ray = new Ray(miPos, rayComponents.Value);
                 Casilla.PERSONAJE_ENUM valueToSet = Casilla.PERSONAJE_ENUM.NONE;
-                LayerMask layerCasilla = LayerMask.GetMask("Casilla");
                 if (Physics.Raycast(ray, out hitTop, 1, layerCasilla))
                 {
                     Casilla casillaColision = hitTop.collider.gameObject.GetComponent<Casilla>();
@@ -119,7 +182,6 @@ public class MapManager : MonoBehaviour
                     else
                     {
                         Ray rayCheckPared = new Ray(miPos + toIncrease, rayComponents.Value);
-                        LayerMask layerPared = LayerMask.GetMask("Pared");
                         if (Physics.Raycast(rayCheckPared, out hitTop, 1, layerPared))
                         {
                             Casilla pared = hitTop.collider.gameObject.GetComponent<Casilla>();
@@ -138,6 +200,61 @@ public class MapManager : MonoBehaviour
                         }
                     }
                 }
+
+                else
+                {
+                    //comprobamos si es una escalera con lo que colisiona
+                    Ray rayCheckAltura = new Ray(miPos + alturaEscalera, rayComponents.Value);
+                    if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerCasilla))
+                    {
+                        //como hay colision, se fija el valueToSet a escalera
+                        valueToSet = Casilla.PERSONAJE_ENUM.NONE;
+                        Casilla caux = hitTop.transform.GetComponent<Casilla>();
+
+                        if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
+                        {
+                            caux.gameObject.name = "Escalera " + (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
+                            //lo añadimos porque en algun momento se usara
+                            _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = caux;
+                        }
+
+                        //comprobamos si hay una escalera, si la hay significa que somos escalera
+                        Ray rayCheckEscalera = new Ray(miPos + toIncrease, rayComponents.Value);
+                        if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerPared))
+                        {
+                            if (hitTop.transform.GetComponent<Escalera>() != null)
+                            {
+                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA;
+                            }
+                        }
+                    }
+
+                    rayCheckAltura = new Ray(miPos - alturaEscalera, rayComponents.Value);
+                    if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerCasilla))
+                    {
+                        //como hay colision, se fija el valueToSet a escalera
+                        valueToSet = Casilla.PERSONAJE_ENUM.NONE;
+                        Casilla caux = hitTop.transform.GetComponent<Casilla>();
+
+                        if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
+                        {
+                            caux.gameObject.name = "Escalera " + (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
+                            //lo añadimos porque en algun momento se usara
+                            _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = caux;
+                        }
+
+                        //comprobamos si hay una escalera, si la hay significa que somos escalera
+                        Ray rayCheckEscalera = new Ray(miPos - alturaEscalera + toIncrease, rayComponents.Value);
+                        if (Physics.Raycast(rayCheckAltura, out hitTop, 1, layerPared))
+                        {
+                            if (hitTop.transform.GetComponent<Escalera>() != null)
+                            {
+                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA;
+                            }
+                        }
+                    }
+                }
+
                 switch (indexRay)
                 {
                     case 0: _casilla._goTop = valueToSet; break;
@@ -151,15 +268,16 @@ public class MapManager : MonoBehaviour
 
     public bool canMove(Vector2Int from, DIRECTION direction, out Vector3 destinyCoords)
     {
+        Debug.Log(from);
         Vector2 destiny = new Vector2(from.x, from.y);
         destinyCoords = Vector3.zero;
         bool canMove = false;
         switch (direction)
         {
-            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop == Casilla.PERSONAJE_ENUM.NONE; break;
-            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown == Casilla.PERSONAJE_ENUM.NONE; ; break;
-            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft == Casilla.PERSONAJE_ENUM.NONE; break;
-            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight == Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown != Casilla.PERSONAJE_ENUM.NONE; ; break;
+            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft != Casilla.PERSONAJE_ENUM.NONE; break;
+            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight != Casilla.PERSONAJE_ENUM.NONE; break;
         }
         if (!canMove)
         {

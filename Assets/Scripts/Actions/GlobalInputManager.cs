@@ -13,7 +13,6 @@ public class GlobalInputManager : MonoBehaviour {
     public CharController YELLOWPlayer;
 
     public PlayerInputManager[] players;
-    public uint numberOfPlayers;
 
     public enum InputState
     {
@@ -36,7 +35,7 @@ public class GlobalInputManager : MonoBehaviour {
     {
         // Primero el pre
         bool someAction = false;
-        for (int i = 0; i< numberOfPlayers; ++i)
+        for (int i = 0; i < GameManager.numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
             someAction = someAction || a.currentAction != null;
@@ -72,7 +71,7 @@ public class GlobalInputManager : MonoBehaviour {
         }
         
         // Un bucle más, ascazo
-        for (int i = 0; i< numberOfPlayers; ++i)
+        for (int i = 0; i < GameManager.numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
             switch (a.currentPLayer) 
@@ -97,7 +96,7 @@ public class GlobalInputManager : MonoBehaviour {
         }
 
         // El tercer bucle, poto
-        for (int i = 0; i < numberOfPlayers; ++i)
+        for (int i = 0; i < GameManager.numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
             switch (a.currentPLayer)
@@ -122,7 +121,7 @@ public class GlobalInputManager : MonoBehaviour {
         }
 
         // El cuarto bucle, quiero morir
-        for (int i = 0; i < numberOfPlayers; ++i)
+        for (int i = 0; i < GameManager.numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
             switch (a.currentPLayer)

@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 9d61ce34f77f7224d9ae3f86e751caf6
+timeCreated: 1517076908
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: base
+    100002: escaleras
+    100004: //RootNode
+    100006: escaleras 1
+    100008: escalon_1
+    100010: escalon_2
+    100012: escalon_3
+    100014: escalon_4
+    100016: escalon_5
+    100018: escalon_6
+    100020: escalon_7
+    100022: escalon_conexion_1
+    100024: escalon_conexion_10
+    100026: escalon_conexion_11
+    100028: escalon_conexion_12
+    100030: escalon_conexion_13
+    100032: escalon_conexion_14
+    100034: escalon_conexion_2
+    100036: escalon_conexion_3
+    100038: escalon_conexion_4
+    100040: escalon_conexion_5
+    100042: escalon_conexion_6
+    100044: escalon_conexion_7
+    100046: escalon_conexion_8
+    100048: escalon_conexion_9
+    100050: zocalo
+    400000: base
+    400002: //RootNode
+    400004: escaleras
+    400006: escaleras 1
+    400008: escalon_1
+    400010: escalon_2
+    400012: escalon_3
+    400014: escalon_4
+    400016: escalon_5
+    400018: escalon_6
+    400020: escalon_7
+    400022: escalon_conexion_1
+    400024: escalon_conexion_10
+    400026: escalon_conexion_11
+    400028: escalon_conexion_12
+    400030: escalon_conexion_13
+    400032: escalon_conexion_14
+    400034: escalon_conexion_2
+    400036: escalon_conexion_3
+    400038: escalon_conexion_4
+    400040: escalon_conexion_5
+    400042: escalon_conexion_6
+    400044: escalon_conexion_7
+    400046: escalon_conexion_8
+    400048: escalon_conexion_9
+    400050: zocalo
+    2100000: ocre_8
+    2100002: ocre_7
+    2100004: gris_4
+    2100006: gris_6
+    2300000: base
+    2300002: escalon_1
+    2300004: escalon_2
+    2300006: escalon_3
+    2300008: escalon_4
+    2300010: escalon_5
+    2300012: escalon_6
+    2300014: escalon_7
+    2300016: escalon_conexion_1
+    2300018: escalon_conexion_10
+    2300020: escalon_conexion_11
+    2300022: escalon_conexion_12
+    2300024: escalon_conexion_13
+    2300026: escalon_conexion_14
+    2300028: escalon_conexion_2
+    2300030: escalon_conexion_3
+    2300032: escalon_conexion_4
+    2300034: escalon_conexion_5
+    2300036: escalon_conexion_6
+    2300038: escalon_conexion_7
+    2300040: escalon_conexion_8
+    2300042: escalon_conexion_9
+    2300044: zocalo
+    3300000: base
+    3300002: escalon_1
+    3300004: escalon_2
+    3300006: escalon_3
+    3300008: escalon_4
+    3300010: escalon_5
+    3300012: escalon_6
+    3300014: escalon_7
+    3300016: escalon_conexion_1
+    3300018: escalon_conexion_10
+    3300020: escalon_conexion_11
+    3300022: escalon_conexion_12
+    3300024: escalon_conexion_13
+    3300026: escalon_conexion_14
+    3300028: escalon_conexion_2
+    3300030: escalon_conexion_3
+    3300032: escalon_conexion_4
+    3300034: escalon_conexion_5
+    3300036: escalon_conexion_6
+    3300038: escalon_conexion_7
+    3300040: escalon_conexion_8
+    3300042: escalon_conexion_9
+    3300044: zocalo
+    4300000: base
+    4300002: zocalo
+    4300004: escalon_1
+    4300006: escalon_conexion_1
+    4300008: escalon_conexion_2
+    4300010: escalon_2
+    4300012: escalon_conexion_3
+    4300014: escalon_conexion_4
+    4300016: escalon_3
+    4300018: escalon_conexion_5
+    4300020: escalon_conexion_6
+    4300022: escalon_4
+    4300024: escalon_conexion_7
+    4300026: escalon_conexion_8
+    4300028: escalon_5
+    4300030: escalon_conexion_9
+    4300032: escalon_conexion_10
+    4300034: escalon_6
+    4300036: escalon_conexion_11
+    4300038: escalon_conexion_12
+    4300040: escalon_7
+    4300042: escalon_conexion_13
+    4300044: escalon_conexion_14
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

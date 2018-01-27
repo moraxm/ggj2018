@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MoveActionUp : MoveAction
 {
-    MoveActionUp()
+    public MoveActionUp()
     {
-        dir = MapManager.DIRECTION.LEFT;
+        dir = MapManager.DIRECTION.TOP;
     }
 
     public override void preAction(CharController currentPlayer)

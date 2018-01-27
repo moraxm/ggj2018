@@ -6,6 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    // Sprite configuration for each action
+    public Sprite MoveUpUI = null;
+    public Sprite MoveDownUI = null;
+    public Sprite MoveLeftUI = null;
+    public Sprite MoveRightUI = null;
+    public Sprite LadderUI = null;
+    public Sprite DoorUI = null;
+    public Sprite UseUI = null;
+
     public MainInterfaceController mainInterfaceController = null;
     public GlobalInputManager globalInputManager = null;
     public GameObject missionFailInterface = null;
@@ -27,6 +36,12 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        if (!MoveUpUI || !MoveDownUI || !MoveLeftUI || !MoveRightUI || !LadderUI || !DoorUI || !UseUI)
+        {
+            Debug.LogError("[MainInterfaceController.Start] Error. An action sprite has not been configured via editor");
+            return;
+        }
+
         if (!mainInterfaceController)
         {
             Debug.LogError("[GameManager.Start] Error. MainInterfaceController component not found");
@@ -57,10 +72,6 @@ public class GameManager : MonoBehaviour {
             return;
         }
 
-        // Set selected number of players
-        mainInterfaceController.ConfigurePlayersInterface(numberOfPlayers);
-        globalInputManager.numberOfPlayers = numberOfPlayers;
-
         currentTime = missionTime;
         timer.text = "Time: " + currentTime.ToString("000");
 
@@ -68,7 +79,176 @@ public class GameManager : MonoBehaviour {
         failCoroutine = null;
         missionSuccess = false;
         successCoroutine = null;
+
+        ConfigureActions();
 	}
+
+    void ConfigureActions()
+    {
+
+        Stack<IAction> actions = new Stack<IAction>();
+        Stack<MoveAction> moveActions = new Stack<MoveAction>();
+
+        // Create actions
+        actions.Push(new OpenDoorAction());
+        actions.Peek().spriteUI = DoorUI;
+        actions.Push(new OpenDoorAction());
+        actions.Peek().spriteUI = LadderUI;
+        actions.Push(new OpenDoorAction());
+        actions.Peek().spriteUI = UseUI;
+        moveActions.Push(new MoveActionUp());
+        moveActions.Peek().spriteUI = MoveUpUI;
+        moveActions.Push(new MoveActionDown());
+        moveActions.Peek().spriteUI = MoveDownUI;
+        moveActions.Push(new MoveActionRight());
+        moveActions.Peek().spriteUI = MoveRightUI;
+        moveActions.Push(new MoveActionLeft());
+        moveActions.Peek().spriteUI = MoveLeftUI;
+
+        // Assign one MoveAction to each player
+        List<bool> playersHaveOneAction = new List<bool>();
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        playersHaveOneAction.Add(false);
+        for (uint i = 0; i < numberOfPlayers; ++i)
+        {
+            IAction action = actions.Pop();
+            int rand = 0;
+            do
+            {
+                rand = Random.Range(0, (int)numberOfPlayers);
+            }
+            while (playersHaveOneAction[rand] == true);
+
+            int randButton = Random.Range(0, 2);
+            if (randButton == 0)
+            {
+                globalInputManager.players[rand].m_L2Action = action;
+            }
+            else
+            {
+                globalInputManager.players[rand].m_R2Action = action;
+            }
+            playersHaveOneAction[rand] = true;
+        }
+        // Now set remaining Actions randomly to users with free actions
+        while (actions.Count > 0)
+        {
+            IAction action = actions.Pop();
+            while (true)
+            {
+                int rand = Random.Range(0, (int)numberOfPlayers);
+                // It does not have a left action
+                if (globalInputManager.players[rand].m_L2Action == null && globalInputManager.players[rand].m_R2Action != null)
+                {
+                    globalInputManager.players[rand].m_L2Action = action;
+                    break;
+                }
+                // It does not have a right action
+                else if (globalInputManager.players[rand].m_L2Action != null && globalInputManager.players[rand].m_R2Action == null)
+                {
+                    globalInputManager.players[rand].m_R2Action = action;
+                    break;
+                }
+                // Has none. Select random action
+                else if (globalInputManager.players[rand].m_L2Action == null && globalInputManager.players[rand].m_R2Action == null)
+                {
+                    int randButton = Random.Range(0, 2);
+                    if (randButton == 0)
+                    {
+                        globalInputManager.players[rand].m_L2Action = action;
+                    }
+                    else
+                    {
+                        globalInputManager.players[rand].m_R2Action = action;
+                    }
+                    break;
+                }
+            }
+        }
+
+        // Move actions
+        // Assign one MoveAction to each player
+        List<bool> playersHaveOneMoveAction = new List<bool>();
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        playersHaveOneMoveAction.Add(false);
+        for (uint i = 0; i < numberOfPlayers; ++i)
+        {
+            MoveAction moveAction = moveActions.Pop();
+            int rand = 0;
+            do
+            {
+                rand = Random.Range(0, (int)numberOfPlayers);
+            }
+            while (playersHaveOneMoveAction[rand] == true);
+
+            if (moveAction is MoveActionUp)
+            {
+                globalInputManager.players[rand].m_UPAction = moveAction;
+            }
+            else if (moveAction is MoveActionDown)
+            {
+                globalInputManager.players[rand].m_DOWNAction = moveAction;
+            }
+            else if (moveAction is MoveActionRight)
+            {
+                globalInputManager.players[rand].m_RIGHTAction = moveAction;
+            }
+            else if (moveAction is MoveActionLeft)
+            {
+                globalInputManager.players[rand].m_LEFTAction = moveAction;
+            }
+            playersHaveOneMoveAction[rand] = true;
+        }
+
+        // Now set remaining MoveActions randomly to users with free move actions
+        while (moveActions.Count > 0)
+        {
+            MoveAction moveAction = moveActions.Pop();
+
+            while (true)
+            {
+                int rand = Random.Range(0, (int)numberOfPlayers);
+                if (moveAction is MoveActionUp)
+                {
+                    if (globalInputManager.players[rand].m_UPAction == null)
+                    {
+                        globalInputManager.players[rand].m_UPAction = moveAction;
+                        break;
+                    }
+                }
+                else if (moveAction is MoveActionDown)
+                {
+                    if (globalInputManager.players[rand].m_DOWNAction == null)
+                    {
+                        globalInputManager.players[rand].m_DOWNAction = moveAction;
+                        break;
+                    }
+                }
+                else if (moveAction is MoveActionRight)
+                {
+                    if (globalInputManager.players[rand].m_RIGHTAction == null)
+                    {
+                        globalInputManager.players[rand].m_RIGHTAction = moveAction;
+                        break;
+                    }
+                }
+                else if (moveAction is MoveActionLeft)
+                {
+                    if (globalInputManager.players[rand].m_LEFTAction == null)
+                    {
+                        globalInputManager.players[rand].m_LEFTAction = moveAction;
+                        break;
+                    }
+                }
+            }
+        }
+
+        mainInterfaceController.ConfigurePlayersInterface(globalInputManager);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -143,5 +323,81 @@ public class GameManager : MonoBehaviour {
             StopCoroutine(successCoroutine);
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public Transform GetRedCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetRedCharacter] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetRedCharacter] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("RedCharacter");
+    }
+
+    public Transform GetYellowCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetYellowPlayer] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetYellowPlayer] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("YellowCharacter");
+    }
+
+    public Transform GetBlueCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetBluePlayer] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetBluePlayer] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("BlueCharacter");
+    }
+
+    public Transform GetGreenCharacter()
+    {
+        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
+        if (!playersCharactersTransform)
+        {
+            Debug.LogError("[GameManager.GetGreenPlayer] Error. PlayersCharacters not found");
+            return null;
+        }
+
+        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        if (!charactersTransform)
+        {
+            Debug.LogError("[GameManager.GetGreenPlayer] Error. Characters not found");
+            return null;
+        }
+
+        return charactersTransform.Find("GreenCharacter");
     }
 }
