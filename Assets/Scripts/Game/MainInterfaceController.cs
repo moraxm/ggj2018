@@ -31,13 +31,6 @@ public class MainInterfaceController : MonoBehaviour {
 
     public void ConfigurePlayersInterface(uint numPlayers)
     {
-        // Check numPlayers value
-        if (numPlayers <= 0 || numPlayers > GameManager.MAX_PLAYERS)
-        {
-            Debug.LogError("[MainInterfaceController.ConfigurePlayersInterface] Error. numPlayers < 0 or numPlayers > " + GameManager.MAX_PLAYERS);
-            return;
-        }
-
         // Find PlayersInfo structure on Canvas
         Transform playersInfoTransform = transform.Find("PlayersInfo");
         if (!playersInfoTransform)
