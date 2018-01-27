@@ -36,6 +36,4 @@ public class Casilla : MonoBehaviour
     /// indica que personajes pueden ir en esta direccion
     /// </summary>
     public PERSONAJE_ENUM _goDown;
-
-    
 }

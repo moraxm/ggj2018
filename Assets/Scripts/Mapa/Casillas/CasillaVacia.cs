@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class CasillaVacia : Casilla {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Awake()
+    {
+        _accesible = true;
+    }
 }
