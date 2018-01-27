@@ -14,6 +14,23 @@ ModelImporter:
     100012: pCube20
     100014: pCube21
     100016: pCube3
+    100018: base
+    100020: base 1
+    100022: pared_3_doble
+    100024: rejilla_pared_barrote_1
+    100026: rejilla_pared_barrote_1 1
+    100028: rejilla_pared_barrote_2
+    100030: rejilla_pared_barrote_2 1
+    100032: rejilla_pared_barrote_3
+    100034: rejilla_pared_barrote_3 1
+    100036: rejilla_pared_barrote_4
+    100038: rejilla_pared_barrote_4 1
+    100040: rejilla_pared_barrote_5
+    100042: rejilla_pared_barrote_5 1
+    100044: rejilla_pared_barrote_6
+    100046: rejilla_pared_barrote_6 1
+    100048: zocalo
+    100050: zocalo 1
     400000: base1
     400002: //RootNode
     400004: pCube16
@@ -23,6 +40,23 @@ ModelImporter:
     400012: pCube20
     400014: pCube21
     400016: pCube3
+    400018: base
+    400020: base 1
+    400022: pared_3_doble
+    400024: rejilla_pared_barrote_1
+    400026: rejilla_pared_barrote_1 1
+    400028: rejilla_pared_barrote_2
+    400030: rejilla_pared_barrote_2 1
+    400032: rejilla_pared_barrote_3
+    400034: rejilla_pared_barrote_3 1
+    400036: rejilla_pared_barrote_4
+    400038: rejilla_pared_barrote_4 1
+    400040: rejilla_pared_barrote_5
+    400042: rejilla_pared_barrote_5 1
+    400044: rejilla_pared_barrote_6
+    400046: rejilla_pared_barrote_6 1
+    400048: zocalo
+    400050: zocalo 1
     2100000: lambert4
     2100002: lambert3
     2100004: lambert7
@@ -34,6 +68,22 @@ ModelImporter:
     2300010: pCube20
     2300012: pCube21
     2300014: pCube3
+    2300016: base
+    2300018: base 1
+    2300020: rejilla_pared_barrote_1
+    2300022: rejilla_pared_barrote_1 1
+    2300024: rejilla_pared_barrote_2
+    2300026: rejilla_pared_barrote_2 1
+    2300028: rejilla_pared_barrote_3
+    2300030: rejilla_pared_barrote_3 1
+    2300032: rejilla_pared_barrote_4
+    2300034: rejilla_pared_barrote_4 1
+    2300036: rejilla_pared_barrote_5
+    2300038: rejilla_pared_barrote_5 1
+    2300040: rejilla_pared_barrote_6
+    2300042: rejilla_pared_barrote_6 1
+    2300044: zocalo
+    2300046: zocalo 1
     3300000: base1
     3300002: pCube16
     3300004: pCube17
@@ -42,6 +92,22 @@ ModelImporter:
     3300010: pCube20
     3300012: pCube21
     3300014: pCube3
+    3300016: base
+    3300018: base 1
+    3300020: rejilla_pared_barrote_1
+    3300022: rejilla_pared_barrote_1 1
+    3300024: rejilla_pared_barrote_2
+    3300026: rejilla_pared_barrote_2 1
+    3300028: rejilla_pared_barrote_3
+    3300030: rejilla_pared_barrote_3 1
+    3300032: rejilla_pared_barrote_4
+    3300034: rejilla_pared_barrote_4 1
+    3300036: rejilla_pared_barrote_5
+    3300038: rejilla_pared_barrote_5 1
+    3300040: rejilla_pared_barrote_6
+    3300042: rejilla_pared_barrote_6 1
+    3300044: zocalo
+    3300046: zocalo 1
     4300000: base1
     4300002: pCube3
     4300004: pCube16
@@ -50,6 +116,22 @@ ModelImporter:
     4300010: pCube19
     4300012: pCube20
     4300014: pCube21
+    4300016: base
+    4300018: zocalo
+    4300020: rejilla_pared_barrote_1
+    4300022: rejilla_pared_barrote_2
+    4300024: rejilla_pared_barrote_3
+    4300026: rejilla_pared_barrote_4
+    4300028: rejilla_pared_barrote_5
+    4300030: rejilla_pared_barrote_6
+    4300032: base
+    4300034: zocalo
+    4300036: rejilla_pared_barrote_1
+    4300038: rejilla_pared_barrote_2
+    4300040: rejilla_pared_barrote_3
+    4300042: rejilla_pared_barrote_4
+    4300044: rejilla_pared_barrote_5
+    4300046: rejilla_pared_barrote_6
   externalObjects: {}
   materials:
     importMaterials: 1

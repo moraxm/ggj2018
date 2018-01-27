@@ -14,6 +14,21 @@ ModelImporter:
     100012: pCube24
     100014: pCube4
     100016: ventilador
+    100018: base1 1
+    100020: borde_rejilla
+    100022: borde_rejilla 1
+    100024: pared_2_doble
+    100026: rejilla_1
+    100028: rejilla_1 1
+    100030: rejilla_2
+    100032: rejilla_2 1
+    100034: rejilla_3
+    100036: rejilla_3 1
+    100038: rejilla_4
+    100040: rejilla_4 1
+    100042: ventilador 1
+    100044: zocalo
+    100046: zocalo 1
     400000: base1
     400002: //RootNode
     400004: pCube12
@@ -23,6 +38,21 @@ ModelImporter:
     400012: pCube24
     400014: pCube4
     400016: ventilador
+    400018: base1 1
+    400020: borde_rejilla
+    400022: borde_rejilla 1
+    400024: pared_2_doble
+    400026: rejilla_1
+    400028: rejilla_1 1
+    400030: rejilla_2
+    400032: rejilla_2 1
+    400034: rejilla_3
+    400036: rejilla_3 1
+    400038: rejilla_4
+    400040: rejilla_4 1
+    400042: ventilador 1
+    400044: zocalo
+    400046: zocalo 1
     2100000: lambert4
     2100002: lambert7
     2100004: lambert3
@@ -34,6 +64,19 @@ ModelImporter:
     2300008: pCube23
     2300010: pCube24
     2300012: pCube4
+    2300014: base1 1
+    2300016: borde_rejilla
+    2300018: borde_rejilla 1
+    2300020: rejilla_1
+    2300022: rejilla_1 1
+    2300024: rejilla_2
+    2300026: rejilla_2 1
+    2300028: rejilla_3
+    2300030: rejilla_3 1
+    2300032: rejilla_4
+    2300034: rejilla_4 1
+    2300036: zocalo
+    2300038: zocalo 1
     3300000: base1
     3300002: pCube12
     3300004: pCube2
@@ -41,6 +84,19 @@ ModelImporter:
     3300008: pCube23
     3300010: pCube24
     3300012: pCube4
+    3300014: base1 1
+    3300016: borde_rejilla
+    3300018: borde_rejilla 1
+    3300020: rejilla_1
+    3300022: rejilla_1 1
+    3300024: rejilla_2
+    3300026: rejilla_2 1
+    3300028: rejilla_3
+    3300030: rejilla_3 1
+    3300032: rejilla_4
+    3300034: rejilla_4 1
+    3300036: zocalo
+    3300038: zocalo 1
     4300000: base1
     4300002: pCube2
     4300004: pCube4
@@ -48,6 +104,19 @@ ModelImporter:
     4300008: pCube22
     4300010: pCube23
     4300012: pCube24
+    4300014: zocalo
+    4300016: borde_rejilla
+    4300018: rejilla_1
+    4300020: rejilla_2
+    4300022: rejilla_3
+    4300024: rejilla_4
+    4300026: base1
+    4300028: zocalo
+    4300030: borde_rejilla
+    4300032: rejilla_1
+    4300034: rejilla_2
+    4300036: rejilla_3
+    4300038: rejilla_4
   externalObjects: {}
   materials:
     importMaterials: 1
