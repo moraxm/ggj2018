@@ -68,8 +68,6 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         // Ahora como hay un personaje selecionado se comprueban los bumpers
-        Debug.Log("Player" + m_inputplayerNumber.ToString() + "VibrateR");
-        Debug.Log("Player" + m_inputplayerNumber.ToString() + "VibrateL");
         if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "VibrateR"))
         {
             Debug.Log("VIBRA COÑOL");
