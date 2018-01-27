@@ -49,21 +49,24 @@ public class GlobalInputManager : MonoBehaviour {
         {
             var a = players[i].getCurrentActionData();
             someAction = someAction || a.currentAction != null;
-            switch (a.currentPLayer)
+            if (a.currentAction != null)
             {
-                case CharController.COLORS.BLUE:
-                    BLUEPlayer.preAction(a.currentAction);
-                    break;
-                case CharController.COLORS.GREEN:
-                    GREENPlayer.preAction(a.currentAction);
-                    break;
-                case CharController.COLORS.YELLOW:
-                    YELLOWPlayer.preAction(a.currentAction);
-                    break;
-                case CharController.COLORS.RED:
-                    REDPlayer.preAction(a.currentAction);
-                    break;
-            }    
+                switch (a.currentPLayer)
+                {
+                    case CharController.COLORS.BLUE:
+                        BLUEPlayer.preAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.GREEN:
+                        GREENPlayer.preAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.YELLOW:
+                        YELLOWPlayer.preAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.RED:
+                        REDPlayer.preAction(a.currentAction);
+                        break;
+                }
+            }
         }
 
         if (!someAction)
