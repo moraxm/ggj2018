@@ -23,6 +23,8 @@ public class MapManager : MonoBehaviour
 
     public readonly Vector3 toIncrease = new Vector3(0, 0.6f, 0);
 
+    public Vector2Int startIndex = new Vector2Int(0, 0);
+
     Casilla[,] _structure;
 
     // Use this for initialization
@@ -42,9 +44,9 @@ public class MapManager : MonoBehaviour
                 _structure[i, j] = null;
             }
         }
-        _structure[0, 0] = topLeft;
+        _structure[startIndex.x, startIndex.y] = topLeft;
 
-        List<KeyValuePair<int, int>> toAnalyze = new List<KeyValuePair<int, int>>(); toAnalyze.Add(new KeyValuePair<int, int>(0, 0));
+        List<KeyValuePair<int, int>> toAnalyze = new List<KeyValuePair<int, int>>(); toAnalyze.Add(new KeyValuePair<int, int>(startIndex.x, startIndex.y));
         List<KeyValuePair<int, int>> allReadyAnalized = new List<KeyValuePair<int, int>>();
 
         while (toAnalyze.Count > 0)
