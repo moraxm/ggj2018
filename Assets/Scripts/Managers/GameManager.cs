@@ -108,33 +108,36 @@ public class GameManager : MonoBehaviour {
         // Non move actions
         while (actions.Count > 0)
         {
-            // Select random player until we get one with a missing action
-            int randPlayer = 0;
-            do
+            IAction action = actions.Pop();
+
+            while (true)
             {
-                randPlayer = Random.Range(0, (int)numberOfPlayers);
-            }
-            while (globalInputManager.players[randPlayer].m_L2Action != null && globalInputManager.players[randPlayer].m_R2Action != null);
-            // It does not have a left action
-            if (globalInputManager.players[randPlayer].m_L2Action == null && globalInputManager.players[randPlayer].m_R2Action != null)
-            {
-                globalInputManager.players[randPlayer].m_L2Action = actions.Pop();
-            }
-            // It does not have a right action
-            else if (globalInputManager.players[randPlayer].m_L2Action != null && globalInputManager.players[randPlayer].m_R2Action == null)
-            {
-                globalInputManager.players[randPlayer].m_R2Action = actions.Pop();
-            }
-            else // Has none. Select random action
-            {
-                int randButton = Random.Range(0, 2);
-                if (randButton == 0)
+                int rand = Random.Range(0, (int)numberOfPlayers);
+                // It does not have a left action
+                if (globalInputManager.players[rand].m_L2Action == null && globalInputManager.players[rand].m_R2Action != null)
                 {
-                    globalInputManager.players[randPlayer].m_L2Action = actions.Pop();
+                    globalInputManager.players[rand].m_L2Action = action;
+                    break;
                 }
-                else
+                // It does not have a right action
+                else if (globalInputManager.players[rand].m_L2Action != null && globalInputManager.players[rand].m_R2Action == null)
                 {
-                    globalInputManager.players[randPlayer].m_R2Action = actions.Pop();
+                    globalInputManager.players[rand].m_R2Action = action;
+                    break;
+                }
+                // Has none. Select random action
+                else if (globalInputManager.players[rand].m_L2Action == null && globalInputManager.players[rand].m_R2Action == null)
+                {
+                    int randButton = Random.Range(0, 2);
+                    if (randButton == 0)
+                    {
+                        globalInputManager.players[rand].m_L2Action = action;
+                    }
+                    else
+                    {
+                        globalInputManager.players[rand].m_R2Action = action;
+                    }
+                    break;
                 }
             }
         }
