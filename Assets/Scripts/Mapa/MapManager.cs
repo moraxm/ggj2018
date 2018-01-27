@@ -88,6 +88,11 @@ public class MapManager : MonoBehaviour
                 toAnalyze.Add(fut);
             }
 
+            if(_casilla == null)
+            {
+                continue;
+            }
+
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
