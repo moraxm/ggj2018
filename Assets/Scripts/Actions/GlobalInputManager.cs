@@ -40,6 +40,10 @@ public class GlobalInputManager : MonoBehaviour {
         {
             var a = players[i].getCurrentActionData();
             someAction = someAction || a.currentAction != null;
+            if (a.currentAction == null)
+            {
+                continue;
+            }
             switch (a.currentPLayer)
             {
                 case CharController.COLORS.BLUE:

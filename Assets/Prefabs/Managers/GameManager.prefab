@@ -1154,7 +1154,7 @@ MonoBehaviour:
   missionFailInterface: {fileID: 1157575603744468}
   missionSuccessInterface: {fileID: 1020193462546146}
   timer: {fileID: 114153593465428434}
-  missionTime: 10
+  missionTime: 10000
   timeToRestartMission: 3
   timeToGoToNextLevel: 3
 --- !u!114 &114072179439182802
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd279c2187b1a04cb28c0a7cb144923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inputplayerName: Player3
+  m_inputplayerNumber: 3
 --- !u!114 &114236859677430034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd279c2187b1a04cb28c0a7cb144923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inputplayerName: Player2
+  m_inputplayerNumber: 2
 --- !u!114 &114305366778082832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1769,7 +1769,6 @@ MonoBehaviour:
   - {fileID: 114171681130657654}
   numberOfPlayers: 0
   m_currentState: 0
-  m_ActionsTime: 0
 --- !u!114 &114579022172265192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1903,7 +1902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd279c2187b1a04cb28c0a7cb144923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_inputplayerName: Player1
+  m_inputplayerNumber: 1
 --- !u!114 &114631444169435940
 MonoBehaviour:
   m_ObjectHideFlags: 1
