@@ -54,7 +54,6 @@ public class PlayerInputManager : MonoBehaviour
         // Se comprueban los bumpers
         if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "VibrateR"))
         {
-            Debug.Log("VIBRA COÑOR " + m_inputplayerNumber + " " + rightPlayer);
             GamePad.SetVibration((PlayerIndex)rightPlayer, 1.0f, 0.0f);
         }
         else
@@ -64,7 +63,6 @@ public class PlayerInputManager : MonoBehaviour
 
         if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "VibrateL"))
         {
-            Debug.Log("VIBRA COÑOL " + m_inputplayerNumber + " " + leftPlayer);
             GamePad.SetVibration((PlayerIndex)leftPlayer, 0.0f, 1.0f);
         }
         else
