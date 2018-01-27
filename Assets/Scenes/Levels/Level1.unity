@@ -4099,6 +4099,22 @@ Animator:
   m_PrefabParentObject: {fileID: 95724321141252194, guid: 420ad89b0eb2d614280922121c788b67,
     type: 2}
   m_PrefabInternal: {fileID: 750823961}
+--- !u!1 &2092844461 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1684869713276118, guid: 65a6b8a9338134341abfdb00abdcf253,
+    type: 2}
+  m_PrefabInternal: {fileID: 1208490084}
+--- !u!114 &2092844462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2092844461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954ce3fe1ba627043bf370b161ce4fb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2094643962
 Prefab:
   m_ObjectHideFlags: 0
