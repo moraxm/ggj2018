@@ -165,6 +165,9 @@ public class MapManager : MonoBehaviour
 
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
+
+            Debug.Log(first.Key + "," + first.Value);
+
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
 
             List<KeyValuePair<Vector3Int, Vector3Int>> hits = new List<KeyValuePair<Vector3Int, Vector3Int>>();

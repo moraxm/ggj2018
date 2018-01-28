@@ -121,24 +121,27 @@ public class GlobalInputManager : MonoBehaviour {
         for (int i = 0; i < GameManager.numberOfPlayers; ++i)
         {
             var a = players[i].getCurrentActionData();
-            switch (a.currentPLayer)
+            if (a.currentAction != null)
             {
-                case CharController.COLORS.BLUE:
+                switch (a.currentPLayer)
+                {
+                    case CharController.COLORS.BLUE:
 
                         BLUEPlayer.postAction();
-                    break;
-                case CharController.COLORS.GREEN:
+                        break;
+                    case CharController.COLORS.GREEN:
 
                         GREENPlayer.postAction();
-                    break;
-                case CharController.COLORS.YELLOW:
+                        break;
+                    case CharController.COLORS.YELLOW:
 
                         YELLOWPlayer.postAction();
-                    break;
-                case CharController.COLORS.RED:
-    
+                        break;
+                    case CharController.COLORS.RED:
+
                         REDPlayer.postAction();
-                    break;
+                        break;
+                }
             }
         }
     }

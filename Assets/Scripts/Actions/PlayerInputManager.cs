@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿#define HACK
-
-using System.Collections;
-=======
-﻿using System.Collections;
->>>>>>> 9819e2a329178756aa7ec725857af9e652fbc3ad
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
@@ -57,6 +51,7 @@ public class PlayerInputManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        /*
         // Se comprueban los bumpers
         if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "VibrateR"))
         {
@@ -75,6 +70,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             GamePad.SetVibration((PlayerIndex)leftPlayer, 0.0f, 0.0f);
         }
+        */
 
         // Primero las jodidas teclas de colores para saber qué puto personaje se maneja
         m_currentActionStruct.currentPLayer = CharController.COLORS.NONE;
@@ -108,6 +104,7 @@ public class PlayerInputManager : MonoBehaviour
             Debug.Log("Realizo accion L");
             m_currentActionStruct.currentAction = m_L2Action;
         }
+        /*
         // Y ahora las de movimiento, que estaría bonito
         else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Horizontal") > 0.25f)
         {
@@ -129,5 +126,37 @@ public class PlayerInputManager : MonoBehaviour
             //Debug.Log("Me muevo a abajo");
             m_currentActionStruct.currentAction = m_DOWNAction;
         }
-	}
+        */ 
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "ActionR"))
+        {
+            Debug.Log("Realizo accion R");
+            m_currentActionStruct.currentAction = m_R2Action;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "ActionL"))
+        {
+            Debug.Log("Realizo accion L");
+            m_currentActionStruct.currentAction = m_L2Action;
+        }
+        // Y ahora las de movimiento, que estaría bonito
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Horizontal1"))
+        {
+            //Debug.Log("Me muevo a derecha");
+            m_currentActionStruct.currentAction = m_RIGHTAction;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Horizontal2"))
+        {
+            //Debug.Log("Me muevo a izquierda");
+            m_currentActionStruct.currentAction = m_LEFTAction;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Vertical1"))
+        {
+            //Debug.Log("Me muevo a arriba");
+            m_currentActionStruct.currentAction = m_UPAction;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Vertical2"))
+        {
+            //Debug.Log("Me muevo a abajo");
+            m_currentActionStruct.currentAction = m_DOWNAction;
+        }
+    }
 }
