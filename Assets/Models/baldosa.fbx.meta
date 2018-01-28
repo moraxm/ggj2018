@@ -12,6 +12,7 @@ ModelImporter:
     100008: tornillo_2
     100010: tornillo_3
     100012: tornillo_4
+    100014: baldosa
     400000: //RootNode
     400002: base
     400004: metal
@@ -19,9 +20,13 @@ ModelImporter:
     400008: tornillo_2
     400010: tornillo_3
     400012: tornillo_4
+    400014: baldosa
     2100000: lambert4
     2100002: lambert3
     2100004: lambert2
+    2100006: ocre_8
+    2100008: ocre_7
+    2100010: ocre_6
     2300000: base
     2300002: metal
     2300004: tornillo_1

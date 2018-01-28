@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
     public GlobalInputManager globalInputManager = null;
     public GameObject missionFailInterface = null;
     public GameObject missionSuccessInterface = null;
-    public Text timer = null;
+    public Image timer = null;
 
     public float missionTime = 60.0f;
     public float timeToRestartMission = 3.0f;
@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour {
 
     private float currentTime = 0.0f;
     private bool missionFailed = false;
-    private Coroutine failCoroutine = null;
     private bool missionSuccess = false;
-    private Coroutine successCoroutine = null;
 
     public static uint numberOfPlayers = 2; // Static variable with current numberOfPlayers (set by MainMenu selection)
 
@@ -68,17 +66,16 @@ public class GameManager : MonoBehaviour {
 
         if (!timer)
         {
-            Debug.LogError("[GameManager.Start] Error. Timer text component not found");
+            Debug.LogError("[GameManager.Start] Error. Timer Image component not found");
             return;
         }
 
         currentTime = missionTime;
-        timer.text = "Time: " + currentTime.ToString("000");
+        Vector3 scale = timer.GetComponent<RectTransform>().localScale;
+        timer.GetComponent<RectTransform>().localScale = new Vector3(currentTime / missionTime, scale.y, scale.z);
 
         missionFailed = false;
-        failCoroutine = null;
         missionSuccess = false;
-        successCoroutine = null;
 
         ConfigureActions();
 	}
@@ -92,7 +89,7 @@ public class GameManager : MonoBehaviour {
         // Create actions
         actions.Push(new OpenDoorAction());
         actions.Peek().spriteUI = DoorUI;
-        actions.Push(new OpenDoorAction());
+        actions.Push(new StairAction());
         actions.Peek().spriteUI = LadderUI;
         actions.Push(new OpenDoorAction());
         actions.Peek().spriteUI = UseUI;
@@ -201,6 +198,10 @@ public class GameManager : MonoBehaviour {
             {
                 globalInputManager.players[rand].m_LEFTAction = moveAction;
             }
+            else
+            {
+                Debug.LogError("[GameManager.Start] Error. Por algun motivo el MoveAction no es de ningun tipo hijo");
+            }
             playersHaveOneMoveAction[rand] = true;
         }
 
@@ -256,7 +257,8 @@ public class GameManager : MonoBehaviour {
         if (!missionFailed && !missionSuccess)
         {
             currentTime = Mathf.Max(currentTime - Time.deltaTime, 0.0f);
-            timer.text = "Time: " + currentTime.ToString("000");
+            Vector3 scale = timer.GetComponent<RectTransform>().localScale;
+            timer.GetComponent<RectTransform>().localScale = new Vector3(currentTime / missionTime, scale.y, scale.z);
             if (currentTime == 0.0f)
             {
                 FailMission();
@@ -264,12 +266,12 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    void IncreaseTime(float fAmount)
+    public void IncreaseTime(float fAmount)
     {
+        Debug.Log("Time increased by " + fAmount);
         if (!missionFailed && !missionSuccess)
         {
             Mathf.Clamp(currentTime + fAmount, 0.0f, missionTime);
-            timer.text = "Time: " + currentTime.ToString("000");
         }
     }
 
@@ -280,7 +282,6 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Mission failed!");
             missionFailed = true;
             missionFailInterface.SetActive(true);
-            failCoroutine = StartCoroutine("DelayedRestartMission");
         }
     }
 
@@ -291,37 +292,24 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Mission completed!");
             missionSuccess = true;
             missionSuccessInterface.SetActive(true);
-            successCoroutine = StartCoroutine("DelayedGoToNextLevel");
         }
-    }
-
-    private IEnumerator DelayedRestartMission()
-    {
-        yield return new WaitForSeconds(timeToRestartMission);
-        Restart();
     }
 
     public void Restart()
     {
-        if (failCoroutine != null)
-        {
-            StopCoroutine(failCoroutine);
-        }
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private IEnumerator DelayedGoToNextLevel()
+    public void ReturnToMainMenu()
     {
-        yield return new WaitForSeconds(timeToGoToNextLevel);
-        NextLevel();
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void NextLevel()
     {
-        if (successCoroutine != null)
-        {
-            StopCoroutine(successCoroutine);
-        }
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

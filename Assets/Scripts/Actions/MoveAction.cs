@@ -5,45 +5,58 @@ using UnityEngine;
 public abstract class MoveAction : IAction
  {
     public MapManager.DIRECTION dir;
-    protected static Dictionary<Vector2Int, int> pizarrita = new Dictionary<Vector2Int, int>();
+    public static Dictionary<Vector2Int, int> pizarrita = new Dictionary<Vector2Int, int>();
     protected Vector3 m_currentPosition;
     protected Vector3 m_targetPosition;
     protected Vector2Int m_target;
-    protected Vector2Int m_currentPos2d;
+
     protected void usePizarrita(Vector2Int target)
     {
+        Debug.Log("pizarrita con: " + target);
         if (pizarrita.ContainsKey(target))
         {
             pizarrita[target] = pizarrita[target] + 1;
+        }
+        else
+        {
+            pizarrita[target] = 1;
         }
     }
 
     public override void preAction(CharController currentPlayer)
     {
-        m_target = new Vector2Int(m_currentPos2d.x, m_currentPos2d.y);
-        if (!currentPlayer.m_mapManager.canMove(m_target, dir, out m_targetPosition))
-        {
-            usePizarrita(m_target);// Se hace doble pizarrita para que parezca como que hay dos personas intentando
-            // ir al mismo sitio y no se pueda.
-        }
+        currentPlayer.orientation = dir;
+        //if (!currentPlayer.m_mapManager.canMove(currentPlayer.tablePosition, dir, out m_targetPosition))
+        //{
+        //    usePizarrita(m_target);// Se hace doble pizarrita para que parezca como que hay dos personas intentando
+        //    // ir al mismo sitio y no se pueda.
+        //}
+    }
+
+    protected bool canMove(CharController currentPlayer)
+    {
+        return currentPlayer.m_mapManager.canMove(currentPlayer.tablePosition, dir, out m_targetPosition);
+       
     }
 
     public override void startAction(CharController currentPlayer)
     {
-        if (!pizarrita.ContainsKey(m_target))
+        base.startAction(currentPlayer);
+        if (!canMove(currentPlayer))
         {
-            throw new System.Exception("No está bien esto");
-        }
-        if (pizarrita[m_target] > 1)
-        { 
             // Más de un imbécil ha dado para moverse al mismo sitio
             // animación de orientación
+            Debug.Log("NO puedo");
+            currentPlayer.animator.SetTrigger("NoPuedo");
+            UtilSound.instance.PlaySound("nono", 1.0f, false, true);
         }
         else
         {
             // Flow normal
             // Moverse a m_target
+            Debug.Log("Move");
             move(currentPlayer);
+            UtilSound.instance.PlaySound("walk", 1.0f, false, true);
         }
     }
     public  override void postAction(CharController currentPlayer)
@@ -54,7 +67,7 @@ public abstract class MoveAction : IAction
     virtual public void move(CharController currentPlayer)
     {
         currentPlayer.animator.SetTrigger("Forward");
-        m_currentPos2d = m_target;
+        currentPlayer.tablePosition = m_target;
     }
 
  }

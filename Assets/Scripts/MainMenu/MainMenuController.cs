@@ -8,7 +8,8 @@ public class MainMenuController : MonoBehaviour {
 
     public Button exitButton = null;
 
-    private GameObject playerSelections = null;
+    GameObject button2Players = null;
+    GameObject button3Players = null;
 
     void Awake()
     {
@@ -22,14 +23,43 @@ public class MainMenuController : MonoBehaviour {
 
     void Start()
     {
-        Transform playerSelectionsTrans = transform.Find("SelectPlayers");
+        Transform playerSelectionsTrans = transform.Find("ButtonPanel/SelectPlayers");
         if (!playerSelectionsTrans)
         {
             Debug.LogError("[MainMenuController.Start] Error. SelectPlayers not found");
             return;
         }
 
-        playerSelections = playerSelectionsTrans.gameObject;
+        Transform button2PlayersTransform = transform.Find("ButtonPanel/SelectPlayers/Image/2PlayersButton");
+        Transform button3PlayersTransform = transform.Find("ButtonPanel/SelectPlayers/Image/3PlayersButton");
+
+        if (!button2PlayersTransform || !button3PlayersTransform)
+        {
+            Debug.LogError("[MainMenuController.Start] Error. 2PlayersButton or 3PlayersButton not found");
+            return;
+        }
+
+        button2Players = button2PlayersTransform.gameObject;
+        button3Players = button3PlayersTransform.gameObject;
+
+        // Initialize player selection in HUD
+        if (button2Players.GetComponent<Image>() && button3Players.GetComponent<Image>())
+        {
+            if (GameManager.numberOfPlayers == 2)
+            {
+                Color color = button2Players.GetComponent<Image>().color;
+                button2Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1.0f);
+                color = button3Players.GetComponent<Image>().color;
+                button3Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0.0f);
+            }
+            else if (GameManager.numberOfPlayers == 3)
+            {
+                Color color = button2Players.GetComponent<Image>().color;
+                button2Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0.0f);
+                color = button3Players.GetComponent<Image>().color;
+                button3Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1.0f);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -40,35 +70,45 @@ public class MainMenuController : MonoBehaviour {
 
     public void StartGameButton()
     {
-        playerSelections.SetActive(true);
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
+        SceneManager.LoadScene("Level1");
     }
 
     public void Select2Players()
     {
-        playerSelections.SetActive(false);
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         GameManager.numberOfPlayers = 2;
-        SceneManager.LoadScene("Game");
+        if (button2Players.GetComponent<Image>() && button3Players.GetComponent<Image>())
+        {
+            Color color = button2Players.GetComponent<Image>().color;
+            button2Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1.0f);
+            color = button3Players.GetComponent<Image>().color;
+            button3Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0.0f);
+        }
     }
 
     public void Select3Players()
     {
-        playerSelections.SetActive(false);
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         GameManager.numberOfPlayers = 3;
-        SceneManager.LoadScene("Game");
-    }
-
-    public void SelectPlayersClose()
-    {
-        playerSelections.SetActive(false);
+        if (button2Players.GetComponent<Image>() && button3Players.GetComponent<Image>())
+        {
+            Color color = button2Players.GetComponent<Image>().color;
+            button2Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 0.0f);
+            color = button3Players.GetComponent<Image>().color;
+            button3Players.GetComponent<Image>().color = new Color(color.r, color.g, color.b, 1.0f);
+        }
     }
 
     public void Credits()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene("Credits");
     }
 
     public void ExitGame()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX && !UNITY_EDITOR
             Application.Quit();
         #endif

@@ -6,16 +6,17 @@ public class OpenDoorAction : IAction {
 
     public override void preAction(CharController currentPlayer)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void startAction(CharController currentPlayer)
     {
-        throw new System.NotImplementedException();
+        currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, currentPlayer.characterType);
+        UtilSound.instance.PlaySound("door", 1.0f, false, true);
     }
 
     public override void postAction(CharController currentPlayer)
     {
-        throw new System.NotImplementedException();
+
     }
 }

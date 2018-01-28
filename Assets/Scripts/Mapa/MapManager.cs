@@ -86,6 +86,19 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            doAction(new Vector2Int(3, 1), DIRECTION.RIGHT, Casilla.PERSONAJE_ENUM.RED);
+        }
+
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            doAction(new Vector2Int(7, 1), DIRECTION.TOP, Casilla.PERSONAJE_ENUM.RED);
+        }
+    }
+    
     void buildStructure()
     {
         //inicializamos la structura
@@ -171,7 +184,7 @@ public class MapManager : MonoBehaviour
                     Casilla casillaColision = hitTop.collider.gameObject.GetComponent<Casilla>();
                     if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
                     {
-                        casillaColision.gameObject.name = (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
+                        casillaColision.gameObject.name = (first.Key + (int)rayComponents.Key.x).ToString() + "," + (first.Value + (int)rayComponents.Key.y).ToString();
                         //lo añadimos porque en algun momento se usara
                         _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = casillaColision;
                     }
@@ -268,6 +281,32 @@ public class MapManager : MonoBehaviour
 
     public bool canMove(Vector2Int from, DIRECTION direction, out Vector3 destinyCoords)
     {
+        bool canMove = false;
+        destinyCoords = Vector3.zero;
+        switch (direction)
+        {
+            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop == Casilla.PERSONAJE_ENUM.ANY; break;
+            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown == Casilla.PERSONAJE_ENUM.ANY; ; break;
+            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft == Casilla.PERSONAJE_ENUM.ANY; break;
+            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight == Casilla.PERSONAJE_ENUM.ANY; break;
+        }
+
+        if(canMove)
+        {
+            Vector3Int toAdd = Vector3Int.zero;
+            switch (direction)
+            {
+                case DIRECTION.TOP: toAdd = CASILLA_TOP; break;
+                case DIRECTION.BOTTOM: toAdd = CASILLA_BOTTOM; break;
+                case DIRECTION.LEFT: toAdd = CASILLA_LEFT; break;
+                case DIRECTION.RIGHT: toAdd = CASILLA_RIGHT; break;
+            }
+
+            Vector2Int finalCoord = from + new Vector2Int(toAdd.x, toAdd.y);
+            destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
+        }
+        return canMove;
+        /*
         Debug.Log(from);
         Vector2 destiny = new Vector2(from.x, from.y);
         destinyCoords = Vector3.zero;
@@ -294,6 +333,7 @@ public class MapManager : MonoBehaviour
         Vector2Int finalCoord = from + new Vector2Int(toAdd.x, toAdd.y);
         destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
         return true;
+        */
     }
 
     public bool doAction(Vector2Int from, DIRECTION direction, Casilla.PERSONAJE_ENUM color)
@@ -326,6 +366,8 @@ public class MapManager : MonoBehaviour
         }
 
         //quitar y actualizar las casilas
+        _structure[from.x, from.y].GetComponent<MapAction>().doAction();//hacemos la magia
+
 
         Vector3Int toAdd = Vector3Int.zero;
         switch (direction)
@@ -337,39 +379,46 @@ public class MapManager : MonoBehaviour
         }
         destiny = from + new Vector2Int(toAdd.x, toAdd.y);
 
+        
         // si es una casilla de solo un personaje, se actualizan todos los vecinos
         if (_structure[destiny.x, destiny.y]._personaje == posibility)
         {
             //el que esta arriba
             Vector2Int localPostion = destiny + new Vector2Int(CASILLA_TOP.x, CASILLA_TOP.y);
-            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
-                _structure[localPostion.x, localPostion.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
+                _structure[localPostion.x, localPostion.y].GetComponent<MapAction>().enabled = false;
+                if (_structure[localPostion.x, localPostion.y]._goDown == posibility)
+                    _structure[localPostion.x, localPostion.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
             }
 
             //abajo
             localPostion = destiny + new Vector2Int(CASILLA_BOTTOM.x, CASILLA_BOTTOM.y);
-            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
-                _structure[localPostion.x, localPostion.y]._goTop = Casilla.PERSONAJE_ENUM.ANY;
+                if (_structure[localPostion.x, localPostion.y]._goTop == posibility)
+                    _structure[localPostion.x, localPostion.y]._goTop = Casilla.PERSONAJE_ENUM.ANY;
             }
 
             //derecha
             localPostion = destiny + new Vector2Int(CASILLA_RIGHT.x, CASILLA_RIGHT.y);
-            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
-                _structure[localPostion.x, localPostion.y]._goLeft = Casilla.PERSONAJE_ENUM.ANY;
+                if (_structure[localPostion.x, localPostion.y]._goLeft == posibility)
+                    _structure[localPostion.x, localPostion.y]._goLeft = Casilla.PERSONAJE_ENUM.ANY;
             }
 
             //izquierda
             localPostion = destiny + new Vector2Int(CASILLA_LEFT.x, CASILLA_LEFT.y);
-            if (localPostion.x >= 0 && localPostion.x >= 0 && localPostion.y < ANCHO && localPostion.y < ALTO)
+            if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
-                _structure[localPostion.x, localPostion.y]._goRight = Casilla.PERSONAJE_ENUM.ANY;
+                if (_structure[localPostion.x, localPostion.y]._goRight == posibility)
+                    _structure[localPostion.x, localPostion.y]._goRight = Casilla.PERSONAJE_ENUM.ANY;
             }
         }
         else
         {
+            
             //son puertas, solo actualizamos destino y actual
             switch (direction)
             {

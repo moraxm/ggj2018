@@ -10,14 +10,16 @@ public class MoveActionLeft : MoveAction
     }
     public override void preAction(CharController currentPlayer)
     {
-        base.preAction(currentPlayer);
-        --m_target.x;
-        usePizarrita(m_target);
+            m_target = currentPlayer.tablePosition;
+            --m_target.x;
+            base.preAction(currentPlayer);
+            usePizarrita(m_target);
+            currentPlayer.transform.forward = new Vector3(-1, 0, 0);
     }
 
     public override void move(CharController currentPlayer)
     {
         base.move(currentPlayer);
-        currentPlayer.animator.rootPosition = new Vector3(-1, 0, 0);
+        
     }
 }

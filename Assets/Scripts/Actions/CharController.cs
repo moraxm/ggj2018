@@ -6,6 +6,8 @@ using UnityEngine;
 // para poder moverlo y tal y se le enchufa una acción para que la ejecute
 public class CharController : MonoBehaviour
 {
+    public Casilla.PERSONAJE_ENUM characterType;
+    public Vector2Int tablePosition;
     public Animator animator
     {
         get;
@@ -18,10 +20,18 @@ public class CharController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    MapManager.DIRECTION orientation
+    public MapManager.DIRECTION orientation
     {
         get;
         set;
+    }
+    public enum COLORS
+    {
+        GREEN,
+        RED,
+        BLUE,
+        YELLOW,
+        NONE,
     }
 
     [HideInInspector]
@@ -35,19 +45,11 @@ public class CharController : MonoBehaviour
         }
     }
     IAction m_action;
-    public enum COLORS
-    {
-        GREEN,
-        RED,
-        BLUE,
-        YELLOW,
-        NONE,
-    }
     public void setAction(IAction action)
     {
         if (m_action != null)
         {
-            int a = Random.Range(0, 1);
+            int a = Random.Range(0, 2);
             if (a > 0)
                 m_action = action;
         }
@@ -59,7 +61,10 @@ public class CharController : MonoBehaviour
 
     public void doAction()
     {
-        m_action.startAction(this);
+        if (m_action != null)
+        {
+            m_action.startAction(this);
+        }
     }
 
     public void preAction(IAction action)
@@ -69,6 +74,16 @@ public class CharController : MonoBehaviour
 
     public void postAction()
     {
-        m_action.postAction(this);
+        if (m_action != null && !m_action.running)
+        {
+            m_action.postAction(this);
+            m_action = null;
+        }
+    }
+
+    void Update()
+    {
+        if (m_action != null && m_action.running)
+            m_action.updateAction();
     }
 }
