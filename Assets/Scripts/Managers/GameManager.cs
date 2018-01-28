@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour {
         // Create actions
         actions.Push(new OpenDoorAction());
         actions.Peek().spriteUI = DoorUI;
-        actions.Push(new OpenDoorAction());
+        actions.Push(new StairAction());
         actions.Peek().spriteUI = LadderUI;
         actions.Push(new OpenDoorAction());
         actions.Peek().spriteUI = UseUI;

@@ -14,12 +14,13 @@ public class MoveActionDown : MoveAction
             ++m_target.y;
             base.preAction(currentPlayer);
             usePizarrita(m_target);
+            currentPlayer.transform.forward = new Vector3(0, 0, -1);
     }
 
     public override void move(CharController currentPlayer)
     {
         base.move(currentPlayer);
-        currentPlayer.animator.rootPosition = new Vector3(0, 0, -1);
+        
     }
     
 }

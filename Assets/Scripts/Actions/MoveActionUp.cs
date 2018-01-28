@@ -17,7 +17,7 @@ public class MoveActionUp : MoveAction
         Debug.Log("preAction UP target:" + m_target);
         base.preAction(currentPlayer);
         usePizarrita(m_target);
-
+        currentPlayer.transform.forward = new Vector3(0, 0, 1);
     }
 
 
@@ -25,7 +25,7 @@ public class MoveActionUp : MoveAction
     {
         Debug.Log("move UP");
         base.move(currentPlayer);
-        currentPlayer.transform.forward = new Vector3(0, 0, 1);
+        
     }
     
 }

@@ -25,6 +25,7 @@ public abstract class MoveAction : IAction
 
     public override void preAction(CharController currentPlayer)
     {
+        currentPlayer.orientation = dir;
         //if (!currentPlayer.m_mapManager.canMove(currentPlayer.tablePosition, dir, out m_targetPosition))
         //{
         //    usePizarrita(m_target);// Se hace doble pizarrita para que parezca como que hay dos personas intentando
