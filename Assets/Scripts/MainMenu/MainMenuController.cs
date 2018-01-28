@@ -83,7 +83,21 @@ public class MainMenuController : MonoBehaviour {
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            ExitGame();
+            if (!history.activeInHierarchy && !controls.activeInHierarchy)
+            {
+                ExitGame();
+            }
+            else
+            {
+                if (history.activeInHierarchy)
+                {
+                    history.SetActive(false);
+                }
+                if (controls.activeInHierarchy)
+                {
+                    controls.SetActive(false);
+                }
+            }
         }
     }
 
