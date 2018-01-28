@@ -12,8 +12,6 @@ public class MainMenuController : MonoBehaviour {
     GameObject button2Players = null;
     GameObject button3Players = null;
 
-    public static bool movieSeen = false;
-
     void Awake()
     {
         #if !UNITY_STANDALONE_WIN && !UNITY_STANDALONE_OSX || UNITY_EDITOR

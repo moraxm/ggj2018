@@ -5,9 +5,11 @@ using UnityEngine.Video;
 
 public class menuAnimation : MonoBehaviour {
 
+    public static bool movieSeen = false;
+
     void Start()
     {
-        if (!MainMenuController.movieSeen && this.gameObject.GetComponent<VideoPlayer>())
+        if (!menuAnimation.movieSeen && this.gameObject.GetComponent<VideoPlayer>())
         {
             this.gameObject.GetComponent<VideoPlayer>().Play();
         }
@@ -16,7 +18,7 @@ public class menuAnimation : MonoBehaviour {
 	public void end()
     {
         gameObject.SetActive(false);
-        MainMenuController.movieSeen = true;
+        menuAnimation.movieSeen = true;
     }
 
 }
