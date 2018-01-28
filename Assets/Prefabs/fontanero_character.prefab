@@ -1098,7 +1098,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4b9dd9ea2c700f24cbd820a2b5aa2502, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterType: 1
+  characterType: 2
   tablePosition: {x: 0, y: 0}
   m_mapManager: {fileID: 0}
 --- !u!137 &137075957931901618
@@ -1131,7 +1131,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 276e4e661290cc14d8a45da768b60924, type: 3}
+  - {fileID: 2100000, guid: b652aa1990d6bf54ab82bb7241e9db68, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

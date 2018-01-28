@@ -2966,6 +2966,58 @@ Transform:
   m_PrefabParentObject: {fileID: 4390746357733738, guid: 65a6b8a9338134341abfdb00abdcf253,
     type: 2}
   m_PrefabInternal: {fileID: 1562221463}
+--- !u!1001 &1569769650
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1619189212}
+    m_Modifications:
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4226847621188498, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1943355672777972, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0cc0c3df2d703b947b96282679b76404, type: 2}
+  m_IsPrefabParent: 0
+--- !u!114 &1569769651 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114972662159980726, guid: 0cc0c3df2d703b947b96282679b76404,
+    type: 2}
+  m_PrefabInternal: {fileID: 1569769650}
+  m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
 --- !u!1 &1573048793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3184,7 +3236,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4739635082229310, guid: ccf122115af914f44bb95ece07daa434, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4174291607157540, guid: ccf122115af914f44bb95ece07daa434, type: 2}
       propertyPath: m_RootOrder
@@ -3194,6 +3246,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114563425001148670, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: BLUEPlayer
+      value: 
+      objectReference: {fileID: 1834063029}
+    - target: {fileID: 114563425001148670, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: YELLOWPlayer
+      value: 
+      objectReference: {fileID: 1569769651}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccf122115af914f44bb95ece07daa434, type: 2}
   m_IsPrefabParent: 0
@@ -3650,21 +3712,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4750982000813444, guid: ed2617b9e2014ed4c85e0677a8b0825b, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 95439840856523608, guid: ed2617b9e2014ed4c85e0677a8b0825b,
-        type: 2}
-      propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed by
-        Humanoid clips.\n\tTransform 'hips'\n\tTransform 'leftMiddle1'\n\tTransform
-        '_head'\n\tTransform 'rightAnkle'\n\tTransform 'leftArm'\n\tTransform 'neck'\n\tTransform
-        'rightHand'\n\tTransform 'leftHand'\n\tTransform 'leftKnee'\n\tTransform 'hips'\n\tand
-        more ...\n\tFrom animation clip 'Take 001'"
+    - target: {fileID: 1977654964567966, guid: ed2617b9e2014ed4c85e0677a8b0825b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ed2617b9e2014ed4c85e0677a8b0825b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1834063029 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114864798533691998, guid: ed2617b9e2014ed4c85e0677a8b0825b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1834063028}
+  m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
 --- !u!1001 &1839828609
 Prefab:
   m_ObjectHideFlags: 0
