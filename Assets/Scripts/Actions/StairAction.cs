@@ -17,10 +17,10 @@ public class StairAction : IAction
     public override void startAction(CharController currentPlayer)
     {
         base.startAction(currentPlayer);
-        Debug.Log("Trigger Stairs");
-        if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA))
+        if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA_TOP))
         {
             currentPlayer.animator.SetTrigger("UpStairs");
+            UtilSound.instance.PlaySound("ladder", 1.0f, false, true);
             Vector2Int pos = currentPlayer.tablePosition;
             switch (currentPlayer.orientation)
             {

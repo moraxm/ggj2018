@@ -90,7 +90,7 @@ public class MapManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            doAction(new Vector2Int(3, 1), DIRECTION.RIGHT, Casilla.PERSONAJE_ENUM.RED);
+            doAction(new Vector2Int(7,2), DIRECTION.TOP, Casilla.PERSONAJE_ENUM.ESCALERA_TOP);
         }
 
         if (Input.GetKeyDown(KeyCode.B))
@@ -237,7 +237,7 @@ public class MapManager : MonoBehaviour
                         {
                             if (hitTop.transform.GetComponent<Escalera>() != null)
                             {
-                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA;
+                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA_TOP;
                             }
                         }
                     }
@@ -262,7 +262,7 @@ public class MapManager : MonoBehaviour
                         {
                             if (hitTop.transform.GetComponent<Escalera>() != null)
                             {
-                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA;
+                                valueToSet = Casilla.PERSONAJE_ENUM.ESCALERA_BOTTOM;
                             }
                         }
                     }
@@ -363,6 +363,11 @@ public class MapManager : MonoBehaviour
         if (posibility != color)
         {
             return false;
+        }
+
+        if(color == Casilla.PERSONAJE_ENUM.ESCALERA_TOP || color == Casilla.PERSONAJE_ENUM.ESCALERA_BOTTOM)
+        {
+            return true;//no modificamos nada
         }
 
         //quitar y actualizar las casilas
