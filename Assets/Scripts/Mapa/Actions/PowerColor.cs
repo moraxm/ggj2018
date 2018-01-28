@@ -10,7 +10,7 @@ public class PowerColor : MapAction
 
     public override void doAction(Casilla.PERSONAJE_ENUM color)
     {
-        GameManager.Instantiate.actionCorrect();
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().actionCorrect();
         go1.transform.GetChild(0).transform.gameObject.SetActive(false);
         go1.transform.GetChild(1).transform.gameObject.SetActive(true);
         switch (color)
