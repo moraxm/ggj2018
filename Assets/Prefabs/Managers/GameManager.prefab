@@ -1696,7 +1696,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6c4ec0c46359b9743b2b506fb4633769, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0df7038e528b47740b3fbba1019a5bba, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1796,6 +1796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   tablePosition: {x: 0, y: 0}
   m_mapManager: {fileID: 0}
 --- !u!114 &114557837812391038
@@ -2082,6 +2083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   tablePosition: {x: 0, y: 0}
   m_mapManager: {fileID: 0}
 --- !u!114 &114822115793615904
@@ -2197,6 +2199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   tablePosition: {x: 0, y: 0}
   m_mapManager: {fileID: 0}
 --- !u!114 &114947892774745978
@@ -2210,6 +2213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterType: 0
   tablePosition: {x: 0, y: 0}
   m_mapManager: {fileID: 0}
 --- !u!124 &124271597517994476
