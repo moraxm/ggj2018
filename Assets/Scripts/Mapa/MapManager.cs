@@ -281,6 +281,32 @@ public class MapManager : MonoBehaviour
 
     public bool canMove(Vector2Int from, DIRECTION direction, out Vector3 destinyCoords)
     {
+        bool canMove = false;
+        destinyCoords = Vector3.zero;
+        switch (direction)
+        {
+            case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop == Casilla.PERSONAJE_ENUM.ANY; break;
+            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown != Casilla.PERSONAJE_ENUM.ANY; ; break;
+            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft != Casilla.PERSONAJE_ENUM.ANY; break;
+            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight != Casilla.PERSONAJE_ENUM.ANY; break;
+        }
+
+        if(canMove)
+        {
+            Vector3Int toAdd = Vector3Int.zero;
+            switch (direction)
+            {
+                case DIRECTION.TOP: toAdd = CASILLA_TOP; break;
+                case DIRECTION.BOTTOM: toAdd = CASILLA_BOTTOM; break;
+                case DIRECTION.LEFT: toAdd = CASILLA_LEFT; break;
+                case DIRECTION.RIGHT: toAdd = CASILLA_RIGHT; break;
+            }
+
+            Vector2Int finalCoord = from + new Vector2Int(toAdd.x, toAdd.y);
+            destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
+        }
+        return canMove;
+        /*
         Debug.Log(from);
         Vector2 destiny = new Vector2(from.x, from.y);
         destinyCoords = Vector3.zero;
@@ -307,6 +333,7 @@ public class MapManager : MonoBehaviour
         Vector2Int finalCoord = from + new Vector2Int(toAdd.x, toAdd.y);
         destinyCoords = _structure[finalCoord.x, finalCoord.y].gameObject.transform.position;
         return true;
+        */
     }
 
     public bool doAction(Vector2Int from, DIRECTION direction, Casilla.PERSONAJE_ENUM color)
