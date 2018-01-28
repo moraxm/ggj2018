@@ -16,6 +16,7 @@ public class PlayerInputManager : MonoBehaviour
     public uint m_inputplayerNumber;
     public IAction m_R2Action;
     public IAction m_L2Action;
+    public IAction m_C2Action;
     public MoveAction m_RIGHTAction;
     public MoveAction m_LEFTAction;
     public MoveAction m_UPAction;
@@ -51,6 +52,7 @@ public class PlayerInputManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        /*
         // Se comprueban los bumpers
         if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "VibrateR"))
         {
@@ -69,7 +71,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             GamePad.SetVibration((PlayerIndex)leftPlayer, 0.0f, 0.0f);
         }
-
+        */
         // Primero las jodidas teclas de colores para saber qué puto personaje se maneja
         m_currentActionStruct.currentPLayer = CharController.COLORS.NONE;
         if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "GREEN"))
@@ -91,6 +93,45 @@ public class PlayerInputManager : MonoBehaviour
         if (m_currentActionStruct.currentPLayer == CharController.COLORS.NONE)  return; // No player selected
 
         m_currentActionStruct.currentAction = null;
+
+        if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "ActionR"))
+        {
+            Debug.Log("Realizo accion R");
+            m_currentActionStruct.currentAction = m_R2Action;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "ActionL"))
+        {
+            Debug.Log("Realizo accion L");
+            m_currentActionStruct.currentAction = m_L2Action;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "ActionC"))
+        {
+            Debug.Log("Realizo accion C");
+            m_currentActionStruct.currentAction = m_C2Action;
+        }
+        // Y ahora las de movimiento, que estaría bonito
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Horizontal1"))
+        {
+            //Debug.Log("Me muevo a derecha");
+            m_currentActionStruct.currentAction = m_RIGHTAction;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Horizontal2"))
+        {
+            //Debug.Log("Me muevo a izquierda");
+            m_currentActionStruct.currentAction = m_LEFTAction;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Vertical1"))
+        {
+            //Debug.Log("Me muevo a arriba");
+            m_currentActionStruct.currentAction = m_UPAction;
+        }
+        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Vertical2"))
+        {
+            //Debug.Log("Me muevo a abajo");
+            m_currentActionStruct.currentAction = m_DOWNAction;
+        }
+
+        /*
         // Ahora como hay un personaje selecionado se comprueba la tecla de acción que el jugador quiere hacer
         if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "ActionR") > 0.25f)
         {
@@ -101,6 +142,11 @@ public class PlayerInputManager : MonoBehaviour
         {
             Debug.Log("Realizo accion L");
             m_currentActionStruct.currentAction = m_L2Action;
+        }
+        else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "ActionC") > 0.25f)
+        {
+            Debug.Log("Realizo accion C");
+            m_currentActionStruct.currentAction = m_C2Action;
         }
         // Y ahora las de movimiento, que estaría bonito
         else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "Horizontal") > 0.25f)
@@ -123,6 +169,7 @@ public class PlayerInputManager : MonoBehaviour
             //Debug.Log("Me muevo a abajo");
             m_currentActionStruct.currentAction = m_DOWNAction;
         }
+        */
 
-	}
+    }
 }
