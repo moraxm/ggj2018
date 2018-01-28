@@ -27,9 +27,7 @@ public class GameManager : MonoBehaviour {
 
     private float currentTime = 0.0f;
     private bool missionFailed = false;
-    private Coroutine failCoroutine = null;
     private bool missionSuccess = false;
-    private Coroutine successCoroutine = null;
 
     public static uint numberOfPlayers = 2; // Static variable with current numberOfPlayers (set by MainMenu selection)
 
@@ -77,9 +75,7 @@ public class GameManager : MonoBehaviour {
         timer.GetComponent<RectTransform>().localScale = new Vector3(currentTime / missionTime, scale.y, scale.z);
 
         missionFailed = false;
-        failCoroutine = null;
         missionSuccess = false;
-        successCoroutine = null;
 
         ConfigureActions();
 	}
@@ -286,7 +282,6 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Mission failed!");
             missionFailed = true;
             missionFailInterface.SetActive(true);
-            failCoroutine = StartCoroutine("DelayedRestartMission");
         }
     }
 
@@ -297,37 +292,24 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Mission completed!");
             missionSuccess = true;
             missionSuccessInterface.SetActive(true);
-            successCoroutine = StartCoroutine("DelayedGoToNextLevel");
         }
-    }
-
-    private IEnumerator DelayedRestartMission()
-    {
-        yield return new WaitForSeconds(timeToRestartMission);
-        Restart();
     }
 
     public void Restart()
     {
-        if (failCoroutine != null)
-        {
-            StopCoroutine(failCoroutine);
-        }
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private IEnumerator DelayedGoToNextLevel()
+    public void ReturnToMainMenu()
     {
-        yield return new WaitForSeconds(timeToGoToNextLevel);
-        NextLevel();
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void NextLevel()
     {
-        if (successCoroutine != null)
-        {
-            StopCoroutine(successCoroutine);
-        }
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

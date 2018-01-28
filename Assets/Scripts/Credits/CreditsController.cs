@@ -41,6 +41,7 @@ public class CreditsController : MonoBehaviour {
 
     public void ReturnToMainMenu()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         if (closeCoroutine != null)
         {
             StopCoroutine(closeCoroutine);

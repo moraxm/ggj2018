@@ -36,6 +36,8 @@ public class Timeup : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             gameManager.IncreaseTime(TimeToAdd);
+            UtilSound.instance.PlaySound("timeup", 1.0f, false, true);
+            UtilSound.instance.PlaySound("pickup", 1.0f, false, true);
         }
     }
 }

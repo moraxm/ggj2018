@@ -48,6 +48,7 @@ public abstract class MoveAction : IAction
             // animación de orientación
             Debug.Log("NO puedo");
             currentPlayer.animator.SetTrigger("NoPuedo");
+            UtilSound.instance.PlaySound("nono", 1.0f, false, true);
         }
         else
         {
@@ -55,6 +56,7 @@ public abstract class MoveAction : IAction
             // Moverse a m_target
             Debug.Log("Move");
             move(currentPlayer);
+            UtilSound.instance.PlaySound("walk", 1.0f, false, true);
         }
     }
     public  override void postAction(CharController currentPlayer)
