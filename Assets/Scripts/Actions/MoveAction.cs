@@ -10,37 +10,21 @@ public abstract class MoveAction : IAction
     protected Vector3 m_targetPosition;
     protected Vector2Int m_target;
 
-    protected void usePizarrita(Vector2Int target)
-    {
-        Debug.Log("pizarrita con: " + target);
-        if (pizarrita.ContainsKey(target))
-        {
-            pizarrita[target] = pizarrita[target] + 1;
-        }
-        else
-        {
-            pizarrita[target] = 1;
-        }
-    }
 
     public override void preAction(CharController currentPlayer)
     {
-        currentPlayer.orientation = dir;
-        //if (!currentPlayer.m_mapManager.canMove(currentPlayer.tablePosition, dir, out m_targetPosition))
-        //{
-        //    usePizarrita(m_target);// Se hace doble pizarrita para que parezca como que hay dos personas intentando
-        //    // ir al mismo sitio y no se pueda.
-        //}
+        
     }
 
     protected bool canMove(CharController currentPlayer)
     {
         return currentPlayer.m_mapManager.canMove(currentPlayer.tablePosition, dir, out m_targetPosition);
-       
     }
 
     public override void startAction(CharController currentPlayer)
     {
+        currentPlayer.orientation = dir;
+        rotate(currentPlayer);
         base.startAction(currentPlayer);
         if (!canMove(currentPlayer))
         {
@@ -61,13 +45,47 @@ public abstract class MoveAction : IAction
     }
     public  override void postAction(CharController currentPlayer)
     {
-        pizarrita.Clear();
+    }
+
+    public void rotate(CharController currentPlayer)
+    {
+        switch (currentPlayer.orientation)
+        {
+            case MapManager.DIRECTION.RIGHT:
+                currentPlayer.transform.forward = new Vector3(1, 0, 0);
+                break;
+            case MapManager.DIRECTION.LEFT:
+                currentPlayer.transform.forward = new Vector3(-1, 0, 0);
+                break;
+            case MapManager.DIRECTION.BOTTOM:
+                currentPlayer.transform.forward = new Vector3(0, 0, -1);
+                break;
+            case MapManager.DIRECTION.TOP:
+                currentPlayer.transform.forward = new Vector3(0, 0, 1);
+                break;
+        }
     }
 
     virtual public void move(CharController currentPlayer)
     {
         currentPlayer.animator.SetTrigger("Forward");
-        currentPlayer.tablePosition = m_target;
+        Vector2Int pos = currentPlayer.tablePosition;
+        switch (currentPlayer.orientation)
+        {
+            case MapManager.DIRECTION.RIGHT:
+                ++pos.x;
+                break;
+            case MapManager.DIRECTION.LEFT:
+                --pos.x;
+                break;
+            case MapManager.DIRECTION.BOTTOM:
+                ++pos.y;
+                break;
+            case MapManager.DIRECTION.TOP:
+                --pos.y;
+                break;
+        }
+        currentPlayer.tablePosition = pos;
     }
 
  }

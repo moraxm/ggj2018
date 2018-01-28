@@ -1,4 +1,4 @@
-﻿//#define HACK
+﻿#define HACK
 
 using System.Collections;
 using System.Collections.Generic;

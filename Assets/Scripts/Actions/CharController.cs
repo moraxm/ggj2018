@@ -47,13 +47,13 @@ public class CharController : MonoBehaviour
     IAction m_action;
     public void setAction(IAction action)
     {
-        if (m_action != null)
-        {
-            int a = Random.Range(0, 2);
-            if (a > 0)
-                m_action = action;
-        }
-        else
+        //if (m_action != null)
+        //{
+        //    int a = Random.Range(0, 2);
+        //    if (a > 0)
+        //        m_action = action;
+        //}
+        //else
         {
             m_action = action;
         }

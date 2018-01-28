@@ -90,7 +90,7 @@ public class MapManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            doAction(new Vector2Int(7,1), DIRECTION.TOP, Casilla.PERSONAJE_ENUM.RED);
+            //doAction(new Vector2Int(7,1), DIRECTION.TOP, Casilla.PERSONAJE_ENUM.RED);
         }
 
         if (Input.GetKeyDown(KeyCode.B))
