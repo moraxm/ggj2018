@@ -2236,6 +2236,7 @@ MonoBehaviour:
   missionSuccessInterface: {fileID: 1020193462546146}
   timer: {fileID: 114709324451644154}
   missionTime: 120
+  warningPercentage: 0.25
   timeToRestartMission: 3
   timeToGoToNextLevel: 3
   TotalElementsToDesactivate: 1
@@ -2864,9 +2865,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   REDPlayer: {fileID: 114532100718854430}
-  BLUEPlayer: {fileID: 0}
+  BLUEPlayer: {fileID: 114803876182303024}
   GREENPlayer: {fileID: 114899934051704626}
-  YELLOWPlayer: {fileID: 0}
+  YELLOWPlayer: {fileID: 114947892774745978}
   players:
   - {fileID: 114623891965006196}
   - {fileID: 114242102835904572}

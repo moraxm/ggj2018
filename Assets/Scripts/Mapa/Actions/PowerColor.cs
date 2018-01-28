@@ -15,7 +15,10 @@ public class PowerColor : MapAction
         go1.transform.GetChild(1).transform.gameObject.SetActive(true);
         switch (color)
         {
-            case Casilla.PERSONAJE_ENUM.RED: UtilSound.instance.PlaySound("fire", useFamilySounds: true); break;
+            case Casilla.PERSONAJE_ENUM.RED: UtilSound.instance.PlaySound("extintor", useFamilySounds: true); break;
+            case Casilla.PERSONAJE_ENUM.YELLOW: UtilSound.instance.PlaySound("cables", useFamilySounds: true); break;
+            case Casilla.PERSONAJE_ENUM.BLUE: UtilSound.instance.PlaySound("reparatuberia", useFamilySounds: true); break;
+            case Casilla.PERSONAJE_ENUM.GREEN: UtilSound.instance.PlaySound("closegas", useFamilySounds: true); break;
         }
 
     }

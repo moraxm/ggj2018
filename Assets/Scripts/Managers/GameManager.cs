@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public Image timer = null;
 
     public float missionTime = 60.0f;
+    public float warningPercentage = 0.25f;
     public float timeToRestartMission = 3.0f;
     public float timeToGoToNextLevel = 3.0f;
 
@@ -237,7 +238,12 @@ public class GameManager : MonoBehaviour {
     {
         if (!missionFailed && !missionSuccess)
         {
+            bool wasOnWarning = currentTime < missionTime * warningPercentage;
             currentTime = Mathf.Max(currentTime - Time.deltaTime, 0.0f);
+            if (!wasOnWarning && currentTime < missionTime * warningPercentage)
+            {
+                UtilSound.instance.PlaySound("alarma", useFamilySounds: true);
+            }
             Vector3 scale = timer.GetComponent<RectTransform>().localScale;
             timer.GetComponent<RectTransform>().localScale = new Vector3(currentTime / missionTime, scale.y, scale.z);
             if (currentTime == 0.0f)
@@ -258,10 +264,10 @@ public class GameManager : MonoBehaviour {
 
     public void IncreaseTime(float fAmount)
     {
-        Debug.Log("Time increased by " + fAmount);
         if (!missionFailed && !missionSuccess)
         {
-            Mathf.Clamp(currentTime + fAmount, 0.0f, missionTime);
+            Debug.Log("Time increased by " + fAmount);
+            currentTime = Mathf.Clamp(currentTime + fAmount, 0.0f, missionTime);
         }
     }
 
