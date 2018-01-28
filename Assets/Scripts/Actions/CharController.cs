@@ -47,6 +47,7 @@ public class CharController : MonoBehaviour
     IAction m_action;
     public void setAction(IAction action)
     {
+        if (m_action != null && m_action.running) return;
         //if (m_action != null)
         //{
         //    int a = Random.Range(0, 2);
