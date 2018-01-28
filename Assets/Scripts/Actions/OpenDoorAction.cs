@@ -12,7 +12,6 @@ public class OpenDoorAction : IAction {
     public override void startAction(CharController currentPlayer)
     {
         currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, currentPlayer.characterType);
-        UtilSound.instance.PlaySound("door", 1.0f, false, true);
     }
 
     public override void postAction(CharController currentPlayer)

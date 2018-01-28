@@ -88,6 +88,7 @@ public class MapManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if(Input.GetKeyDown(KeyCode.A))
         {
             //doAction(new Vector2Int(7,1), DIRECTION.TOP, Casilla.PERSONAJE_ENUM.RED);
@@ -97,6 +98,7 @@ public class MapManager : MonoBehaviour
         {
             doAction(new Vector2Int(7, 1), DIRECTION.TOP, Casilla.PERSONAJE_ENUM.RED);
         }
+        */
     }
     
     void buildStructure()

@@ -14,5 +14,6 @@ public class OpenDoor : MapAction
         go1.SetActive(false);
         go2.SetActive(false);
         _door.SetTrigger("play");
+        UtilSound.instance.PlaySound("door", 1.0f, false, true);
     }
 }

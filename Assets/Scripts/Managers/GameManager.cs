@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour {
         Stack<MoveAction> moveActions = new Stack<MoveAction>();
 
         // Create actions
+        
         actions.Push(new OpenDoorAction());
         actions.Peek().spriteUI = DoorUI;
         actions.Push(new StairAction());
@@ -117,7 +118,18 @@ public class GameManager : MonoBehaviour {
         moveActions.Peek().spriteUI = MoveRightUI;
         moveActions.Push(new MoveActionLeft());
         moveActions.Peek().spriteUI = MoveLeftUI;
+        
+        /*
+        globalInputManager.players[0].m_LEFTAction = new MoveActionLeft();
+        globalInputManager.players[0].m_UPAction = new MoveActionUp();
+        globalInputManager.players[0].m_RIGHTAction = new MoveActionRight();
+        globalInputManager.players[0].m_DOWNAction = new MoveActionDown();
 
+        globalInputManager.players[0].m_L2Action = new UseAction();
+        globalInputManager.players[0].m_R2Action = new OpenDoorAction();
+        globalInputManager.players[0].m_C2Action = new StairAction();
+        */
+        
         // Assign non move actions
         while (actions.Count > 0)
         {
@@ -216,6 +228,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+        
         mainInterfaceController.ConfigurePlayersInterface(globalInputManager);
     }
 	
