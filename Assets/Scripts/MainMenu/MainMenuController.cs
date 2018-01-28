@@ -23,6 +23,7 @@ public class MainMenuController : MonoBehaviour {
 
     void Start()
     {
+        UtilSound.instance.StopAllSounds();
         UtilSound.instance.PlaySound("MainMenu", loop: true);
         Transform playerSelectionsTrans = transform.Find("ButtonPanel/SelectPlayers");
         if (!playerSelectionsTrans)

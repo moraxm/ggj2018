@@ -235,6 +235,8 @@ public class GameManager : MonoBehaviour {
     {
         if (!missionFailed && !missionSuccess)
         {
+            UtilSound.instance.StopAllSounds();
+            UtilSound.instance.PlaySound("GameOver");
             Debug.Log("Mission failed!");
             missionFailed = true;
             missionFailInterface.SetActive(true);
