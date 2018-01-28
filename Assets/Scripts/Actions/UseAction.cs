@@ -1,26 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StairAction : IAction
+public class UseAction : IAction
 {
-
-    public StairAction()
+    public override void postAction(CharController currentPlayer)
     {
-        actionDuration = 3;
     }
+
     public override void preAction(CharController currentPlayer)
     {
-
     }
 
     public override void startAction(CharController currentPlayer)
     {
         base.startAction(currentPlayer);
-        if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA_TOP))
+        if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, currentPlayer.characterType))
         {
-            currentPlayer.animator.SetTrigger("UpStairs");
-            UtilSound.instance.PlaySound("ladder", 1.0f, false, true);
+            currentPlayer.animator.SetTrigger("DoMagic");
             Vector2Int pos = currentPlayer.tablePosition;
             switch (currentPlayer.orientation)
             {
@@ -39,11 +37,6 @@ public class StairAction : IAction
             }
             currentPlayer.tablePosition = pos;
         }
-
-    }
-
-    public override void postAction(CharController currentPlayer)
-    {
 
     }
 }
