@@ -1,6 +1,4 @@
-﻿//#define HACK
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
@@ -90,9 +88,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             m_currentActionStruct.currentPLayer = CharController.COLORS.RED;
         }
-#if !HACK
         if (m_currentActionStruct.currentPLayer == CharController.COLORS.NONE)  return; // No player selected
-#endif
 
         m_currentActionStruct.currentAction = null;
         // Ahora como hay un personaje selecionado se comprueba la tecla de acción que el jugador quiere hacer
@@ -127,37 +123,5 @@ public class PlayerInputManager : MonoBehaviour
             //Debug.Log("Me muevo a abajo");
             m_currentActionStruct.currentAction = m_DOWNAction;
         }
-
-        #if HACK
-        m_currentActionStruct.currentPLayer = CharController.COLORS.RED;
-        if (Input.GetKey(KeyCode.A))
-        {
-            m_currentActionStruct.currentAction = new MoveActionLeft();
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            m_currentActionStruct.currentAction = new MoveActionRight();
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            m_currentActionStruct.currentAction = new MoveActionUp();
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            m_currentActionStruct.currentAction = new MoveActionDown();
-        }
-        else if (Input.GetKey(KeyCode.I))
-        {
-            m_currentActionStruct.currentAction = new StairAction();
-        }
-        else if (Input.GetKey(KeyCode.O))
-        {
-            m_currentActionStruct.currentAction = new UseAction();
-        }
-        else if (Input.GetKey(KeyCode.P))
-        {
-            m_currentActionStruct.currentAction = new OpenDoorAction();
-        }
-        #endif
 	}
 }
