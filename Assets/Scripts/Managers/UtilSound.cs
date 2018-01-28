@@ -49,12 +49,45 @@ public class UtilSound : MonoBehaviour
         }
     }
 
-    public void PlaySound(string name, float volume = 1.0f, bool loop = false)
+    public void PlaySound(string name, float volume = 1.0f, bool loop = false, bool useFamilySounds = false)
     {
         string path = DEFAULT_SOUNDS_PATH + name;
         //AudioClip clip = Resources.Load<AudioClip>(path); // Load sound from disk
-        AudioClip clip = clipsDictionary[name];
-        if (clip == null) { Debug.LogError("[UtilSound] Error. Clip " + path + " was no found"); return; } // Exit of the sound was not found
+        AudioClip clip = null;
+        if (clipsDictionary.ContainsKey(name))
+        {
+            clip = clipsDictionary[name];
+        }
+        else
+        {
+            if (!useFamilySounds)
+            {
+                Debug.LogError("[UtilSound] Error. Clip " + path + " was not found and family sounds are not permitted");
+                return;
+            }
+            else
+            {
+                List<AudioClip> list = new List<AudioClip>();
+                foreach (KeyValuePair<string, AudioClip> pair in clipsDictionary)
+                {
+                    if (pair.Key.Contains(name))
+                    {
+                        list.Add(pair.Value);
+                    }
+                }
+                if (list.Count == 0)
+                {
+                    Debug.LogError("[UtilSound] Error. No clips found from " + name + " family"); return;
+                }
+                int rand = Random.Range(0, list.Count);
+                clip = list[rand];
+            }
+        }
+        if (!clip)
+        {
+            Debug.LogError("[UtilSound] Error. Invalid clip " + name);
+            return;
+        }
         GameObject newObject = new GameObject(); // New scene object
         AudioSource newSource = newObject.AddComponent<AudioSource>(); // Create a new AudioSouce and set it to the new object
         newObject.transform.parent = gameObject.transform; // UtilSound is the parent of the new object
