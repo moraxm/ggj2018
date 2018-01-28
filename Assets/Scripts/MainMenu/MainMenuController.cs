@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour {
 
     public Button exitButton = null;
     public GameObject history = null;
+    public GameObject controls = null;
 
     GameObject button2Players = null;
     GameObject button3Players = null;
@@ -45,6 +46,12 @@ public class MainMenuController : MonoBehaviour {
         if (!history)
         {
             Debug.LogError("[MainMenuController.Start] Error. History not assigned");
+            return;
+        }
+
+        if (!controls)
+        {
+            Debug.LogError("[MainMenuController.Start] Error. Controls not assigned");
             return;
         }
 
@@ -127,6 +134,16 @@ public class MainMenuController : MonoBehaviour {
     {
         UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene("Credits");
+    }
+
+    public void GoToControls()
+    {
+        controls.SetActive(true);
+    }
+
+    public void BackFromControls()
+    {
+        controls.SetActive(false);
     }
 
     public void ExitGame()
