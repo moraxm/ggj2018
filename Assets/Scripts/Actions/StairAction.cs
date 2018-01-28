@@ -18,7 +18,7 @@ public class StairAction : IAction
     {
         base.startAction(currentPlayer);
         Debug.Log("Trigger Stairs");
-        if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA))
+        if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA_TOP))
         {
             currentPlayer.animator.SetTrigger("UpStairs");
             Vector2Int pos = currentPlayer.tablePosition;
