@@ -358,6 +358,10 @@ public class MapManager : MonoBehaviour
 
         if (posibility == Casilla.PERSONAJE_ENUM.ANY)
         {
+            if (color == Casilla.PERSONAJE_ENUM.ESCALERA_TOP || color == Casilla.PERSONAJE_ENUM.ESCALERA_BOTTOM)
+            {
+                return false;//no modificamos nada
+            }
             return true;
         }
 
