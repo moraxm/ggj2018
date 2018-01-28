@@ -992,7 +992,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4390746357733738, guid: 65a6b8a9338134341abfdb00abdcf253, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1684869713276118, guid: 65a6b8a9338134341abfdb00abdcf253, type: 2}
       propertyPath: m_Name
@@ -1803,6 +1803,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4911530587505610, guid: cffd946fc9e83324bb9c247f21f1124e,
     type: 2}
   m_PrefabInternal: {fileID: 981796707}
+--- !u!114 &1007024553 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114357899098803760, guid: 65a6b8a9338134341abfdb00abdcf253,
+    type: 2}
+  m_PrefabInternal: {fileID: 1246560528}
+  m_Script: {fileID: 11500000, guid: f2d5d871f32344c4c8efd18ac25fb386, type: 3}
 --- !u!1001 &1039657664
 Prefab:
   m_ObjectHideFlags: 0
@@ -2353,7 +2359,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1684869713276118, guid: 65a6b8a9338134341abfdb00abdcf253, type: 2}
       propertyPath: m_Name
-      value: 1
+      value: 0,0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65a6b8a9338134341abfdb00abdcf253, type: 2}
@@ -2363,12 +2369,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4390746357733738, guid: 65a6b8a9338134341abfdb00abdcf253,
     type: 2}
   m_PrefabInternal: {fileID: 1246560528}
---- !u!114 &1246560530 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114153869091779670, guid: 65a6b8a9338134341abfdb00abdcf253,
-    type: 2}
-  m_PrefabInternal: {fileID: 1246560528}
-  m_Script: {fileID: 11500000, guid: f2d5d871f32344c4c8efd18ac25fb386, type: 3}
 --- !u!1001 &1258022303
 Prefab:
   m_ObjectHideFlags: 0
@@ -3878,7 +3878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8fde31d7e5d734692d6996b22c2f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft: {fileID: 1246560530}
+  topLeft: {fileID: 1007024553}
   ALTO: 4
   ANCHO: 8
   alturaEscalera: {x: 0, y: 2, z: 0}

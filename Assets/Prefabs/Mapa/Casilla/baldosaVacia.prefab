@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4087581052971038}
   - component: {fileID: 33755872145272010}
   - component: {fileID: 23877475986983940}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4543885240985824}
   - component: {fileID: 33884339563342328}
   - component: {fileID: 23237065052183228}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4633074642265744}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: baldosa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4215913947800672}
   - component: {fileID: 33290670931927112}
   - component: {fileID: 23516198766214638}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4428919232841842}
   - component: {fileID: 33618267555116800}
   - component: {fileID: 23633774243277186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4390746357733738}
   - component: {fileID: 114357899098803760}
-  m_Layer: 0
+  - component: {fileID: 65097347755208766}
+  m_Layer: 9
   m_Name: baldosaVacia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +121,7 @@ GameObject:
   - component: {fileID: 4226337252543434}
   - component: {fileID: 33111500486316772}
   - component: {fileID: 23011267862083188}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +138,7 @@ GameObject:
   - component: {fileID: 4825213512614592}
   - component: {fileID: 33440824817864830}
   - component: {fileID: 23670454932711698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,6 +503,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188435962510248}
   m_Mesh: {fileID: 4300004, guid: bac1669bbe4a2ba4f81b73f8f890eec8, type: 3}
+--- !u!65 &65097347755208766
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1684869713276118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114357899098803760
 MonoBehaviour:
   m_ObjectHideFlags: 1

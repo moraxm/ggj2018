@@ -184,7 +184,7 @@ public class MapManager : MonoBehaviour
                     Casilla casillaColision = hitTop.collider.gameObject.GetComponent<Casilla>();
                     if (_structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] == null)
                     {
-                        casillaColision.gameObject.name = (first.Key + (int)rayComponents.Value.x).ToString() + "," + (first.Value + (int)rayComponents.Value.y).ToString();
+                        casillaColision.gameObject.name = (first.Key + (int)rayComponents.Key.x).ToString() + "," + (first.Value + (int)rayComponents.Key.y).ToString();
                         //lo añadimos porque en algun momento se usara
                         _structure[first.Key + rayComponents.Key.x, first.Value + rayComponents.Key.y] = casillaColision;
                     }
