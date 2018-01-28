@@ -16,7 +16,6 @@ public class PlayerInputManager : MonoBehaviour
     public uint m_inputplayerNumber;
     public IAction m_R2Action;
     public IAction m_L2Action;
-    public IAction m_C2Action;
     public MoveAction m_RIGHTAction;
     public MoveAction m_LEFTAction;
     public MoveAction m_UPAction;
@@ -103,11 +102,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             Debug.Log("Realizo accion L");
             m_currentActionStruct.currentAction = m_L2Action;
-        }
-        else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "ActionC"))
-        {
-            Debug.Log("Realizo accion C");
-            m_currentActionStruct.currentAction = m_C2Action;
         }
         // Y ahora las de movimiento, que estaría bonito
         else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "Horizontal1"))
