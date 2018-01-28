@@ -6,6 +6,7 @@ using UnityEngine;
 // para poder moverlo y tal y se le enchufa una acción para que la ejecute
 public class CharController : MonoBehaviour
 {
+    public Casilla.PERSONAJE_ENUM characterType;
     public Vector2Int tablePosition;
     public Animator animator
     {
@@ -19,10 +20,18 @@ public class CharController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    MapManager.DIRECTION orientation
+    public MapManager.DIRECTION orientation
     {
         get;
         set;
+    }
+    public enum COLORS
+    {
+        GREEN,
+        RED,
+        BLUE,
+        YELLOW,
+        NONE,
     }
 
     [HideInInspector]
@@ -36,14 +45,6 @@ public class CharController : MonoBehaviour
         }
     }
     IAction m_action;
-    public enum COLORS
-    {
-        GREEN,
-        RED,
-        BLUE,
-        YELLOW,
-        NONE,
-    }
     public void setAction(IAction action)
     {
         if (m_action != null)

@@ -70,11 +70,13 @@ public class MainMenuController : MonoBehaviour {
 
     public void StartGameButton()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene("Level1");
     }
 
     public void Select2Players()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         GameManager.numberOfPlayers = 2;
         if (button2Players.GetComponent<Image>() && button3Players.GetComponent<Image>())
         {
@@ -87,6 +89,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void Select3Players()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         GameManager.numberOfPlayers = 3;
         if (button2Players.GetComponent<Image>() && button3Players.GetComponent<Image>())
         {
@@ -99,11 +102,13 @@ public class MainMenuController : MonoBehaviour {
 
     public void Credits()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene("Credits");
     }
 
     public void ExitGame()
     {
+        UtilSound.instance.PlaySound("click", 1.0f, false, true);
         #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX && !UNITY_EDITOR
             Application.Quit();
         #endif

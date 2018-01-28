@@ -92,12 +92,12 @@ public class PlayerInputManager : MonoBehaviour
 
         m_currentActionStruct.currentAction = null;
         // Ahora como hay un personaje selecionado se comprueba la tecla de acción que el jugador quiere hacer
-        if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "ActionR"))
+        if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "ActionR") > 0.25f)
         {
             Debug.Log("Realizo accion R");
             m_currentActionStruct.currentAction = m_R2Action;
         }
-        else if (Input.GetButtonDown("Player" + m_inputplayerNumber.ToString() + "ActionL"))
+        else if (Input.GetAxis("Player" + m_inputplayerNumber.ToString() + "ActionL") > 0.25f)
         {
             Debug.Log("Realizo accion L");
             m_currentActionStruct.currentAction = m_L2Action;

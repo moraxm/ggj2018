@@ -25,6 +25,7 @@ public abstract class MoveAction : IAction
 
     public override void preAction(CharController currentPlayer)
     {
+        currentPlayer.orientation = dir;
         //if (!currentPlayer.m_mapManager.canMove(currentPlayer.tablePosition, dir, out m_targetPosition))
         //{
         //    usePizarrita(m_target);// Se hace doble pizarrita para que parezca como que hay dos personas intentando
@@ -47,6 +48,7 @@ public abstract class MoveAction : IAction
             // animación de orientación
             Debug.Log("NO puedo");
             currentPlayer.animator.SetTrigger("NoPuedo");
+            UtilSound.instance.PlaySound("nono", 1.0f, false, true);
         }
         else
         {
@@ -54,6 +56,7 @@ public abstract class MoveAction : IAction
             // Moverse a m_target
             Debug.Log("Move");
             move(currentPlayer);
+            UtilSound.instance.PlaySound("walk", 1.0f, false, true);
         }
     }
     public  override void postAction(CharController currentPlayer)

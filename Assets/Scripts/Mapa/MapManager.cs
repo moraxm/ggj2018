@@ -286,9 +286,9 @@ public class MapManager : MonoBehaviour
         switch (direction)
         {
             case DIRECTION.TOP: canMove = _structure[from.x, from.y]._goTop == Casilla.PERSONAJE_ENUM.ANY; break;
-            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown != Casilla.PERSONAJE_ENUM.ANY; ; break;
-            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft != Casilla.PERSONAJE_ENUM.ANY; break;
-            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight != Casilla.PERSONAJE_ENUM.ANY; break;
+            case DIRECTION.BOTTOM: canMove = _structure[from.x, from.y]._goDown == Casilla.PERSONAJE_ENUM.ANY; ; break;
+            case DIRECTION.LEFT: canMove = _structure[from.x, from.y]._goLeft == Casilla.PERSONAJE_ENUM.ANY; break;
+            case DIRECTION.RIGHT: canMove = _structure[from.x, from.y]._goRight == Casilla.PERSONAJE_ENUM.ANY; break;
         }
 
         if(canMove)
