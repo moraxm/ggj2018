@@ -264,10 +264,10 @@ public class GameManager : MonoBehaviour {
 
     public void IncreaseTime(float fAmount)
     {
-        Debug.Log("Time increased by " + fAmount);
         if (!missionFailed && !missionSuccess)
         {
-            Mathf.Clamp(currentTime + fAmount, 0.0f, missionTime);
+            Debug.Log("Time increased by " + fAmount);
+            currentTime = Mathf.Clamp(currentTime + fAmount, 0.0f, missionTime);
         }
     }
 
