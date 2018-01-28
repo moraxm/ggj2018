@@ -66,7 +66,10 @@ public class MainMenuController : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ExitGame();
+        }
     }
 
     public void StartGameButton()
@@ -110,8 +113,8 @@ public class MainMenuController : MonoBehaviour {
 
     public void ExitGame()
     {
-        UtilSound.instance.PlaySound("click", 1.0f, false, true);
-        #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX && !UNITY_EDITOR
+        #if (UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX) && !UNITY_EDITOR
+            UtilSound.instance.PlaySound("click", 1.0f, false, true);
             Application.Quit();
         #endif
     }

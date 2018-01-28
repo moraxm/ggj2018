@@ -31,6 +31,11 @@ public class CreditsController : MonoBehaviour {
                 closeCoroutine = StartCoroutine("DelayedReturnToMainMenu");
             }
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ReturnToMainMenu();
+        }
 	}
 
     IEnumerator DelayedReturnToMainMenu()
