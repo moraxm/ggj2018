@@ -368,7 +368,7 @@ public class GameManager : MonoBehaviour {
         --TotalElementsToDesactivate;
         if(TotalElementsToDesactivate <= 0)
         {
-            Debug.Log("hemos ganado");
+            SucceedMission();
         }
     }
 }
