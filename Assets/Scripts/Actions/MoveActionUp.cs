@@ -11,16 +11,21 @@ public class MoveActionUp : MoveAction
 
     public override void preAction(CharController currentPlayer)
     {
+      
+        m_target = currentPlayer.tablePosition;
+        --m_target.y;
+        Debug.Log("preAction UP target:" + m_target);
         base.preAction(currentPlayer);
-        ++m_target.y;
         usePizarrita(m_target);
+
     }
 
 
     public override void move(CharController currentPlayer)
     {
+        Debug.Log("move UP");
         base.move(currentPlayer);
-        currentPlayer.animator.rootPosition = new Vector3(0, 0, 1);
+        currentPlayer.transform.forward = new Vector3(0, 0, 1);
     }
     
 }

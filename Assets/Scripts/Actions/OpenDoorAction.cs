@@ -11,6 +11,7 @@ public class OpenDoorAction : IAction {
 
     public override void startAction(CharController currentPlayer)
     {
+        base.startAction(currentPlayer);
         throw new System.NotImplementedException();
     }
 

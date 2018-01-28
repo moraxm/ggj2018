@@ -34,6 +34,7 @@ public class GlobalInputManager : MonoBehaviour {
     private void WaitingInputUpdate()
     {
         // Primero el pre
+        MoveAction.pizarrita.Clear();
         bool someAction = false;
         for (int i = 0; i < GameManager.numberOfPlayers; ++i)
         {
@@ -46,77 +47,73 @@ public class GlobalInputManager : MonoBehaviour {
             switch (a.currentPLayer)
             {
                 case CharController.COLORS.BLUE:
-                    if (!BLUEPlayer.running)
+                    if (!BLUEPlayer.running && BLUEPlayer.gameObject.activeInHierarchy)
                         BLUEPlayer.preAction(a.currentAction);
                     break;
                 case CharController.COLORS.GREEN:
-                    if (!GREENPlayer.running)
+                    if (!GREENPlayer.running && GREENPlayer.gameObject.activeInHierarchy)
                         GREENPlayer.preAction(a.currentAction);
                     break;
                 case CharController.COLORS.YELLOW:
-                    if (!YELLOWPlayer.running)
+                    if (!YELLOWPlayer.running && YELLOWPlayer.gameObject.activeInHierarchy)
                         YELLOWPlayer.preAction(a.currentAction);
                     break;
                 case CharController.COLORS.RED:
-                    if (!REDPlayer.running)
+                    if (!REDPlayer.running && REDPlayer.gameObject.activeInHierarchy)
                         REDPlayer.preAction(a.currentAction);
                     break;
             }    
         }
-
-        if (!someAction)
+        if (someAction)
         {
-            m_currentState = InputState.WAITING_INPUT;
-            return;
-        }
-        
-        // Un bucle más, ascazo
-        for (int i = 0; i < GameManager.numberOfPlayers; ++i)
-        {
-            var a = players[i].getCurrentActionData();
-            switch (a.currentPLayer) 
-            { 
-                case CharController.COLORS.BLUE:
-                    if (!BLUEPlayer.running)
-                        BLUEPlayer.setAction(a.currentAction);
-                    break;
-                case CharController.COLORS.GREEN:
-                    if (!GREENPlayer.running)
-                        GREENPlayer.setAction(a.currentAction);
-                    break;
-                case CharController.COLORS.YELLOW:
-                    if (!YELLOWPlayer.running)
-                        YELLOWPlayer.setAction(a.currentAction);
-                    break;
-                case CharController.COLORS.RED:
-                    if (!REDPlayer.running)
-                        REDPlayer.setAction(a.currentAction);
-                    break;
-            }     
-        }
-
-        // El tercer bucle, poto
-        for (int i = 0; i < GameManager.numberOfPlayers; ++i)
-        {
-            var a = players[i].getCurrentActionData();
-            switch (a.currentPLayer)
+            // Un bucle más, ascazo
+            for (int i = 0; i < GameManager.numberOfPlayers; ++i)
             {
-                case CharController.COLORS.BLUE:
-                    if (!BLUEPlayer.running) 
-                        BLUEPlayer.doAction();
-                    break;
-                case CharController.COLORS.GREEN:
-                    if (!GREENPlayer.running) 
-                        GREENPlayer.doAction();
-                    break;
-                case CharController.COLORS.YELLOW:
-                    if (!YELLOWPlayer.running) 
-                        YELLOWPlayer.doAction();
-                    break;
-                case CharController.COLORS.RED:
-                    if (!REDPlayer.running)
-                        REDPlayer.doAction();
-                    break;
+                var a = players[i].getCurrentActionData();
+                switch (a.currentPLayer)
+                {
+                    case CharController.COLORS.BLUE:
+                        if (!BLUEPlayer.running)
+                            BLUEPlayer.setAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.GREEN:
+                        if (!GREENPlayer.running)
+                            GREENPlayer.setAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.YELLOW:
+                        if (!YELLOWPlayer.running)
+                            YELLOWPlayer.setAction(a.currentAction);
+                        break;
+                    case CharController.COLORS.RED:
+                        if (!REDPlayer.running)
+                            REDPlayer.setAction(a.currentAction);
+                        break;
+                }
+            }
+
+            // El tercer bucle, poto
+            for (int i = 0; i < GameManager.numberOfPlayers; ++i)
+            {
+                var a = players[i].getCurrentActionData();
+                switch (a.currentPLayer)
+                {
+                    case CharController.COLORS.BLUE:
+                        if (!BLUEPlayer.running)
+                            BLUEPlayer.doAction();
+                        break;
+                    case CharController.COLORS.GREEN:
+                        if (!GREENPlayer.running)
+                            GREENPlayer.doAction();
+                        break;
+                    case CharController.COLORS.YELLOW:
+                        if (!YELLOWPlayer.running)
+                            YELLOWPlayer.doAction();
+                        break;
+                    case CharController.COLORS.RED:
+                        if (!REDPlayer.running)
+                            REDPlayer.doAction();
+                        break;
+                }
             }
         }
 
@@ -127,23 +124,22 @@ public class GlobalInputManager : MonoBehaviour {
             switch (a.currentPLayer)
             {
                 case CharController.COLORS.BLUE:
-                    if (!BLUEPlayer.running) 
+
                         BLUEPlayer.postAction();
                     break;
                 case CharController.COLORS.GREEN:
-                    if (!GREENPlayer.running) 
+
                         GREENPlayer.postAction();
                     break;
                 case CharController.COLORS.YELLOW:
-                    if (!YELLOWPlayer.running) 
+
                         YELLOWPlayer.postAction();
                     break;
                 case CharController.COLORS.RED:
-                    if (!REDPlayer.running)
+    
                         REDPlayer.postAction();
                     break;
             }
         }
-        m_currentState = InputState.RUNNING_ACTION;
     }
 }
