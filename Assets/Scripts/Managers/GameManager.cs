@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 
     public static uint numberOfPlayers = 2; // Static variable with current numberOfPlayers (set by MainMenu selection)
 
+    public int TotalElementsToDesactivate;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -359,5 +361,14 @@ public class GameManager : MonoBehaviour {
         }
 
         return charactersTransform.Find("GreenCharacter");
+    }
+
+    public void actionCorrect()
+    {
+        --TotalElementsToDesactivate;
+        if(TotalElementsToDesactivate <= 0)
+        {
+            Debug.Log("hemos ganado");
+        }
     }
 }
