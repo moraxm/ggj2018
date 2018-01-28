@@ -9,7 +9,7 @@ public class OpenDoor : MapAction
     public GameObject go1;
     public GameObject go2;
 
-    public override void doAction()
+    public override void doAction(Casilla.PERSONAJE_ENUM color)
     {
         go1.SetActive(false);
         go2.SetActive(false);
