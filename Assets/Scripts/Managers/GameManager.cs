@@ -315,14 +315,7 @@ public class GameManager : MonoBehaviour {
 
     public Transform GetRedCharacter()
     {
-        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
-        if (!playersCharactersTransform)
-        {
-            Debug.LogError("[GameManager.GetRedCharacter] Error. PlayersCharacters not found");
-            return null;
-        }
-
-        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        Transform charactersTransform = transform.Find("PlayersCharacters/Characters");
         if (!charactersTransform)
         {
             Debug.LogError("[GameManager.GetRedCharacter] Error. Characters not found");
@@ -334,14 +327,7 @@ public class GameManager : MonoBehaviour {
 
     public Transform GetYellowCharacter()
     {
-        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
-        if (!playersCharactersTransform)
-        {
-            Debug.LogError("[GameManager.GetYellowPlayer] Error. PlayersCharacters not found");
-            return null;
-        }
-
-        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        Transform charactersTransform = transform.Find("PlayersCharacters/Characters");
         if (!charactersTransform)
         {
             Debug.LogError("[GameManager.GetYellowPlayer] Error. Characters not found");
@@ -353,14 +339,7 @@ public class GameManager : MonoBehaviour {
 
     public Transform GetBlueCharacter()
     {
-        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
-        if (!playersCharactersTransform)
-        {
-            Debug.LogError("[GameManager.GetBluePlayer] Error. PlayersCharacters not found");
-            return null;
-        }
-
-        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        Transform charactersTransform = transform.Find("PlayersCharacters/Characters");
         if (!charactersTransform)
         {
             Debug.LogError("[GameManager.GetBluePlayer] Error. Characters not found");
@@ -372,14 +351,7 @@ public class GameManager : MonoBehaviour {
 
     public Transform GetGreenCharacter()
     {
-        Transform playersCharactersTransform = transform.Find("PlayersCharacters");
-        if (!playersCharactersTransform)
-        {
-            Debug.LogError("[GameManager.GetGreenPlayer] Error. PlayersCharacters not found");
-            return null;
-        }
-
-        Transform charactersTransform = playersCharactersTransform.Find("Characters");
+        Transform charactersTransform = transform.Find("PlayersCharacters/Characters");
         if (!charactersTransform)
         {
             Debug.LogError("[GameManager.GetGreenPlayer] Error. Characters not found");
