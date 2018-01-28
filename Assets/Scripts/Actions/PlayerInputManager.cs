@@ -74,22 +74,22 @@ public class PlayerInputManager : MonoBehaviour
         m_currentActionStruct.currentPLayer = CharController.COLORS.NONE;
         if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "GREEN"))
         {
-            Debug.Log("GREEN SELECTED");
+            //Debug.Log("GREEN SELECTED");
             m_currentActionStruct.currentPLayer = CharController.COLORS.GREEN;
         }
         else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "BLUE"))
         {
-            Debug.Log("BLUE SELECTED");
+            //Debug.Log("BLUE SELECTED");
             m_currentActionStruct.currentPLayer = CharController.COLORS.BLUE;
         }
         else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "YELLOW"))
         {
-            Debug.Log("YELLOW SELECTED");
+            //Debug.Log("YELLOW SELECTED");
             m_currentActionStruct.currentPLayer = CharController.COLORS.YELLOW;
         }
         else if (Input.GetButton("Player" + m_inputplayerNumber.ToString() + "RED"))
         {
-            Debug.Log("RED SELECTED");
+            //Debug.Log("RED SELECTED");
             m_currentActionStruct.currentPLayer = CharController.COLORS.RED;
         }
         if (m_currentActionStruct.currentPLayer == CharController.COLORS.NONE)  return; // No player selected

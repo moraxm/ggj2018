@@ -7,7 +7,7 @@ public class StairAction : IAction
 
     public StairAction()
     {
-        actionDuration = 3;
+        actionDuration = 4;
     }
     public override void preAction(CharController currentPlayer)
     {
