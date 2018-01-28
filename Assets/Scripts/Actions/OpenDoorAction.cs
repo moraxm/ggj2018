@@ -7,6 +7,7 @@ public class OpenDoorAction : IAction {
     public override void preAction(CharController currentPlayer)
     {
         throw new System.NotImplementedException();
+        UtilSound.instance.PlaySound("door", 1.0f, false, true);
     }
 
     public override void startAction(CharController currentPlayer)
