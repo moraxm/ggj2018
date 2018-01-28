@@ -81,6 +81,18 @@ public class GameManager : MonoBehaviour {
         missionFailed = false;
         missionSuccess = false;
 
+        Transform playersTransform = transform.Find("PlayersCharacters/Players");
+        if (!playersTransform)
+        {
+            Debug.LogError("[GameManager.Start] Error. Players object not found");
+            return;
+        }
+
+        for (int i = 0; i < numberOfPlayers; ++i)
+        {
+            playersTransform.GetChild(i).gameObject.SetActive(true);
+        }
+
         ConfigureActions();
 	}
 
