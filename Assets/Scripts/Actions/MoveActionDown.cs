@@ -10,9 +10,10 @@ public class MoveActionDown : MoveAction
     }
     public override void preAction(CharController currentPlayer)
     {
-        base.preAction(currentPlayer);
-        --m_target.y;
-        usePizarrita(m_target);
+            m_target = currentPlayer.tablePosition;
+            ++m_target.y;
+            base.preAction(currentPlayer);
+            usePizarrita(m_target);
     }
 
     public override void move(CharController currentPlayer)
