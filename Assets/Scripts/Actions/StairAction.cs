@@ -17,9 +17,21 @@ public class StairAction : IAction
     public override void startAction(CharController currentPlayer)
     {
         base.startAction(currentPlayer);
+        string trigger = "";
+        bool ok = false;
         if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA_TOP))
         {
-            currentPlayer.animator.SetTrigger("UpStairs");
+            trigger = "UpStairs";
+            ok = true;
+        }
+        else if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA_BOTTOM))
+        {
+            trigger = "DownStairs";
+            ok = true;
+        }
+        if (ok)
+        {
+            currentPlayer.animator.SetTrigger(trigger);
             UtilSound.instance.PlaySound("ladder", 1.0f, false, true);
             Vector2Int pos = currentPlayer.tablePosition;
             switch (currentPlayer.orientation)
@@ -38,6 +50,11 @@ public class StairAction : IAction
                     break;
             }
             currentPlayer.tablePosition = pos;
+        }
+        else
+        {
+            currentPlayer.animator.SetTrigger("NoPuedo");
+            UtilSound.instance.PlaySound("nono", 1.0f, false, true);
         }
 
     }
