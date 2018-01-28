@@ -84,6 +84,6 @@ public class CharController : MonoBehaviour
     void Update()
     {
         if (m_action != null && m_action.running)
-            m_action.updateAction();
+            m_action.updateAction(this);
     }
 }
