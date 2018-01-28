@@ -8004,11 +8004,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4410378860940416, guid: ccf122115af914f44bb95ece07daa434, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 4410378860940416, guid: ccf122115af914f44bb95ece07daa434, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.16
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 114054347812207818, guid: ccf122115af914f44bb95ece07daa434,
         type: 2}
