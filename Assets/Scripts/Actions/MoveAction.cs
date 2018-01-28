@@ -9,7 +9,7 @@ public abstract class MoveAction : IAction
     protected Vector3 m_currentPosition;
     protected Vector3 m_targetPosition;
     protected Vector2Int m_target;
-
+    Vector2Int aux;
 
     public override void preAction(CharController currentPlayer)
     {
@@ -45,6 +45,8 @@ public abstract class MoveAction : IAction
     }
     public  override void postAction(CharController currentPlayer)
     {
+        currentPlayer.tablePosition = aux;
+
     }
 
     public void rotate(CharController currentPlayer)
@@ -85,7 +87,7 @@ public abstract class MoveAction : IAction
                 --pos.y;
                 break;
         }
-        currentPlayer.tablePosition = pos;
+        aux = pos;
     }
 
  }

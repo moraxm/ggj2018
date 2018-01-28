@@ -6,18 +6,19 @@ public abstract class IAction
 {
     public Sprite spriteUI;
     private float m_acumTime;
-    public float actionDuration = 1.5f;
+    public float actionDuration = 1;
     public abstract void preAction(CharController currentPlayer);
     public virtual void startAction(CharController currentPlayer)
     {
         running = true;
     }
-    public void updateAction()
+    public void updateAction(CharController currentPlayer)
     {
         // Espera hasta que termina la jodida acción
         m_acumTime += Time.deltaTime;
         if (m_acumTime > actionDuration)
         {
+            postAction(currentPlayer);
             m_acumTime = 0;
             running = false;
         }
