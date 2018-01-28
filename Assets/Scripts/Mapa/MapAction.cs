@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class MapAction : MonoBehaviour {
 
-    public abstract void doAction() ;
+    public abstract void doAction(Casilla.PERSONAJE_ENUM color) ;
 }
