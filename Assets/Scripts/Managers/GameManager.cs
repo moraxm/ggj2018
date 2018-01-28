@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
     public GlobalInputManager globalInputManager = null;
     public GameObject missionFailInterface = null;
     public GameObject missionSuccessInterface = null;
-    public Text timer = null;
+    public Image timer = null;
 
     public float missionTime = 60.0f;
     public float timeToRestartMission = 3.0f;
@@ -68,12 +68,13 @@ public class GameManager : MonoBehaviour {
 
         if (!timer)
         {
-            Debug.LogError("[GameManager.Start] Error. Timer text component not found");
+            Debug.LogError("[GameManager.Start] Error. Timer Image component not found");
             return;
         }
 
         currentTime = missionTime;
-        timer.text = "Time: " + currentTime.ToString("000");
+        Vector3 scale = timer.GetComponent<RectTransform>().localScale;
+        timer.GetComponent<RectTransform>().localScale = new Vector3(currentTime / missionTime, scale.y, scale.z);
 
         missionFailed = false;
         failCoroutine = null;
@@ -201,6 +202,10 @@ public class GameManager : MonoBehaviour {
             {
                 globalInputManager.players[rand].m_LEFTAction = moveAction;
             }
+            else
+            {
+                Debug.LogError("[GameManager.Start] Error. Por algun motivo el MoveAction no es de ningun tipo hijo");
+            }
             playersHaveOneMoveAction[rand] = true;
         }
 
@@ -256,7 +261,8 @@ public class GameManager : MonoBehaviour {
         if (!missionFailed && !missionSuccess)
         {
             currentTime = Mathf.Max(currentTime - Time.deltaTime, 0.0f);
-            timer.text = "Time: " + currentTime.ToString("000");
+            Vector3 scale = timer.GetComponent<RectTransform>().localScale;
+            timer.GetComponent<RectTransform>().localScale = new Vector3(currentTime / missionTime, scale.y, scale.z);
             if (currentTime == 0.0f)
             {
                 FailMission();
@@ -264,12 +270,12 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    void IncreaseTime(float fAmount)
+    public void IncreaseTime(float fAmount)
     {
+        Debug.Log("Time increased by " + fAmount);
         if (!missionFailed && !missionSuccess)
         {
             Mathf.Clamp(currentTime + fAmount, 0.0f, missionTime);
-            timer.text = "Time: " + currentTime.ToString("000");
         }
     }
 
