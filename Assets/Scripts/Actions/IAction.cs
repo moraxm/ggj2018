@@ -6,7 +6,7 @@ public abstract class IAction
 {
     public Sprite spriteUI;
     private float m_acumTime;
-    public float actionDuration = 1.0f;
+    public float actionDuration = 1.5f;
     public abstract void preAction(CharController currentPlayer);
     public virtual void startAction(CharController currentPlayer)
     {
