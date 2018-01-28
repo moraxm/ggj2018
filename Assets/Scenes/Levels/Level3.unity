@@ -6811,6 +6811,45 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4410378860940416, guid: ccf122115af914f44bb95ece07daa434, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 114054347812207818, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: TotalElementsToDesactivate
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532100718854430, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532100718854430, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114803876182303024, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114803876182303024, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.y
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccf122115af914f44bb95ece07daa434, type: 2}
   m_IsPrefabParent: 0
@@ -11013,9 +11052,9 @@ MonoBehaviour:
   alturaEscalera: {x: 0, y: 2, z: 0}
   startIndex: {x: 0, y: 11}
   startPos:
-  - {fileID: 1271645110}
-  - {fileID: 45283956}
-  - {fileID: 83993967}
+  - {fileID: 1562221464}
+  - {fileID: 1359827951}
+  - {fileID: 26107143}
 --- !u!1001 &2010089046
 Prefab:
   m_ObjectHideFlags: 0
