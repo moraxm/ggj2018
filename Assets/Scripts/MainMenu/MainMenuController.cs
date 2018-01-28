@@ -7,9 +7,12 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour {
 
     public Button exitButton = null;
+    public GameObject history = null;
 
     GameObject button2Players = null;
     GameObject button3Players = null;
+
+    public static bool movieSeen = false;
 
     void Awake()
     {
@@ -38,6 +41,12 @@ public class MainMenuController : MonoBehaviour {
         if (!button2PlayersTransform || !button3PlayersTransform)
         {
             Debug.LogError("[MainMenuController.Start] Error. 2PlayersButton or 3PlayersButton not found");
+            return;
+        }
+
+        if (!history)
+        {
+            Debug.LogError("[MainMenuController.Start] Error. History not assigned");
             return;
         }
 
@@ -77,6 +86,16 @@ public class MainMenuController : MonoBehaviour {
     {
         UtilSound.instance.StopSound("MainMenu");
         UtilSound.instance.PlaySound("click", 1.0f, false, true);
+        history.SetActive(true);
+    }
+
+    public void BackFromHistory()
+    {
+        history.SetActive(false);
+    }
+
+    public void ReallyStartGame()
+    {
         SceneManager.LoadScene("Level1");
     }
 
