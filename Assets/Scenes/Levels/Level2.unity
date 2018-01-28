@@ -208,6 +208,11 @@ Prefab:
       propertyPath: TimeToAdd
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 135637603953316960, guid: 389fec8b82ec7c4479191f97c1025d62,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 389fec8b82ec7c4479191f97c1025d62, type: 2}
   m_IsPrefabParent: 0
@@ -8841,6 +8846,18 @@ Prefab:
         type: 2}
       propertyPath: TotalElementsToDesactivate
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174291607157540, guid: ccf122115af914f44bb95ece07daa434, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174291607157540, guid: ccf122115af914f44bb95ece07daa434, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174291607157540, guid: ccf122115af914f44bb95ece07daa434, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccf122115af914f44bb95ece07daa434, type: 2}
