@@ -217,7 +217,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0113bd1ac80e9294999f7940007f2916, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &2017249215
+--- !u!1001 &1897444471
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -313,16 +313,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224922825466749096, guid: aa8a1e37eee82df4e85ecaf62330e882,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224740583394545452, guid: aa8a1e37eee82df4e85ecaf62330e882,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa8a1e37eee82df4e85ecaf62330e882, type: 2}
