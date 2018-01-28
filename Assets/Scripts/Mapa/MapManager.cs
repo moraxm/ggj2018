@@ -156,6 +156,8 @@ public class MapManager : MonoBehaviour
                 }
 
                 toAnalyze.Add(fut);
+
+                Debug.Log(fut.Key + "," + fut.Value);
             }
 
             if(_casilla == null)
@@ -166,7 +168,7 @@ public class MapManager : MonoBehaviour
             //lanzamos rayos para comprobar accesibilidad
             RaycastHit hitTop;
 
-            Debug.Log(first.Key + "," + first.Value);
+           
 
             Vector3 miPos = new Vector3(_casilla.gameObject.transform.position.x, _casilla.gameObject.transform.position.y, _casilla.gameObject.transform.position.z);
 
@@ -397,7 +399,11 @@ public class MapManager : MonoBehaviour
             Vector2Int localPostion = destiny + new Vector2Int(CASILLA_TOP.x, CASILLA_TOP.y);
             if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
-                _structure[localPostion.x, localPostion.y].GetComponent<MapAction>().enabled = false;
+                MapAction ma = _structure[localPostion.x, localPostion.y].GetComponent<MapAction>();
+                if(ma != null)
+                {
+                    ma.enabled = false;
+                }
                 if (_structure[localPostion.x, localPostion.y]._goDown == posibility)
                     _structure[localPostion.x, localPostion.y]._goDown = Casilla.PERSONAJE_ENUM.ANY;
             }
@@ -406,6 +412,12 @@ public class MapManager : MonoBehaviour
             localPostion = destiny + new Vector2Int(CASILLA_BOTTOM.x, CASILLA_BOTTOM.y);
             if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
+                MapAction ma = _structure[localPostion.x, localPostion.y].GetComponent<MapAction>();
+                if (ma != null)
+                {
+                    ma.enabled = false;
+                }
+
                 if (_structure[localPostion.x, localPostion.y]._goTop == posibility)
                     _structure[localPostion.x, localPostion.y]._goTop = Casilla.PERSONAJE_ENUM.ANY;
             }
@@ -414,6 +426,12 @@ public class MapManager : MonoBehaviour
             localPostion = destiny + new Vector2Int(CASILLA_RIGHT.x, CASILLA_RIGHT.y);
             if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
+
+                MapAction ma = _structure[localPostion.x, localPostion.y].GetComponent<MapAction>();
+                if (ma != null)
+                {
+                    ma.enabled = false;
+                }
                 if (_structure[localPostion.x, localPostion.y]._goLeft == posibility)
                     _structure[localPostion.x, localPostion.y]._goLeft = Casilla.PERSONAJE_ENUM.ANY;
             }
@@ -422,6 +440,12 @@ public class MapManager : MonoBehaviour
             localPostion = destiny + new Vector2Int(CASILLA_LEFT.x, CASILLA_LEFT.y);
             if (localPostion.x >= 0 && localPostion.y >= 0 && localPostion.x < ANCHO && localPostion.y < ALTO)
             {
+
+                MapAction ma = _structure[localPostion.x, localPostion.y].GetComponent<MapAction>();
+                if (ma != null)
+                {
+                    ma.enabled = false;
+                }
                 if (_structure[localPostion.x, localPostion.y]._goRight == posibility)
                     _structure[localPostion.x, localPostion.y]._goRight = Casilla.PERSONAJE_ENUM.ANY;
             }

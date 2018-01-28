@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4301228950118340}
   - component: {fileID: 33647244652685514}
   - component: {fileID: 23118547663676746}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4023116786058002}
   - component: {fileID: 33207220964683466}
   - component: {fileID: 23359899706195868}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4851280654441836}
   - component: {fileID: 33799951535926868}
   - component: {fileID: 23629298326228944}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4596660256816054}
   - component: {fileID: 33209629170789390}
   - component: {fileID: 23971886263288408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4448774655505446}
   - component: {fileID: 33463497503668400}
   - component: {fileID: 23003282828932814}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: madera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 4244028749181254}
   - component: {fileID: 33684130934360878}
   - component: {fileID: 23770714277919834}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: metal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4886024628509294}
   - component: {fileID: 114602260859093564}
-  m_Layer: 0
+  - component: {fileID: 65364449587131964}
+  m_Layer: 9
   m_Name: Baldosa Barril
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +140,7 @@ GameObject:
   - component: {fileID: 4650731673581774}
   - component: {fileID: 33959388625532808}
   - component: {fileID: 23910449255930140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +157,7 @@ GameObject:
   - component: {fileID: 4071826413960934}
   - component: {fileID: 33523919727705638}
   - component: {fileID: 23557802760994046}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tornillo_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +172,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4000171141641192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: barril
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +187,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4447042961385338}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: baldosa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,6 +676,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1711873975229278}
   m_Mesh: {fileID: 4300004, guid: bac1669bbe4a2ba4f81b73f8f890eec8, type: 3}
+--- !u!65 &65364449587131964
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1657332964820172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114602260859093564
 MonoBehaviour:
   m_ObjectHideFlags: 1
