@@ -3,21 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerColor : MapAction {
+public class PowerColor : MapAction
+{
 
-    public GameObject graphic;
-    public GameObject _animation;
+    public GameObject go1;
 
-     public override void doAction()
+    public override void doAction(Casilla.PERSONAJE_ENUM color)
     {
-        if(graphic != null)
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().actionCorrect();
+        go1.transform.GetChild(0).transform.gameObject.SetActive(false);
+        go1.transform.GetChild(1).transform.gameObject.SetActive(true);
+        switch (color)
         {
-            graphic.SetActive(false);
+            case Casilla.PERSONAJE_ENUM.RED: UtilSound.instance.PlaySound("fire", useFamilySounds: true); break;
         }
 
-        if (_animation != null)
-        {
-            _animation.SetActive(false);
-        }
     }
 }

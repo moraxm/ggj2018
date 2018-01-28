@@ -1,89 +1,42 @@
 fileFormatVersion: 2
-guid: 6325fd569540ea54d919319818adeeef
-timeCreated: 1517081359
+guid: bc850fe986ca01a4d96a6099c5da4a4b
+timeCreated: 1517105894
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: _head
-    100002: _leftFoot
-    100004: _rightFoot
-    100006: GEO
-    100008: GEO_fontanero
-    100010: hips
-    100012: leftAnkle
-    100014: leftArm
-    100016: leftForearm
-    100018: leftHand
-    100020: leftIndex1
-    100022: leftIndex2
-    100024: leftKnee
-    100026: leftLeg
-    100028: leftMiddle1
-    100030: leftMiddle2
-    100032: leftThumb1
-    100034: leftThumb2
-    100036: leftThumb3
-    100038: neck
-    100040: //RootNode
-    100042: rightAnkle
-    100044: rightArm
-    100046: rightForearm
-    100048: rightHand
-    100050: rightIndex1
-    100052: rightIndex2
-    100054: rightKnee
-    100056: rightLeg
-    100058: rightMiddle1
-    100060: rightMiddle2
-    100062: rightThumb1
-    100064: rightThumb2
-    100066: rightThumb3
-    100068: root
-    100070: skeleton
-    100072: spine
-    400000: _head
-    400002: _leftFoot
-    400004: _rightFoot
-    400006: GEO
-    400008: GEO_fontanero
-    400010: hips
-    400012: leftAnkle
-    400014: leftArm
-    400016: leftForearm
-    400018: leftHand
-    400020: leftIndex1
-    400022: leftIndex2
-    400024: leftKnee
-    400026: leftLeg
-    400028: leftMiddle1
-    400030: leftMiddle2
-    400032: leftThumb1
-    400034: leftThumb2
-    400036: leftThumb3
-    400038: neck
-    400040: //RootNode
-    400042: rightAnkle
-    400044: rightArm
-    400046: rightForearm
-    400048: rightHand
-    400050: rightIndex1
-    400052: rightIndex2
-    400054: rightKnee
-    400056: rightLeg
-    400058: rightMiddle1
-    400060: rightMiddle2
-    400062: rightThumb1
-    400064: rightThumb2
-    400066: rightThumb3
-    400068: root
-    400070: skeleton
-    400072: spine
-    2100000: fontanero
-    4300000: GEO_fontanero
+    100000: accion_mecanico
+    100002: //RootNode
+    100004: gas
+    100006: gas_verde
+    100008: tuberia
+    100010: tuberia_1
+    100012: "tuberia_conexi\xF3n_1"
+    100014: "tuberia_conexi\xF3n_2"
+    400000: accion_mecanico
+    400002: //RootNode
+    400004: gas
+    400006: gas_verde
+    400008: tuberia
+    400010: tuberia_1
+    400012: "tuberia_conexi\xF3n_1"
+    400014: "tuberia_conexi\xF3n_2"
+    2100000: verde_mecanico
+    2100002: gris_4
+    2100004: gris_6
+    2300000: tuberia_1
+    2300002: "tuberia_conexi\xF3n_1"
+    2300004: "tuberia_conexi\xF3n_2"
+    3300000: tuberia_1
+    3300002: "tuberia_conexi\xF3n_1"
+    3300004: "tuberia_conexi\xF3n_2"
+    4300000: gas_verde
+    4300002: tuberia_1
+    4300004: "tuberia_conexi\xF3n_1"
+    4300006: "tuberia_conexi\xF3n_2"
     7400000: Take 001
     9500000: //RootNode
-    13700000: GEO_fontanero
+    13700000: gas_verde
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,7 +48,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: <Root Transform>
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -115,7 +68,7 @@ ModelImporter:
       name: Take 001
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 180
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

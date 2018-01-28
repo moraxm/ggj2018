@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6325fd569540ea54d919319818adeeef
-timeCreated: 1517081359
+guid: 0cda0380385af5d409adfcb511de48db
+timeCreated: 1517105391
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -8,24 +8,24 @@ ModelImporter:
     100000: _head
     100002: _leftFoot
     100004: _rightFoot
-    100006: GEO
-    100008: GEO_fontanero
-    100010: hips
-    100012: leftAnkle
-    100014: leftArm
-    100016: leftForearm
-    100018: leftHand
-    100020: leftIndex1
-    100022: leftIndex2
-    100024: leftKnee
-    100026: leftLeg
-    100028: leftMiddle1
-    100030: leftMiddle2
-    100032: leftThumb1
-    100034: leftThumb2
-    100036: leftThumb3
-    100038: neck
-    100040: //RootNode
+    100006: //RootNode
+    100008: GEO
+    100010: GEO 1
+    100012: hips
+    100014: leftAnkle
+    100016: leftArm
+    100018: leftForearm
+    100020: leftHand
+    100022: leftIndex1
+    100024: leftIndex2
+    100026: leftKnee
+    100028: leftLeg
+    100030: leftMiddle1
+    100032: leftMiddle2
+    100034: leftThumb1
+    100036: leftThumb2
+    100038: leftThumb3
+    100040: neck
     100042: rightAnkle
     100044: rightArm
     100046: rightForearm
@@ -45,24 +45,24 @@ ModelImporter:
     400000: _head
     400002: _leftFoot
     400004: _rightFoot
-    400006: GEO
-    400008: GEO_fontanero
-    400010: hips
-    400012: leftAnkle
-    400014: leftArm
-    400016: leftForearm
-    400018: leftHand
-    400020: leftIndex1
-    400022: leftIndex2
-    400024: leftKnee
-    400026: leftLeg
-    400028: leftMiddle1
-    400030: leftMiddle2
-    400032: leftThumb1
-    400034: leftThumb2
-    400036: leftThumb3
-    400038: neck
-    400040: //RootNode
+    400006: //RootNode
+    400008: GEO
+    400010: GEO 1
+    400012: hips
+    400014: leftAnkle
+    400016: leftArm
+    400018: leftForearm
+    400020: leftHand
+    400022: leftIndex1
+    400024: leftIndex2
+    400026: leftKnee
+    400028: leftLeg
+    400030: leftMiddle1
+    400032: leftMiddle2
+    400034: leftThumb1
+    400036: leftThumb2
+    400038: leftThumb3
+    400040: neck
     400042: rightAnkle
     400044: rightArm
     400046: rightForearm
@@ -79,11 +79,10 @@ ModelImporter:
     400068: root
     400070: skeleton
     400072: spine
-    2100000: fontanero
-    4300000: GEO_fontanero
-    7400000: Take 001
+    2100000: electricista
+    4300000: GEO
     9500000: //RootNode
-    13700000: GEO_fontanero
+    13700000: GEO 1
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,7 +94,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: <Root Transform>
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -110,35 +109,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Take 001
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 180
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

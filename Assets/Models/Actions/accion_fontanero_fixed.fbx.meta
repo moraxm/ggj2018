@@ -1,89 +1,48 @@
 fileFormatVersion: 2
-guid: 6a8d1a4543ca29d4ea9395ec57231ce8
-timeCreated: 1517071462
+guid: e998eb141ec760d4fb2c52ac78678832
+timeCreated: 1517105895
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: _head
-    100002: _leftFoot
-    100004: _rightFoot
-    100006: GEO
-    100008: GEO_fontanero
-    100010: hips
-    100012: leftAnkle
-    100014: leftArm
-    100016: leftForearm
-    100018: leftHand
-    100020: leftIndex1
-    100022: leftIndex2
-    100024: leftKnee
-    100026: leftLeg
-    100028: leftMiddle1
-    100030: leftMiddle2
-    100032: leftThumb1
-    100034: leftThumb2
-    100036: leftThumb3
-    100038: neck
-    100040: rightAnkle
-    100042: rightArm
-    100044: rightForearm
-    100046: rightHand
-    100048: rightIndex1
-    100050: rightIndex2
-    100052: rightKnee
-    100054: rightLeg
-    100056: rightMiddle1
-    100058: rightMiddle2
-    100060: rightThumb1
-    100062: rightThumb2
-    100064: rightThumb3
-    100066: root
-    100068: skeleton
-    100070: spine
-    100072: //RootNode
-    400000: _head
-    400002: _leftFoot
-    400004: _rightFoot
-    400006: GEO
-    400008: GEO_fontanero
-    400010: hips
-    400012: leftAnkle
-    400014: leftArm
-    400016: leftForearm
-    400018: leftHand
-    400020: leftIndex1
-    400022: leftIndex2
-    400024: leftKnee
-    400026: leftLeg
-    400028: leftMiddle1
-    400030: leftMiddle2
-    400032: leftThumb1
-    400034: leftThumb2
-    400036: leftThumb3
-    400038: neck
-    400040: rightAnkle
-    400042: rightArm
-    400044: rightForearm
-    400046: rightHand
-    400048: rightIndex1
-    400050: rightIndex2
-    400052: rightKnee
-    400054: rightLeg
-    400056: rightMiddle1
-    400058: rightMiddle2
-    400060: rightThumb1
-    400062: rightThumb2
-    400064: rightThumb3
-    400066: root
-    400068: skeleton
-    400070: spine
-    400072: //RootNode
-    2100000: fontanero
-    4300000: GEO_fontanero
-    7400000: Take 001
+    100000: //RootNode
+    100002: pPlane2
+    100004: tuberia1
+    100006: tuberia_13
+    100008: "tuberia_conexi\xF3n_17"
+    100010: "tuberia_conexi\xF3n_18"
+    100012: "tuberia_conexi\xF3n_19"
+    100014: "tuberia_conexi\xF3n_20"
+    400000: //RootNode
+    400002: pPlane2
+    400004: tuberia1
+    400006: tuberia_13
+    400008: "tuberia_conexi\xF3n_17"
+    400010: "tuberia_conexi\xF3n_18"
+    400012: "tuberia_conexi\xF3n_19"
+    400014: "tuberia_conexi\xF3n_20"
+    2100000: gris_4
+    2100002: gris_6
+    2100004: gris_2
+    2300000: pPlane2
+    2300002: tuberia_13
+    2300004: "tuberia_conexi\xF3n_17"
+    2300006: "tuberia_conexi\xF3n_18"
+    2300008: "tuberia_conexi\xF3n_19"
+    2300010: "tuberia_conexi\xF3n_20"
+    3300000: pPlane2
+    3300002: tuberia_13
+    3300004: "tuberia_conexi\xF3n_17"
+    3300006: "tuberia_conexi\xF3n_18"
+    3300008: "tuberia_conexi\xF3n_19"
+    3300010: "tuberia_conexi\xF3n_20"
+    4300000: tuberia_13
+    4300002: "tuberia_conexi\xF3n_18"
+    4300004: "tuberia_conexi\xF3n_17"
+    4300006: "tuberia_conexi\xF3n_20"
+    4300008: "tuberia_conexi\xF3n_19"
+    4300010: pPlane2
     9500000: //RootNode
-    13700000: GEO_fontanero
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -95,7 +54,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: <Root Transform>
+    motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
