@@ -45,7 +45,7 @@ public abstract class MoveAction : IAction
     }
     public  override void postAction(CharController currentPlayer)
     {
-        currentPlayer.tablePosition = aux;
+        //currentPlayer.tablePosition = aux;
 
     }
 
@@ -88,6 +88,8 @@ public abstract class MoveAction : IAction
                 break;
         }
         aux = pos;
+        currentPlayer.tablePosition = aux;
+        Debug.Log("NUEVA POSICIÖN: " + aux);
     }
 
  }
