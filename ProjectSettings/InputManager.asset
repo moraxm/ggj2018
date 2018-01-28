@@ -613,7 +613,6 @@ InputManager:
     type: 2
     axis: 1
     joyNum: 2
-
   - serializedVersion: 3
     m_Name: Player3RED
     descriptiveName: 
@@ -779,7 +778,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: r
+    positiveButton: l
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
