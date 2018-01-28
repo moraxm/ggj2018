@@ -232,6 +232,15 @@ public class GameManager : MonoBehaviour {
                 FailMission();
             }
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ReturnToMainMenu();
+        }
+        else if (Input.GetButtonDown("Restart"))
+        {
+            Restart();
+        }
 	}
 
     public void IncreaseTime(float fAmount)
