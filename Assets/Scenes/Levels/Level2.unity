@@ -5362,6 +5362,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go1: {fileID: 372639156}
+--- !u!114 &1362550867 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114444299408775798, guid: 5681d55e734b0744cb0fb3b1be33a7fe,
+    type: 2}
+  m_PrefabInternal: {fileID: 1869378819}
+  m_Script: {fileID: 11500000, guid: f4c9c22b6da24ca4f90eb75808d345e9, type: 3}
 --- !u!1001 &1376441290
 Prefab:
   m_ObjectHideFlags: 0
@@ -8307,7 +8313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8fde31d7e5d734692d6996b22c2f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topLeft: {fileID: 0}
+  topLeft: {fileID: 1362550867}
   ALTO: 8
   ANCHO: 8
   alturaEscalera: {x: 0, y: 2, z: 0}
@@ -8429,12 +8435,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4911530587505610, guid: cffd946fc9e83324bb9c247f21f1124e,
     type: 2}
   m_PrefabInternal: {fileID: 2020639791}
---- !u!114 &2034635568 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
-    type: 2}
-  m_PrefabInternal: {fileID: 2129177018}
-  m_Script: {fileID: 11500000, guid: 229524594d8e268458f83d84625739c2, type: 3}
 --- !u!1001 &2039272527
 Prefab:
   m_ObjectHideFlags: 0
@@ -8688,58 +8688,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114899934051704626, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: characterType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114532100718854430, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: tablePosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114532100718854430, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: tablePosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114563425001148670, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: GREENPlayer
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114563425001148670, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: YELLOWPlayer
-      value: 
-      objectReference: {fileID: 2034635568}
-    - target: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: tablePosition.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: tablePosition.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114054347812207818, guid: ccf122115af914f44bb95ece07daa434,
         type: 2}
       propertyPath: missionTime
       value: 240
-      objectReference: {fileID: 0}
-    - target: {fileID: 4410378860940416, guid: ccf122115af914f44bb95ece07daa434, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 10.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4410378860940416, guid: ccf122115af914f44bb95ece07daa434, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114054347812207818, guid: ccf122115af914f44bb95ece07daa434,
-        type: 2}
-      propertyPath: TotalElementsToDesactivate
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4174291607157540, guid: ccf122115af914f44bb95ece07daa434, type: 2}
       propertyPath: m_LocalScale.x
@@ -8752,6 +8704,31 @@ Prefab:
     - target: {fileID: 4174291607157540, guid: ccf122115af914f44bb95ece07daa434, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114947892774745978, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532100718854430, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532100718854430, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: tablePosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114054347812207818, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: TotalElementsToDesactivate
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccf122115af914f44bb95ece07daa434, type: 2}

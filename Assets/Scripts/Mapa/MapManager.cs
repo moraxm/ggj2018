@@ -157,7 +157,7 @@ public class MapManager : MonoBehaviour
 
                 toAnalyze.Add(fut);
 
-                Debug.Log(fut.Key + "," + fut.Value);
+               // Debug.Log(fut.Key + "," + fut.Value);
             }
 
             if(_casilla == null)
