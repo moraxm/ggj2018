@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        UtilSound.instance.StopAllSounds();
+        UtilSound.instance.PlaySound("InGame", loop:true,useFamilySounds: true);
         if (!MoveUpUI || !MoveDownUI || !MoveLeftUI || !MoveRightUI || !LadderUI || !DoorUI || !UseUI)
         {
             Debug.LogError("[MainInterfaceController.Start] Error. An action sprite has not been configured via editor");

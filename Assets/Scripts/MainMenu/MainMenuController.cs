@@ -23,6 +23,7 @@ public class MainMenuController : MonoBehaviour {
 
     void Start()
     {
+        UtilSound.instance.PlaySound("MainMenu", loop: true);
         Transform playerSelectionsTrans = transform.Find("ButtonPanel/SelectPlayers");
         if (!playerSelectionsTrans)
         {
@@ -70,6 +71,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void StartGameButton()
     {
+        UtilSound.instance.StopSound("MainMenu");
         UtilSound.instance.PlaySound("click", 1.0f, false, true);
         SceneManager.LoadScene("Level1");
     }
