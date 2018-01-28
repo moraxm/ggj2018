@@ -21,6 +21,7 @@ public class StairAction : IAction
         if (currentPlayer.m_mapManager.doAction(currentPlayer.tablePosition, currentPlayer.orientation, Casilla.PERSONAJE_ENUM.ESCALERA))
         {
             currentPlayer.animator.SetTrigger("UpStairs");
+            UtilSound.instance.PlaySound("ladder", 1.0f, false, true);
             Vector2Int pos = currentPlayer.tablePosition;
             switch (currentPlayer.orientation)
             {
