@@ -6851,6 +6851,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114363418788837244, guid: 389fec8b82ec7c4479191f97c1025d62,
+        type: 2}
+      propertyPath: TimeToAdd
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 389fec8b82ec7c4479191f97c1025d62, type: 2}
   m_IsPrefabParent: 0
@@ -7514,6 +7519,11 @@ Prefab:
         type: 2}
       propertyPath: tablePosition.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114054347812207818, guid: ccf122115af914f44bb95ece07daa434,
+        type: 2}
+      propertyPath: missionTime
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ccf122115af914f44bb95ece07daa434, type: 2}
